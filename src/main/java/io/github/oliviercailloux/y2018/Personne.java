@@ -1,5 +1,8 @@
 package io.github.oliviercailloux.y2018;
 
+import javax.json.Json;
+import javax.json.JsonObject;
+
 public class Personne {
 	
 	private int id;
@@ -207,4 +210,48 @@ public class Personne {
 	public void setVacataire(String vacataire) {
 		this.vacataire = vacataire;
 	}
+	
+	public JsonObject personneToJson(){
+		JsonObject pj = Json.createObjectBuilder()
+				.add("id",getId())
+				.add("prenom", getPrenom())
+				.add("nom", getNom())
+				.add("email", getEmail())
+				.add("telephone", getTelephone())
+				.add("fax", getFax())
+				.add("home_page", getHome_page())
+				.add("cv", getCv())
+				.add("note", getNote())
+				.add("password", getPassword())
+				.add("role", getRole())
+				.add("annnee_master", getAnnee_master())
+				.add("adresse", getAdresse())
+				.add("mobile", getMobile())
+				.add("vacataire", getVacataire())
+				.build();
+		return pj;
+				
+	}
+	
+	
+	public Personne jsonToRole(JsonObject pj){
+		Personne personne = new Personne();
+		personne.setId(pj.getInt("id"));
+		personne.setPrenom(pj.getString("prenom"));
+		personne.setNom(pj.getString("nom"));
+		personne.setEmail(pj.getString("email"));
+		personne.setTelephone(pj.getString("telephone"));
+		personne.setFax(pj.getString("fax"));
+		personne.setHome_page(pj.getString("home_page"));
+		personne.setCv(pj.getString("cv"));
+		personne.setNote(pj.getString("note"));
+		personne.setPassword(pj.getString("password"));
+		personne.setRole(pj.getString("role"));
+		personne.setAnnee_master(pj.getInt("annee_master"));
+		personne.setAdresse(pj.getString("adresse"));
+		personne.setMobile(pj.getString("mobile"));
+		personne.setVacataire(pj.getString("vacataire"));
+		return personne;
+	}
+	
 }

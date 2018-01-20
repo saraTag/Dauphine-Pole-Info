@@ -1,5 +1,8 @@
 package io.github.oliviercailloux.y2018;
 
+import javax.json.Json;
+import javax.json.JsonObject;
+
 public class Master {
 	
 	private int id;
@@ -39,6 +42,23 @@ public class Master {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public JsonObject masterToJson(){
+		JsonObject mj = Json.createObjectBuilder()
+				.add("id", getId())
+				.add("nom", getNom())
+				.add("description", getDescription())
+				.build();
+		return mj;
+	}
+	
+	public Master jsonToMaster(JsonObject mj){
+		Master master = new Master();
+		master.setId(mj.getInt("id"));
+		master.setNom(mj.getString("nom"));
+		master.setDescription(mj.getString("description"));
+		return master;
 	}
 	
 }

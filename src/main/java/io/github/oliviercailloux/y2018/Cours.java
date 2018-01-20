@@ -1,5 +1,8 @@
 package io.github.oliviercailloux.y2018;
 
+import javax.json.Json;
+import javax.json.JsonObject;
+
 public class Cours {
 	
 	private int id_master;
@@ -8,6 +11,7 @@ public class Cours {
 	private String periode;
 	private String obligatoire;
 	private String note;
+	
 
 	public Cours() {
 		super();
@@ -66,6 +70,23 @@ public class Cours {
 
 	public void setNote(String note) {
 		this.note = note;
+	}
+	
+	public JsonObject CoursToJson(){
+		JsonObject jc = Json.createObjectBuilder()
+				.add("periode", getPeriode())
+				.add("obligatoire", getObligatoire())
+				.add("note", getNote())
+				.build();
+		return jc;
+	}
+	
+	public Cours jsonToCours(JsonObject jc){
+		Cours cours = new Cours();
+		cours.setPeriode(jc.getString("periode"));
+		cours.setObligatoire(jc.getString("obligatoire"));
+		cours.setNote(jc.getString("note"));
+		return cours;
 	}
 	
 }
