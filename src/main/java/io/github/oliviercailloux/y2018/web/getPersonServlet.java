@@ -1,19 +1,21 @@
 package io.github.oliviercailloux.y2018.web;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 
 import javax.inject.Inject;
-import javax.servlet.*;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
-import javax.ws.rs.core.MediaType;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-import io.github.oliviercailloux.y2018.Cours;
+import io.github.oliviercailloux.y2018.Personne;
 
-@WebServlet("/course")
-public class getCourseServlet extends HttpServlet{
+@WebServlet("/person")
+public class getPersonServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	
 	//Temporary fake database
@@ -29,8 +31,8 @@ public class getCourseServlet extends HttpServlet{
 		resp.setLocale(Locale.ENGLISH);
 		
 		PrintWriter out = resp.getWriter();
-		Cours targetCourse = DBM.getCoursesById().get(Integer.parseInt(id));
-		out.print(targetCourse);
+		Personne targetPerson = DBM.getPersonsById().get(Integer.parseInt(id));
+		out.print(targetPerson);
 		out.flush();
 	}
 }
