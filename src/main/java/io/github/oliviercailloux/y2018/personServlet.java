@@ -1,4 +1,4 @@
-package io.github.oliviercailloux.y2018.web;
+package io.github.oliviercailloux.y2018;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,9 +15,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import io.github.oliviercailloux.y2018.Cours;
-import io.github.oliviercailloux.y2018.Personne;
 
 @WebServlet("/person")
 public class personServlet extends HttpServlet{

@@ -1,4 +1,4 @@
-package io.github.oliviercailloux.y2018.web;
+package io.github.oliviercailloux.y2018;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -11,8 +11,6 @@ import javax.json.JsonReader;
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
-
-import io.github.oliviercailloux.y2018.Cours;
 
 @WebServlet("/course")
 public class courseServlet extends HttpServlet{
@@ -67,7 +65,8 @@ public class courseServlet extends HttpServlet{
 			else if(req.getParameter("periode")!=null && req.getParameter("obligatoire")!=null && req.getParameter("note")!=null) {
 				//Fields request
 				//Create JsonObject to be able to update course
-				updated = current.jsonToCours(Json.createObjectBuilder().add("periode", req.getParameter("periode") )
+				updated = current.jsonToCours(Json.createObjectBuilder()
+						.add("periode", req.getParameter("periode") )
 						.add("obligatoire", req.getParameter("obligatoire"))
 						.add("note", req.getParameter("note"))
 						.build());

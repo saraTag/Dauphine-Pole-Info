@@ -1,12 +1,9 @@
-package io.github.oliviercailloux.y2018.web;
+package io.github.oliviercailloux.y2018;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.enterprise.context.*;
-
-import io.github.oliviercailloux.y2018.Cours;
-import io.github.oliviercailloux.y2018.Personne;
 
 /**
  * Please note that this only a temporary solution, pending the creation
@@ -27,7 +24,7 @@ public class DatabaseManager {
 		return coursesById;
 	}
 	
-	public Map<Integer,Personne> getPersonsById() {
+	public Map<Integer,	Personne> getPersonsById() {
 		return personsById;
 	}
 	
@@ -42,9 +39,9 @@ public class DatabaseManager {
 	}
 	
 	private void init() {
-		coursesById.put(1,new Cours());
-		coursesById.put(2,new Cours());
-		coursesById.put(3,new Cours());
+		coursesById.put(1, new Cours());
+		coursesById.put(2, new Cours());
+		coursesById.put(3, new Cours());
 		personsById.put(1, new Personne());
 		personsById.put(2, new Personne());
 		personsById.put(3, new Personne());
