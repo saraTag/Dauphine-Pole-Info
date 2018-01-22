@@ -1,6 +1,6 @@
 package io.github.oliviercailloux.y2018;
 
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.enterprise.context.*;
@@ -13,8 +13,9 @@ import javax.enterprise.context.*;
 
 @ApplicationScoped
 public class DatabaseManager {
-	private Map<Integer,Cours> coursesById = new LinkedHashMap<>();
-	private Map<Integer,Personne> personsById = new LinkedHashMap<>();
+	//changement du choix de la structure de donnees
+	private Map<Integer,Cours> coursesById = new HashMap<>();
+	private Map<Integer,Personne> personsById = new HashMap<>();
 	
 	public DatabaseManager() {
 		init();
