@@ -11,7 +11,6 @@ import javax.json.JsonReader;
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
-import javax.ws.rs.core.MediaType;
 
 import io.github.oliviercailloux.y2018.Cours;
 
@@ -51,7 +50,7 @@ public class courseServlet extends HttpServlet{
 		//Ensures id parameter exists
 		if(id != null) {
 			int i = Integer.parseInt(id);
-			Cours current = DBM.getCoursesById().get(id);
+			Cours current = DBM.getCoursesById().get(i);
 			Cours updated;
 			if(req.getParameter("course")!=null) {
 				//JSON request
