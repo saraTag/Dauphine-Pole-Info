@@ -13,7 +13,6 @@ import javax.enterprise.context.*;
 
 @ApplicationScoped
 public class DatabaseManager {
-	//changement du choix de la structure de donnees
 	private Map<Integer,Cours> coursesById = new HashMap<>();
 	private Map<Integer,Personne> personsById = new HashMap<>();
 	

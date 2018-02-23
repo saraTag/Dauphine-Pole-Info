@@ -1,7 +1,7 @@
 package io.github.oliviercailloux.y2018;
 
-import javax.json.Json;
-import javax.json.JsonObject;
+import javax.json.bind.Jsonb;
+import javax.json.bind.JsonbBuilder;
 
 public class Contenu {
 	
@@ -15,6 +15,7 @@ public class Contenu {
 	private String objectives;
 	private String contents;
 	private String biblio;
+	private static Jsonb jsonb = JsonbBuilder.create();
 	
 	
 	public Contenu() {
@@ -136,37 +137,18 @@ public class Contenu {
 	public void setBiblio(String biblio) {
 		this.biblio = biblio;
 	}
-	
-	public JsonObject contenuToJson(){
-		JsonObject cj = Json.createObjectBuilder()
-				.add("id", getId())
-				.add("nom", getNom())
-				.add("description", getDescription())
-				.add("apprentissage", getApprentissage())
-				.add("volume_horaire", getVolume_horaire())
-				.add("ects", getEtcs())
-				.add("volume_projet", getVolume_projet())
-				.add("objectives", getObjectives())
-				.add("contents", getContents())
-				.add("biblio", getBiblio())
-				.build();
-		return cj;
+	/**
+	 * @return Contenu : json
+	 */
+	public String contenuToJson(){
+		return jsonb.toJson(this);
 	}
 	
-	public Contenu jsonToContenu(JsonObject cj){
-		Contenu contenu = new Contenu();
-		contenu.setId(cj.getInt("id"));
-		contenu.setNom(cj.getString("nom"));
-		contenu.setDescription(cj.getString("description"));
-		contenu.setApprentissage(cj.getString("apprentissage"));
-		contenu.setVolume_horaire(cj.getInt("volume_horaire"));
-		contenu.setEtcs(Float.parseFloat(cj.getString("ects")));
-		contenu.setVolume_projet(cj.getInt("volume_projet"));
-		contenu.setObjectives(cj.getString("objectives"));
-		contenu.setContents(cj.getString("contents"));
-		contenu.setBiblio(cj.getString("biblio"));
-		return contenu;
+	/**
+	 * @param jsonContenu : String
+	 * @return Object : Contenu
+	 */
+	public static Contenu jsonToContenu(String jsonbContenu){
+		return jsonb.fromJson(jsonbContenu, Contenu.class);
 	}
-	
-
 }

@@ -1,7 +1,7 @@
 package io.github.oliviercailloux.y2018;
 
-import javax.json.Json;
-import javax.json.JsonObject;
+import javax.json.bind.Jsonb;
+import javax.json.bind.JsonbBuilder;
 
 public class Personne {
 	
@@ -21,6 +21,7 @@ public class Personne {
 	private String adresse;
 	private String mobile;
 	private String vacataire;
+	private static Jsonb jsonb = JsonbBuilder.create();
 	
 	
 	public Personne() {
@@ -47,11 +48,7 @@ public class Personne {
 		this.mobile = mobile;
 		this.vacataire = vacataire;
 	}
-
-
-
-
-
+	
 	public int getId() {
 		return id;
 	}
@@ -191,11 +188,9 @@ public class Personne {
 		this.adresse = adresse;
 	}
 
-
 	public String getMobile() {
 		return mobile;
 	}
-
 
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
@@ -206,52 +201,21 @@ public class Personne {
 		return vacataire;
 	}
 
-
 	public void setVacataire(String vacataire) {
 		this.vacataire = vacataire;
 	}
-	
-	public JsonObject personneToJson(){
-		JsonObject pj = Json.createObjectBuilder()
-				.add("id",getId())
-				.add("prenom", getPrenom())
-				.add("nom", getNom())
-				.add("email", getEmail())
-				.add("telephone", getTelephone())
-				.add("fax", getFax())
-				.add("home_page", getHome_page())
-				.add("cv", getCv())
-				.add("note", getNote())
-				.add("password", getPassword())
-				.add("role", getRole())
-				.add("annnee_master", getAnnee_master())
-				.add("adresse", getAdresse())
-				.add("mobile", getMobile())
-				.add("vacataire", getVacataire())
-				.build();
-		return pj;
-				
+	/**
+	 * @return Personne : json
+	 */
+	public  String personneToJson(){
+		return jsonb.toJson(this);
 	}
 	
-	
-	public Personne jsonToRole(JsonObject pj){
-		Personne personne = new Personne();
-		personne.setId(pj.getInt("id"));
-		personne.setPrenom(pj.getString("prenom"));
-		personne.setNom(pj.getString("nom"));
-		personne.setEmail(pj.getString("email"));
-		personne.setTelephone(pj.getString("telephone"));
-		personne.setFax(pj.getString("fax"));
-		personne.setHome_page(pj.getString("home_page"));
-		personne.setCv(pj.getString("cv"));
-		personne.setNote(pj.getString("note"));
-		personne.setPassword(pj.getString("password"));
-		personne.setRole(pj.getString("role"));
-		personne.setAnnee_master(pj.getInt("annee_master"));
-		personne.setAdresse(pj.getString("adresse"));
-		personne.setMobile(pj.getString("mobile"));
-		personne.setVacataire(pj.getString("vacataire"));
-		return personne;
+	/**
+	 * @param jsonPersonne : String
+	 * @return Object : Personne
+	 */
+	public static Personne jsonToPerson(String jsonPersonne){
+		return jsonb.fromJson(jsonPersonne, Personne.class);
 	}
-	
 }

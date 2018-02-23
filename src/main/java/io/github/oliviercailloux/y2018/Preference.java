@@ -8,18 +8,20 @@ public class Preference {
 	private int id_master;
 	private int id_contenu;
 	private int id_personne;
-	private int niveau;
+	private int niveau; // valeur par defaut
 	
 	
 	public Preference() {
 		super();
 	}
 
-
+// obliger le user à fournir toutes les infos
 	public Preference(int niveau) {
 		super();
-		this.niveau = niveau;
+		this.niveau = 0;
 	}
+	
+	
 
 
 	public int getId_master() {

@@ -1,13 +1,14 @@
 package io.github.oliviercailloux.y2018;
 
-import javax.json.Json;
-import javax.json.JsonObject;
+import javax.json.bind.Jsonb;
+import javax.json.bind.JsonbBuilder;
 
 public class Master {
 	
 	private int id;
 	private String nom;
 	private String description;
+	private static Jsonb jsonb = JsonbBuilder.create();
 	
 	public Master() {
 		super();
@@ -44,21 +45,18 @@ public class Master {
 		this.description = description;
 	}
 	
-	public JsonObject masterToJson(){
-		JsonObject mj = Json.createObjectBuilder()
-				.add("id", getId())
-				.add("nom", getNom())
-				.add("description", getDescription())
-				.build();
-		return mj;
+	/**
+	 * @return Master : json
+	 */
+	public String masterToJson(){
+		return jsonb.toJson(this);
 	}
 	
-	public Master jsonToMaster(JsonObject mj){
-		Master master = new Master();
-		master.setId(mj.getInt("id"));
-		master.setNom(mj.getString("nom"));
-		master.setDescription(mj.getString("description"));
-		return master;
+	/**
+	 * @param jsonMaster : String
+	 * @return Object : Master
+	 */
+	public static Master jsonToMaster(String jsonbMaster){
+		return jsonb.fromJson(jsonbMaster, Master.class);
 	}
-	
 }

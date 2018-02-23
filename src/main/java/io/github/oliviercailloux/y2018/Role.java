@@ -2,11 +2,14 @@ package io.github.oliviercailloux.y2018;
 
 import javax.json.Json;
 import javax.json.JsonObject;
+import javax.json.bind.Jsonb;
+import javax.json.bind.JsonbBuilder;
 
 public class Role {
 	
 	private String code;
 	private String intitule;
+	private static Jsonb jsonb = JsonbBuilder.create();
 	
 	public Role() {
 		super();
@@ -34,21 +37,12 @@ public class Role {
 		this.intitule = intitule;
 	}
 	
-	public JsonObject roleToJson(){
-		JsonObject rj = Json.createObjectBuilder()
-				.add("code", getCode())
-				.add("intitule", getIntitule())
-				.build();
-		return rj;
-			
+	public String roleToJson(){
+		return jsonb.toJson(this);
 	}
 	
-	public Role jsonToRole(JsonObject rj){
-		Role role = new Role();
-		role.setCode( rj.getString("code"));
-		role.setIntitule(rj.getString("intitule"));
-		return role;
+	public static Role jsonToRole(String jsonRole){
+		return jsonb.fromJson(jsonRole, Role.class);
 	}
 	
-
 }

@@ -31,7 +31,7 @@ public class courseServlet extends HttpServlet{
 		
 		PrintWriter out = resp.getWriter();
 		Cours targetCourse = DBM.getCoursesById().get(Integer.parseInt(id));
-		out.print(targetCourse);
+		out.print(targetCourse.coursToJson());
 		out.flush();
 	}
 	
@@ -47,31 +47,16 @@ public class courseServlet extends HttpServlet{
 		
 		//Ensures id parameter exists
 		if(id != null) {
-			int i = Integer.parseInt(id);
-			Cours current = DBM.getCoursesById().get(i);
-			Cours updated;
 			if(req.getParameter("course")!=null) {
 				//JSON request
-				String course = req.getParameter("course");
-				
-				//Read JsonObject from String parameter
-				JsonReader jsonReader = Json.createReader(new StringReader(course));
-				JsonObject jsonParameter = jsonReader.readObject();
-				jsonReader.close();
-				
-				updated = current.jsonToCours(jsonParameter);
-				DBM.updateCourse(i, updated);
+				DBM.updateCourse(Integer.parseInt(id), Cours.JsonToCours(req.getParameter("course")));
 			}
-			else if(req.getParameter("periode")!=null && req.getParameter("obligatoire")!=null && req.getParameter("note")!=null) {
-				//Fields request
-				//Create JsonObject to be able to update course
-				updated = current.jsonToCours(Json.createObjectBuilder()
-						.add("periode", req.getParameter("periode") )
-						.add("obligatoire", req.getParameter("obligatoire"))
-						.add("note", req.getParameter("note"))
-						.build());
-				DBM.updateCourse(i, updated);
-			}
+//			else if(req.getParameter("periode")!=null && req.getParameter("obligatoire")!=null && req.getParameter("note")!=null) {
+//				//Fields request
+//				//Create JsonObject to be able to update course
+//				updated = current.JsonToCours();
+//				DBM.updateCourse(i, updated);
+//			}
 		}
 		else {
 			//Wrong Parameters
