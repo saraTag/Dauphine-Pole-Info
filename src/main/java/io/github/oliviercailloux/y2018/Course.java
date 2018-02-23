@@ -5,20 +5,20 @@ import javax.json.bind.JsonbBuilder;
 
 import com.google.common.base.Strings;
 
-public class Cours {
+public class Course {
 	
 	private int id_master;
 	private int id_contenu;
 	private int id_enseignant;
 	private String periode;
-	private boolean obligatoire; //bool
+	private boolean obligatoire;
 	/**
 	 * description correspond to note in db.
 	 */
 	private String description; 
 	private static Jsonb jsonb = JsonbBuilder.create();
 
-	public Cours() {
+	public Course() {
 		super();
 	}
 
@@ -27,12 +27,9 @@ public class Cours {
 	 * @param obligatoire
 	 * @param note
 	 */
-	public Cours(String periode, boolean obligatoire, String note) {
+	public Course(String periode, boolean obligatoire, String note) {
 		super();
-		if(periode == null)
-			this.periode = "";
-		else 
-			this.periode = periode;
+		this.periode = Strings.nullToEmpty(periode);
 		this.obligatoire = obligatoire;
 		this.description = note;
 	}
@@ -69,10 +66,7 @@ public class Cours {
 	}
 
 	public void setPeriode(String periode) {
-		if(periode == null)
-			this.periode = "";
-		else 
-			this.periode = periode;
+		periode = Strings.nullToEmpty(periode);
 	}
 
 	public boolean getObligatoire() {
@@ -83,16 +77,16 @@ public class Cours {
 		this.obligatoire = obligatoire;
 	}
 
-	public String getNote() {
+	public String getDescription() {
 		return description;
 	}
 
-	public void setNote(String note) {	
-		this.description = Strings.nullToEmpty(note);
+	public void setDescription(String description) {	
+		this.description = Strings.nullToEmpty(description);
 	}
 	
 	/**
-	 * @return Cours : Json
+	 * @return Cours not null
 	 */
 	public String coursToJson(){
 		return	jsonb.toJson(this);
@@ -100,9 +94,9 @@ public class Cours {
 	
 	/**
 	 * @param jsonCours : String
-	 * @return Object : Cours
+	 * @return Object : Cours not null
 	 */
-	public static Cours JsonToCours(String jsonbCours){
-		return jsonb.fromJson(jsonbCours, Cours.class);
+	public static Course JsonToCours(String jsonbCours){
+		return jsonb.fromJson(Strings.nullToEmpty(jsonbCours), Course.class);
 	}
 }

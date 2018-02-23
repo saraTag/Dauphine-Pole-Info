@@ -1,28 +1,35 @@
 package io.github.oliviercailloux.y2018;
 
-import javax.json.Json;
-import javax.json.JsonObject;
+import javax.json.bind.Jsonb;
+import javax.json.bind.JsonbBuilder;
+
+import com.google.common.base.Strings;
 
 public class Preference {
 	
 	private int id_master;
-	private int id_contenu;
-	private int id_personne;
-	private int niveau; // valeur par defaut
+	private int id_contents;
+	private int id_person;
+	/**
+	 * default value
+	 */
+	private int level; 
+	private static Jsonb jsonb = JsonbBuilder.create();
 	
 	
 	public Preference() {
 		super();
 	}
 
-// obliger le user à fournir toutes les infos
+	/**
+	 * 
+	 * obliger le user à fournir toutes les infos
+	 */
 	public Preference(int niveau) {
 		super();
-		this.niveau = 0;
+		this.level = 0;
 	}
 	
-	
-
 
 	public int getId_master() {
 		return id_master;
@@ -34,52 +41,50 @@ public class Preference {
 	}
 
 
-	public int getId_contenu() {
-		return id_contenu;
+	public int getId_contents() {
+		return id_contents;
 	}
 
 
-	public void setId_contenu(int id_contenu) {
-		this.id_contenu = id_contenu;
+	public void setId_contents(int id_contenu) {
+		this.id_contents = id_contenu;
 	}
 
 
-	public int getId_personne() {
-		return id_personne;
+	public int getId_person() {
+		return id_person;
 	}
 
 
-	public void setId_personne(int id_personne) {
-		this.id_personne = id_personne;
+	public void setId_person(int id_personne) {
+		this.id_person = id_personne;
 	}
 
 
-	public int getNiveau() {
-		return niveau;
+	public int getLevel() {
+		return level;
 	}
 
 
-	public void setNiveau(int niveau) {
-		this.niveau = niveau;
-	}
-	
-	public JsonObject preferenceToJson(){
-		JsonObject pj = Json.createObjectBuilder()
-				.add("id_master", getId_master())
-				.add("id_contenu", getId_contenu())
-				.add("id_personne", getId_personne())
-				.add("niveau", getNiveau())
-				.build();
-		return pj;
+	public void setLevel(int level) {
+		this.level = level;
 	}
 	
-	public Preference jsonToPrefernece(JsonObject pj){
-		Preference preference = new Preference();
-		preference.setId_master(pj.getInt("id_master"));
-		preference.setId_contenu(pj.getInt("id_contenu"));
-		preference.setId_personne(pj.getInt("id_personne"));
-		preference.setNiveau(pj.getInt("niveau"));
-		return preference;
+	/**
+	 * 
+	 * @return not null
+	 */
+	public String preferenceToJson(){
+		return jsonb.toJson(this);
+		
+	}
+	/**
+	 * 
+	 * @param jsonPreference : String
+	 * @return Preference not null
+	 */
+	public static Preference jsonToPrefernecy(String jsonPreference){
+		return jsonb.fromJson(Strings.nullToEmpty(jsonPreference), Preference.class);
 	}
 
 }
