@@ -93,7 +93,7 @@ public class Course {
 	}
 	
 	/**
-	 * @param jsonCours : String
+	 * @param jsonCours :String
 	 * @return Object : Cours not null
 	 */
 	public static Course JsonToCours(String jsonbCours){
