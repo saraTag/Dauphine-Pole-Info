@@ -14,7 +14,7 @@ import javax.enterprise.context.*;
 @ApplicationScoped
 public class DatabaseManager {
 	private Map<Integer,Cours> coursesById = new HashMap<>();
-	private Map<Integer,Personne> personsById = new HashMap<>();
+	private Map<Integer,Person> personsById = new HashMap<>();
 	
 	public DatabaseManager() {
 		init();
@@ -24,7 +24,7 @@ public class DatabaseManager {
 		return coursesById;
 	}
 	
-	public Map<Integer,	Personne> getPersonsById() {
+	public Map<Integer,	Person> getPersonsById() {
 		return personsById;
 	}
 	
@@ -33,7 +33,7 @@ public class DatabaseManager {
 		return true;
 	}
 	
-	public boolean updatePersonne(int id, Personne person) {
+	public boolean updatePersonne(int id, Person person) {
 		personsById.put(id, person);
 		return true;
 	}
@@ -42,8 +42,8 @@ public class DatabaseManager {
 		coursesById.put(1, new Cours());
 		coursesById.put(2, new Cours());
 		coursesById.put(3, new Cours());
-		personsById.put(1, new Personne());
-		personsById.put(2, new Personne());
-		personsById.put(3, new Personne());
+		personsById.put(1, new Person());
+		personsById.put(2, new Person());
+		personsById.put(3, new Person());
 	}
 }

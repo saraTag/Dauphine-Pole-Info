@@ -33,7 +33,7 @@ public class PersonServlet extends HttpServlet{
 		resp.setLocale(Locale.ENGLISH);
 		
 		PrintWriter out = resp.getWriter();
-		Personne targetPerson = DBM.getPersonsById().get(Integer.parseInt(id));
+		Person targetPerson = DBM.getPersonsById().get(Integer.parseInt(id));
 		out.print(targetPerson.personneToJson());
 		out.flush();
 	}
@@ -51,7 +51,7 @@ public class PersonServlet extends HttpServlet{
 		if(id != null) {
 			if(req.getParameter("person")!=null) {
 				//JSON request
-				DBM.updatePersonne(Integer.parseInt(id), Personne.jsonToPerson(req.getParameter("person")));
+				DBM.updatePersonne(Integer.parseInt(id), Person.jsonToPerson(req.getParameter("person")));
 			}
 //			else if(req.getParameter("id")!=null && req.getParameter("prenom")!=null && req.getParameter("nom")!=null) {
 //				//Fields request
