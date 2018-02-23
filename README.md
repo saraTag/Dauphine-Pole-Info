@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/MAMERY-DOUMBIA/dauphine-pole-info.svg?branch=master)](https://travis-ci.org/MAMERY-DOUMBIA/dauphine-pole-info)
+[![Build Status](https://travis-ci.org/MAMERY-DOUMBIA/Dauphine-Pole-Info.svg?branch=master)](https://travis-ci.org/MAMERY-DOUMBIA/Dauphine-Pole-Info)
 # dauphine-pole-info
 Projet de Conception Agile d'Application Web en Java  
   
