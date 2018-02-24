@@ -8,8 +8,8 @@ import com.google.common.base.Strings;
 public class Course {
 	
 	private int id_master;
-	private int id_contenu;
-	private int id_enseignant;
+	private int id_contents;
+	private int id_teacher;
 	private String periode;
 	private boolean obligatoire;
 	/**
@@ -42,20 +42,20 @@ public class Course {
 		this.id_master = id_master;
 	}
 
-	public int getId_contenu() {
-		return id_contenu;
+	public int getId_contents() {
+		return id_contents;
 	}
 
-	public void setId_contenu(int id_contenu) {
-		this.id_contenu = id_contenu;
+	public void setId_contents(int id_contenu) {
+		this.id_contents = id_contenu;
 	}
 
-	public int getId_enseignant() {
-		return id_enseignant;
+	public int getId_teacher() {
+		return id_teacher;
 	}
 
-	public void setId_enseignant(int id_enseignant) {
-		this.id_enseignant = id_enseignant;
+	public void setId_teacher(int id_enseignant) {
+		this.id_teacher = id_enseignant;
 	}
 	
 	/**
@@ -76,7 +76,11 @@ public class Course {
 	public void setObligatoire(boolean obligatoire) {
 		this.obligatoire = obligatoire;
 	}
-
+	
+	/**
+	 * 
+	 * @return not null
+	 */
 	public String getDescription() {
 		return description;
 	}
@@ -84,7 +88,7 @@ public class Course {
 	public void setDescription(String description) {	
 		this.description = Strings.nullToEmpty(description);
 	}
-	
+
 	/**
 	 * @return Cours not null
 	 */

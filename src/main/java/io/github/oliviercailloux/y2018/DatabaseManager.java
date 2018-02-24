@@ -13,37 +13,37 @@ import javax.enterprise.context.*;
 
 @ApplicationScoped
 public class DatabaseManager {
-	private Map<Integer,Cours> coursesById = new HashMap<>();
-	private Map<Integer,Personne> personsById = new HashMap<>();
+	private Map<Integer,Course> coursesById = new HashMap<>();
+	private Map<Integer,Person> personsById = new HashMap<>();
 	
 	public DatabaseManager() {
 		init();
 	}
 	
-	public Map<Integer,Cours> getCoursesById() {
+	public Map<Integer,Course> getCoursesById() {
 		return coursesById;
 	}
 	
-	public Map<Integer,	Personne> getPersonsById() {
+	public Map<Integer,	Person> getPersonsById() {
 		return personsById;
 	}
 	
-	public boolean updateCourse(int id,Cours course) {
+	public boolean updateCourse(int id,Course course) {
 		coursesById.put(id, course);
 		return true;
 	}
 	
-	public boolean updatePersonne(int id, Personne person) {
+	public boolean updatePersonne(int id, Person person) {
 		personsById.put(id, person);
 		return true;
 	}
 	
 	private void init() {
-		coursesById.put(1, new Cours());
-		coursesById.put(2, new Cours());
-		coursesById.put(3, new Cours());
-		personsById.put(1, new Personne());
-		personsById.put(2, new Personne());
-		personsById.put(3, new Personne());
+		coursesById.put(1, new Course());
+		coursesById.put(2, new Course());
+		coursesById.put(3, new Course());
+		personsById.put(1, new Person());
+		personsById.put(2, new Person());
+		personsById.put(3, new Person());
 	}
 }

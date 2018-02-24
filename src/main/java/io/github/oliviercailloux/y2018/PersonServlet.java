@@ -2,14 +2,10 @@ package io.github.oliviercailloux.y2018;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.StringReader;
 import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 
 import javax.inject.Inject;
-import javax.json.Json;
-import javax.json.JsonObject;
-import javax.json.JsonReader;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,7 +29,7 @@ public class PersonServlet extends HttpServlet{
 		resp.setLocale(Locale.ENGLISH);
 		
 		PrintWriter out = resp.getWriter();
-		Personne targetPerson = DBM.getPersonsById().get(Integer.parseInt(id));
+		Person targetPerson = DBM.getPersonsById().get(Integer.parseInt(id));
 		out.print(targetPerson.personneToJson());
 		out.flush();
 	}
@@ -51,7 +47,7 @@ public class PersonServlet extends HttpServlet{
 		if(id != null) {
 			if(req.getParameter("person")!=null) {
 				//JSON request
-				DBM.updatePersonne(Integer.parseInt(id), Personne.jsonToPerson(req.getParameter("person")));
+				DBM.updatePersonne(Integer.parseInt(id), Person.jsonToPerson(req.getParameter("person")));
 			}
 //			else if(req.getParameter("id")!=null && req.getParameter("prenom")!=null && req.getParameter("nom")!=null) {
 //				//Fields request

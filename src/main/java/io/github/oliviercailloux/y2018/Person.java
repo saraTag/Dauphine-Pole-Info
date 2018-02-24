@@ -3,8 +3,7 @@ package io.github.oliviercailloux.y2018;
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
 
-public class Personne {
-	
+public class Person{
 	private int id;
 	private String prenom;
 	private String nom;
@@ -24,11 +23,11 @@ public class Personne {
 	private static Jsonb jsonb = JsonbBuilder.create();
 	
 	
-	public Personne() {
+	public Person() {
 		super();
 	}
 
-	public Personne(int id, String prenom, String nom, String email, String telephone, String fax, String home_page,
+	public Person(int id, String prenom, String nom, String email, String telephone, String fax, String home_page,
 			String cv, String note, String password, String role, int annee_master, String adresse, String mobile,
 			String vacataire) {
 		super();
@@ -52,8 +51,8 @@ public class Personne {
 	public int getId() {
 		return id;
 	}
-
-
+	
+	
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -67,7 +66,6 @@ public class Personne {
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
-
 
 	public String getNom() {
 		return nom;
@@ -83,13 +81,13 @@ public class Personne {
 		return email;
 	}
 
-
 	public void setEmail(String email) {
-		this.email = email;
+		this.email = email;	
 	}
 
-
+	
 	public String getTelephone() {
+		System.out.println(fax);
 		return telephone;
 	}
 
@@ -101,6 +99,7 @@ public class Personne {
 
 	public String getFax() {
 		return fax;
+		
 	}
 
 
@@ -215,7 +214,7 @@ public class Personne {
 	 * @param jsonPersonne : String
 	 * @return Object : Personne
 	 */
-	public static Personne jsonToPerson(String jsonPersonne){
-		return jsonb.fromJson(jsonPersonne, Personne.class);
+	public static Person jsonToPerson(String jsonPerson){
+		return jsonb.fromJson(jsonPerson, Person.class);
 	}
 }
