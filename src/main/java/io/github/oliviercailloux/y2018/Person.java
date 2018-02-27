@@ -3,23 +3,26 @@ package io.github.oliviercailloux.y2018;
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
 
-public class Person{
+import com.google.common.base.Strings;
+
+public class Person {
+	
 	private int id;
-	private String prenom;
-	private String nom;
+	private String firstname;
+	private String lastname;
 	private String email;
-	private String telephone;
-	private String 	fax;
+	private String phone;
+	private String fax;
 	private String home_page;
 	private String cv;
 	private String note;
 	private String password;
 	private String role;
 	private int id_master;
-	private int annee_master;
-	private String adresse;
+	private int year_master;
+	private String address;
 	private String mobile;
-	private String vacataire;
+	private String temporary;
 	private static Jsonb jsonb = JsonbBuilder.create();
 	
 	
@@ -27,134 +30,146 @@ public class Person{
 		super();
 	}
 
-	public Person(int id, String prenom, String nom, String email, String telephone, String fax, String home_page,
-			String cv, String note, String password, String role, int annee_master, String adresse, String mobile,
-			String vacataire) {
+	/**
+	 * Short constructor by design.
+	 * Use setters to complete the object.
+	 * @param id int
+	 * @param firstname String
+	 * @param lastname String
+	 */
+	public Person(int id, String firstname, String lastname) {
 		super();
-		this.id = id;
-		this.prenom = prenom;
-		this.nom = nom;
-		this.email = email;
-		this.telephone = telephone;
-		this.fax = fax;
-		this.home_page = home_page;
-		this.cv = cv;
-		this.note = note;
-		this.password = password;
-		this.role = role;
-		this.annee_master = annee_master;
-		this.adresse = adresse;
-		this.mobile = mobile;
-		this.vacataire = vacataire;
+		this.id=id;
+		this.firstname=firstname;
+		this.lastname=lastname;
 	}
 	
 	public int getId() {
 		return id;
 	}
-	
-	
-	public void setId(int id) {
-		this.id = id;
+
+	/**
+	 * 
+	 * @return String not null
+	 */
+	public String getFirstname() {
+		return firstname;
 	}
 
-
-	public String getPrenom() {
-		return prenom;
+	public void setFirstname(String firstname) {
+		this.firstname = Strings.nullToEmpty(firstname);
 	}
 
-
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
+	/**
+	 * 
+	 * @return String not null
+	 */
+	public String getLastname() {
+		return lastname;
 	}
 
-	public String getNom() {
-		return nom;
+	public void setLastname(String lastname) {
+		this.lastname = Strings.nullToEmpty(lastname);
 	}
 
-
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-
-
+	/**
+	 * 
+	 * @return String not null
+	 */
 	public String getEmail() {
 		return email;
 	}
 
+
 	public void setEmail(String email) {
-		this.email = email;	
+		this.email = Strings.nullToEmpty(email);
 	}
 
-	
-	public String getTelephone() {
-		System.out.println(fax);
-		return telephone;
-	}
-
-
-	public void setTelephone(String telephone) {
-		this.telephone = telephone;
+	/**
+	 * 
+	 * @return String not null
+	 */
+	public String getPhone() {
+		return phone;
 	}
 
 
+	public void setPhone(String phone) {
+		this.phone = Strings.nullToEmpty(phone);
+	}
+
+	/**
+	 * 
+	 * @return String not null
+	 */
 	public String getFax() {
 		return fax;
-		
 	}
 
 
 	public void setFax(String fax) {
-		this.fax = fax;
+		this.fax = Strings.nullToEmpty(fax);
 	}
 
-
+	/**
+	 * 
+	 * @return String not null
+	 */
 	public String getHome_page() {
 		return home_page;
 	}
 
-
 	public void setHome_page(String home_page) {
-		this.home_page = home_page;
+		this.home_page = Strings.nullToEmpty(home_page);
 	}
 
-
+	/**
+	 * 
+	 * @return String not null
+	 */
 	public String getCv() {
 		return cv;
 	}
 
 
 	public void setCv(String cv) {
-		this.cv = cv;
+		this.cv = Strings.nullToEmpty(cv);
 	}
 
-
+	/**
+	 * 
+	 * @return String not null
+	 */
 	public String getNote() {
 		return note;
 	}
 
-
 	public void setNote(String note) {
-		this.note = note;
+		this.note = Strings.nullToEmpty(note);
 	}
 
-
+	/**
+	 * 
+	 * @return String not null
+	 */
 	public String getPassword() {
 		return password;
 	}
 
-
 	public void setPassword(String password) {
-		this.password = password;
+		this.password = Strings.nullToEmpty(password);
 	}
 
-
+	/**
+	 * 
+	 * @return String not null
+	 */
 	public String getRole() {
 		return role;
 	}
 
-
 	public void setRole(String role) {
-		this.role = role;
+		this.role = Strings.nullToEmpty(role);
 	}
 
 
@@ -168,53 +183,62 @@ public class Person{
 	}
 
 
-	public int getAnnee_master() {
-		return annee_master;
+	public int getYear_master() {
+		return year_master;
 	}
 
 
-	public void setAnnee_master(int annee_master) {
-		this.annee_master = annee_master;
+	public void setYear_master(int year_master) {
+		this.year_master = year_master;
 	}
 
-
-	public String getAdresse() {
-		return adresse;
+	/**
+	 * 
+	 * @return String not null
+	 */
+	public String getAddress() {
+		return address;
 	}
 
-
-	public void setAdresse(String adresse) {
-		this.adresse = adresse;
+	public void setAddress(String address) {
+		this.address = Strings.nullToEmpty(address);
 	}
 
+	/**
+	 * 
+	 * @return String not null
+	 */
 	public String getMobile() {
 		return mobile;
 	}
 
 	public void setMobile(String mobile) {
-		this.mobile = mobile;
+		this.mobile = Strings.nullToEmpty(mobile);
 	}
 
-
+	/**
+	 * 
+	 * @return String not null
+	 */
 	public String getVacataire() {
-		return vacataire;
+		return temporary;
 	}
 
-	public void setVacataire(String vacataire) {
-		this.vacataire = vacataire;
+	public void setTemporary(String temporary) {
+		this.temporary = Strings.nullToEmpty(temporary);
 	}
 	/**
-	 * @return Personne : json
+	 * @return Person not null
 	 */
 	public  String personneToJson(){
 		return jsonb.toJson(this);
 	}
 	
 	/**
-	 * @param jsonPersonne : String
-	 * @return Object : Personne
+	 * @param jsonPerson : String
+	 * @return Object : Person
 	 */
-	public static Person jsonToPerson(String jsonPerson){
-		return jsonb.fromJson(jsonPerson, Person.class);
+	public static Person jsonToPerson(String jsonPersonne){
+		return jsonb.fromJson(jsonPersonne, Person.class);
 	}
 }
