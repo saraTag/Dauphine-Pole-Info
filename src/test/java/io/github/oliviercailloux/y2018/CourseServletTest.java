@@ -40,7 +40,7 @@ public class CourseServletTest {
 		request.setAttribute("periode", "2018");
 		request.setAttribute("compulsory", true);
 		request.setAttribute("description", "Agile");	
-		courseServlet.doPost(request, response);
+		courseServlet.doGet(request, response);
 		assertEquals(db.getCoursesById().get(2).getDescription(), "Agile");
 	}
 

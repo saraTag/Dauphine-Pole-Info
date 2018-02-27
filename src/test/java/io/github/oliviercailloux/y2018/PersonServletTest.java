@@ -12,8 +12,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 
-
-
 public class PersonServletTest {
 
 	private PersonServlet personServlet;
@@ -44,7 +42,7 @@ public class PersonServletTest {
 		request.setAttribute("id", 2);
 		request.setAttribute("firstname", "Tete");
 		request.setAttribute("firstname", "Dudi");	
-		personServlet.doPost(request, response);
+		personServlet.doPut(request, response);
 		assertEquals(db.getPersonsById().get(2).getFirstname(), "Tete");
 		
 	}
