@@ -1,5 +1,6 @@
 package io.github.oliviercailloux.y2018;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,6 +16,7 @@ import javax.enterprise.context.*;
 public class DatabaseManager {
 	private Map<Integer,Course> coursesById = new HashMap<>();
 	private Map<Integer,Person> personsById = new HashMap<>();
+	private Map<Integer,ArrayList<Preference>> preferencesByStudentId = new HashMap<>();
 	
 	public DatabaseManager() {
 		init();
@@ -35,6 +37,15 @@ public class DatabaseManager {
 	
 	public boolean updatePersonne(int id, Person person) {
 		personsById.put(id, person);
+		return true;
+	}
+	
+	public ArrayList<Preference> getPreferencesByStudentId(int id){
+		return preferencesByStudentId.get(id);
+	}
+	
+	public boolean setPreference(int studentId,Preference preference) {
+		//preferencesByStudentId.put(studentId,preference);
 		return true;
 	}
 	
