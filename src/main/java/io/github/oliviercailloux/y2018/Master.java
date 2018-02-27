@@ -3,10 +3,12 @@ package io.github.oliviercailloux.y2018;
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
 
+import com.google.common.base.Strings;
+
 public class Master {
 	
 	private int id;
-	private String nom;
+	private String name;
 	private String description;
 	private static Jsonb jsonb = JsonbBuilder.create();
 	
@@ -17,7 +19,7 @@ public class Master {
 	public Master(int id, String nom, String description) {
 		super();
 		this.id = id;
-		this.nom = nom;
+		this.name = Strings.nullToEmpty(nom);
 		this.description = description;
 	}
 
@@ -29,20 +31,26 @@ public class Master {
 		this.id = id;
 	}
 
-	public String getNom() {
-		return nom;
+	/**
+	 * @return not null.
+	 */
+	public String getName() {
+		return name;
 	}
 
-	public void setNom(String nom) {
-		this.nom = nom;
+	public void setName(String name) {
+		this.name = Strings.nullToEmpty(name);
 	}
 
+	/**
+	 * @return not null.
+	 */
 	public String getDescription() {
 		return description;
 	}
 
 	public void setDescription(String description) {
-		this.description = description;
+		this.description = Strings.nullToEmpty(description);
 	}
 	
 	/**
@@ -54,9 +62,9 @@ public class Master {
 	
 	/**
 	 * @param jsonMaster : String
-	 * @return Object : Master
+	 * @return Object : Master not null
 	 */
 	public static Master jsonToMaster(String jsonbMaster){
-		return jsonb.fromJson(jsonbMaster, Master.class);
+		return jsonb.fromJson(Strings.emptyToNull(jsonbMaster), Master.class);
 	}
 }

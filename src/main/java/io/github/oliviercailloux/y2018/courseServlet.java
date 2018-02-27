@@ -5,9 +5,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 
 import javax.inject.Inject;
-import javax.json.Json;
-import javax.json.JsonObject;
-import javax.json.JsonReader;
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
@@ -30,7 +27,7 @@ public class courseServlet extends HttpServlet{
 		resp.setLocale(Locale.ENGLISH);
 		
 		PrintWriter out = resp.getWriter();
-		Cours targetCourse = DBM.getCoursesById().get(Integer.parseInt(id));
+		Course targetCourse = DBM.getCoursesById().get(Integer.parseInt(id));
 		out.print(targetCourse.coursToJson());
 		out.flush();
 	}
@@ -49,7 +46,7 @@ public class courseServlet extends HttpServlet{
 		if(id != null) {
 			if(req.getParameter("course")!=null) {
 				//JSON request
-				DBM.updateCourse(Integer.parseInt(id), Cours.JsonToCours(req.getParameter("course")));
+				DBM.updateCourse(Integer.parseInt(id), Course.JsonToCours(req.getParameter("course")));
 			}
 //			else if(req.getParameter("periode")!=null && req.getParameter("obligatoire")!=null && req.getParameter("note")!=null) {
 //				//Fields request

@@ -2,14 +2,10 @@ package io.github.oliviercailloux.y2018;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.StringReader;
 import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 
 import javax.inject.Inject;
-import javax.json.Json;
-import javax.json.JsonObject;
-import javax.json.JsonReader;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
