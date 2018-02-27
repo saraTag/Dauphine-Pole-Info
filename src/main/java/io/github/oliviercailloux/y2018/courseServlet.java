@@ -32,9 +32,9 @@ public class courseServlet extends HttpServlet{
 		out.flush();
 	}
 	
-	//Handles POST requests, for both ways of updating a course
+	//Handles PUT requests, for both ways of updating a course
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String id = req.getParameter("id");
 		
 		resp.setCharacterEncoding(StandardCharsets.UTF_8.name());

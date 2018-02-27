@@ -35,7 +35,7 @@ public class PersonServlet extends HttpServlet{
 	}
 	
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String id = req.getParameter("id");
 		
 		resp.setCharacterEncoding(StandardCharsets.UTF_8.name());

@@ -53,7 +53,7 @@ public class PreferenceServlet extends HttpServlet {
 	 * setPref
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		int idPerson = Integer.parseInt(req.getParameter("idPerson"));
 		int idMaster = Integer.parseInt(req.getParameter("idMaster"));
 		int idContent = Integer.parseInt(req.getParameter("idContent"));
