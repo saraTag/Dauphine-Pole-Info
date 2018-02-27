@@ -59,6 +59,7 @@ public class CourseServlet extends HttpServlet{
 				DBM.updateCourse(Integer.parseInt(id), course);
 			}
 		}
+		
 		else {
 			// Wrong Parameters
 			PrintWriter out = resp.getWriter();

@@ -33,6 +33,7 @@ public class PersonServlet extends HttpServlet{
 		out.print(targetPerson.personneToJson());
 		out.flush();
 	}
+	
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
