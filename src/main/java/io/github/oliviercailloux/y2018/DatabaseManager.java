@@ -17,6 +17,7 @@ public class DatabaseManager {
 	private Map<Integer,Course> coursesById = new HashMap<>();
 	private Map<Integer,Person> personsById = new HashMap<>();
 	private Map<Integer,ArrayList<Preference>> preferencesByStudentId = new HashMap<>();
+	private Map<Integer,ArrayList<Preference>> preferencesByCourseId = new HashMap<>();
 	
 	public DatabaseManager() {
 		init();
@@ -44,8 +45,12 @@ public class DatabaseManager {
 		return preferencesByStudentId.get(id);
 	}
 	
+	public ArrayList<Preference> getPreferencesByCourseId(int id){
+		return preferencesByCourseId.get(id);
+	}
+	
 	public boolean setPreference(int studentId,Preference preference) {
-		//preferencesByStudentId.put(studentId,preference);
+		preferencesByStudentId.get(studentId).add(preference);
 		return true;
 	}
 	
