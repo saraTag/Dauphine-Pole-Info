@@ -23,14 +23,6 @@ public class PreferenceServlet extends HttpServlet {
 	//Temporary fake database
 	@Inject
 	private DatabaseManager DBM;
-	
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public PreferenceServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
 	 * getPref
@@ -46,7 +38,6 @@ public class PreferenceServlet extends HttpServlet {
 		PrintWriter out = resp.getWriter();
 		ArrayList<Preference> preferences = DBM.getPreferencesByStudentId(Integer.parseInt(id));
 		preferences.forEach(preference -> out.print(preference.preferenceToJson()));
-		out.flush();
 	}
 
 	/**

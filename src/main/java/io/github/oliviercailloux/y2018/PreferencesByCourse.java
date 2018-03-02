@@ -23,14 +23,6 @@ public class PreferencesByCourse extends HttpServlet {
 	//Temporary fake database
 	@Inject
 	private DatabaseManager DBM;
-	
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public PreferencesByCourse() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -45,15 +37,5 @@ public class PreferencesByCourse extends HttpServlet {
 		PrintWriter out = resp.getWriter();
 		ArrayList<Preference> preferences = DBM.getPreferencesByCourseId(Integer.parseInt(id));
 		preferences.forEach(preference -> out.print(preference.preferenceToJson()));
-		out.flush();
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
 }

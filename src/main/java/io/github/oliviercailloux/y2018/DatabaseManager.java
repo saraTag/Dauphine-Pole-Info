@@ -36,7 +36,7 @@ public class DatabaseManager {
 		return true;
 	}
 	
-	public boolean updatePersonne(int id, Person person) {
+	public boolean updatePerson(int id, Person person) {
 		personsById.put(id, person);
 		return true;
 	}
