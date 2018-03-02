@@ -48,6 +48,17 @@ public class PersonServlet extends HttpServlet{
 				//JSON request
 				DBM.updatePerson(Integer.parseInt(id), Person.jsonToPerson(req.getParameter("person")));
 			}
+
+			else {
+				Person person = DBM.getPersonsById().get(Integer.parseInt(id));
+				if(req.getParameter("firstname") != null) {
+					person.setFirstname(req.getParameter("firstname"));
+				}
+				if(req.getParameter("lastname") != null) {
+					person.setLastname(req.getParameter("lastname"));
+				}
+				DBM.updatePerson(Integer.parseInt(id), person);
+			}
 		}
 		else {
 			//Wrong Parameters

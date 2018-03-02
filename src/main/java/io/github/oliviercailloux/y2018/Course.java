@@ -11,7 +11,7 @@ public class Course {
 	private int id_contents;
 	private int id_teacher;
 	private String periode;
-	private boolean obligatoire;
+	private boolean compulsory;
 	/**
 	 * description correspond to note in db.
 	 */
@@ -24,14 +24,14 @@ public class Course {
 
 	/**
 	 * @param periode
-	 * @param obligatoire
+	 * @param compulsory
 	 * @param note
 	 */
-	public Course(String periode, boolean obligatoire, String note) {
+	public Course(String periode, boolean compulsory, String description) {
 		super();
 		this.periode = Strings.nullToEmpty(periode);
-		this.obligatoire = obligatoire;
-		this.description = note;
+		this.compulsory = compulsory;
+		this.description = description;
 	}
 
 	public int getId_master() {
@@ -69,12 +69,12 @@ public class Course {
 		periode = Strings.nullToEmpty(periode);
 	}
 
-	public boolean getObligatoire() {
-		return obligatoire;
+	public boolean getCompulsory() {
+		return compulsory;
 	}
 
-	public void setObligatoire(boolean obligatoire) {
-		this.obligatoire = obligatoire;
+	public void setCompulsory(boolean compulsory) {
+		this.compulsory = compulsory;
 	}
 	
 	/**
