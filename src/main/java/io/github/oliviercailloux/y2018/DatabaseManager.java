@@ -36,7 +36,7 @@ public class DatabaseManager {
 		return true;
 	}
 	
-	public boolean updatePerson(int id, Person person) {
+	public boolean updatePersonne(int id, Person person) {
 		personsById.put(id, person);
 		return true;
 	}
@@ -56,10 +56,10 @@ public class DatabaseManager {
 	
 	private void init() {
 		coursesById.put(1, new Course());
-		coursesById.put(2, new Course());
+		coursesById.put(2, new Course("2017", true, "Java"));
 		coursesById.put(3, new Course());
 		personsById.put(1, new Person());
-		personsById.put(2, new Person());
+		personsById.put(2, new Person(2, "Tuti", "Dudi"));
 		personsById.put(3, new Person());
 	}
 }
