@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 import javax.inject.Inject;
+import javax.json.bind.Jsonb;
+import javax.json.bind.JsonbBuilder;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,14 +25,6 @@ public class PreferenceServlet extends HttpServlet {
 	//Temporary fake database
 	@Inject
 	private DatabaseManager DBM;
-	
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public PreferenceServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
 	 * getPref
@@ -42,11 +36,10 @@ public class PreferenceServlet extends HttpServlet {
 		resp.setCharacterEncoding(StandardCharsets.UTF_8.name());
 		resp.setContentType("application/json");
 		resp.setLocale(Locale.ENGLISH);
-		
 		PrintWriter out = resp.getWriter();
 		ArrayList<RawPreference> preferences = DBM.getPreferencesByStudentId(Integer.parseInt(id));
-		preferences.forEach(preference -> out.print(preference.preferenceToJson()));
-		out.flush();
+		Jsonb jsonb = JsonbBuilder.create();
+		out.print(jsonb.toJson(preferences));
 	}
 
 	/**

@@ -7,11 +7,14 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 import javax.inject.Inject;
+import javax.json.bind.Jsonb;
+import javax.json.bind.JsonbBuilder;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.core.MediaType;
 
 /**
  * Servlet implementation class PreferencesByCourse
@@ -23,14 +26,6 @@ public class PreferencesByCourse extends HttpServlet {
 	//Temporary fake database
 	@Inject
 	private DatabaseManager DBM;
-	
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public PreferencesByCourse() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -39,9 +34,8 @@ public class PreferencesByCourse extends HttpServlet {
 		String id = req.getParameter("id");
 		
 		resp.setCharacterEncoding(StandardCharsets.UTF_8.name());
-		resp.setContentType("application/json");
+		resp.setContentType(MediaType.APPLICATION_JSON);
 		resp.setLocale(Locale.ENGLISH);
-		
 		PrintWriter out = resp.getWriter();
 		ArrayList<RawPreference> preferences = DBM.getPreferencesByCourseId(Integer.parseInt(id));
 		preferences.forEach(preference -> out.print(preference.preferenceToJson()));
@@ -51,9 +45,15 @@ public class PreferencesByCourse extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String id = request.getParameter("id");
+		response.setCharacterEncoding(StandardCharsets.UTF_8.name());
+		response.setContentType(MediaType.APPLICATION_JSON);
+		response.setLocale(Locale.ENGLISH);
+		PrintWriter out = response.getWriter();
 		doGet(request, response);
+		ArrayList<RawPreference> preferences = DBM.getPreferencesByCourseId(Integer.parseInt(id));
+		Jsonb jsonb = JsonbBuilder.create();
+		out.print(jsonb.toJson(preferences));
 	}
-
 }

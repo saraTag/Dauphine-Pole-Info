@@ -27,11 +27,10 @@ public class PersonServlet extends HttpServlet{
 	//Temporary fake database
 	@Inject
 	private DatabaseManager DBM;
-
+	
 	@GET()
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
 		resp.setCharacterEncoding(StandardCharsets.UTF_8.name());
 		resp.setContentType(MediaType.APPLICATION_JSON);
 		resp.setLocale(Locale.ENGLISH);
@@ -47,7 +46,7 @@ public class PersonServlet extends HttpServlet{
 	@Override
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String id = req.getParameter("id");
-
+		
 		resp.setCharacterEncoding(StandardCharsets.UTF_8.name());
 		resp.setContentType("application/json");
 		resp.setLocale(Locale.ENGLISH);
@@ -56,8 +55,9 @@ public class PersonServlet extends HttpServlet{
 		if(id != null) {
 			if(req.getParameter("person")!=null) {
 				//JSON request
-				DBM.updatePersonne(Integer.parseInt(id), Person.fromJson(req.getParameter("person")));
+				DBM.updatePerson(Integer.parseInt(id), Person.fromJson(req.getParameter("person")));
 			}
+
 			else {
 				Person person = DBM.getPersonsById().get(Integer.parseInt(id));
 				if(req.getParameter("firstname") != null) {
@@ -66,14 +66,13 @@ public class PersonServlet extends HttpServlet{
 				if(req.getParameter("lastname") != null) {
 					person.setLastname(req.getParameter("lastname"));
 				}
-				DBM.updatePersonne(Integer.parseInt(id), person);
+				DBM.updatePerson(Integer.parseInt(id), person);
 			}
 		}
 		else {
 			//Wrong Parameters code  status envoyer une exception
 			PrintWriter out = resp.getWriter();
-			out.print("Wrong parameters : expecting either a complete JSON or all the fields of a Personne individually");
-			out.flush();
+			out.print("Wrong parameters : expecting a complete JSON");
 		}
 	}
 }
