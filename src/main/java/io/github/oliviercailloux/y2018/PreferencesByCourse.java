@@ -43,7 +43,7 @@ public class PreferencesByCourse extends HttpServlet {
 		resp.setLocale(Locale.ENGLISH);
 		
 		PrintWriter out = resp.getWriter();
-		ArrayList<Preference> preferences = DBM.getPreferencesByCourseId(Integer.parseInt(id));
+		ArrayList<RawPreference> preferences = DBM.getPreferencesByCourseId(Integer.parseInt(id));
 		preferences.forEach(preference -> out.print(preference.preferenceToJson()));
 		out.flush();
 	}

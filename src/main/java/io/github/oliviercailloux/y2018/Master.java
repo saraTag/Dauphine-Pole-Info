@@ -1,5 +1,7 @@
 package io.github.oliviercailloux.y2018;
 
+import java.util.Optional;
+
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
 
@@ -9,18 +11,20 @@ public class Master {
 	
 	private int id;
 	private String name;
-	private String description;
+	private Optional<String> description;
 	private static Jsonb jsonb = JsonbBuilder.create();
 	
 	public Master() {
 		super();
+		this.name = "";
+		
 	}
 
 	public Master(int id, String nom, String description) {
 		super();
 		this.id = id;
 		this.name = Strings.nullToEmpty(nom);
-		this.description = description;
+		this.description = Optional.of(description);
 	}
 
 	public int getId() {
@@ -45,18 +49,18 @@ public class Master {
 	/**
 	 * @return not null.
 	 */
-	public String getDescription() {
+	public Optional<String> getDescription() {
 		return description;
 	}
 
 	public void setDescription(String description) {
-		this.description = Strings.nullToEmpty(description);
+		this.description = Optional.of(description);
 	}
 	
 	/**
 	 * @return Master : json
 	 */
-	public String masterToJson(){
+	public String toJson(){
 		return jsonb.toJson(this);
 	}
 	
@@ -64,7 +68,7 @@ public class Master {
 	 * @param jsonMaster : String
 	 * @return Object : Master not null
 	 */
-	public static Master jsonToMaster(String jsonbMaster){
+	public static Master fromJson(String jsonbMaster){
 		return jsonb.fromJson(Strings.emptyToNull(jsonbMaster), Master.class);
 	}
 }

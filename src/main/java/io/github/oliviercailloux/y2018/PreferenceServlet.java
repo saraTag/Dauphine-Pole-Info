@@ -44,7 +44,7 @@ public class PreferenceServlet extends HttpServlet {
 		resp.setLocale(Locale.ENGLISH);
 		
 		PrintWriter out = resp.getWriter();
-		ArrayList<Preference> preferences = DBM.getPreferencesByStudentId(Integer.parseInt(id));
+		ArrayList<RawPreference> preferences = DBM.getPreferencesByStudentId(Integer.parseInt(id));
 		preferences.forEach(preference -> out.print(preference.preferenceToJson()));
 		out.flush();
 	}
@@ -63,10 +63,10 @@ public class PreferenceServlet extends HttpServlet {
 		resp.setContentType("application/json");
 		resp.setLocale(Locale.ENGLISH);
 		
-		Preference pref = new Preference(level);
-		pref.setId_contents(idContent);
-		pref.setId_master(idMaster);
-		pref.setId_person(idPerson);
+		RawPreference pref = new RawPreference(level);
+		pref.setIdContent(idContent);
+		pref.setIdMaster(idMaster);
+		pref.setIdPerson(idPerson);
 		
 		DBM.setPreference(idPerson, pref);
 	}

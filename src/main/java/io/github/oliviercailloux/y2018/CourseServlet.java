@@ -8,7 +8,12 @@ import javax.inject.Inject;
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
+import javax.ws.rs.GET;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.core.MediaType;
 
+@Path("/course")
 @WebServlet("/course")
 public class CourseServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
@@ -18,20 +23,22 @@ public class CourseServlet extends HttpServlet{
 	private DatabaseManager DBM;
 
 	//Handles GET requests on /course URL
+	@GET()
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		resp.setCharacterEncoding(StandardCharsets.UTF_8.name());
-		resp.setContentType("application/json");
+		resp.setContentType(MediaType.APPLICATION_JSON);
 		resp.setLocale(Locale.ENGLISH);
 		PrintWriter out = resp.getWriter();
 
 		String id = req.getParameter("id");
 		Course targetCourse = DBM.getCoursesById().get(Integer.parseInt(id));
-		out.print(targetCourse.coursToJson());
+		out.print(targetCourse.toJson());
 		out.flush();
 	}
-
+	
+	@PUT()
 	@Override
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String id = req.getParameter("id");
@@ -42,7 +49,7 @@ public class CourseServlet extends HttpServlet{
 
 		if(id != null) {
 			if(req.getParameter("course")!=null) {
-				DBM.updateCourse(Integer.parseInt(id), Course.JsonToCours(req.getParameter("course")));
+				DBM.updateCourse(Integer.parseInt(id), Course.fromJson(req.getParameter("course")));
 			}
 			else {
 				Course course = DBM.getCoursesById().get(Integer.parseInt(id));

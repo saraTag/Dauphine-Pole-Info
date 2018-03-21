@@ -16,8 +16,8 @@ import javax.enterprise.context.*;
 public class DatabaseManager {
 	private Map<Integer,Course> coursesById = new HashMap<>();
 	private Map<Integer,Person> personsById = new HashMap<>();
-	private Map<Integer,ArrayList<Preference>> preferencesByStudentId = new HashMap<>();
-	private Map<Integer,ArrayList<Preference>> preferencesByCourseId = new HashMap<>();
+	private Map<Integer,ArrayList<RawPreference>> preferencesByStudentId = new HashMap<>();
+	private Map<Integer,ArrayList<RawPreference>> preferencesByCourseId = new HashMap<>();
 	
 	public DatabaseManager() {
 		init();
@@ -41,25 +41,23 @@ public class DatabaseManager {
 		return true;
 	}
 	
-	public ArrayList<Preference> getPreferencesByStudentId(int id){
+	public ArrayList<RawPreference> getPreferencesByStudentId(int id){
 		return preferencesByStudentId.get(id);
 	}
 	
-	public ArrayList<Preference> getPreferencesByCourseId(int id){
+	public ArrayList<RawPreference> getPreferencesByCourseId(int id){
 		return preferencesByCourseId.get(id);
 	}
 	
-	public boolean setPreference(int studentId,Preference preference) {
+	public boolean setPreference(int studentId,RawPreference preference) {
 		preferencesByStudentId.get(studentId).add(preference);
 		return true;
 	}
 	
 	private void init() {
-		coursesById.put(1, new Course());
-		coursesById.put(2, new Course("2017", true, "Java"));
-		coursesById.put(3, new Course());
-		personsById.put(1, new Person());
-		personsById.put(2, new Person(2, "Tuti", "Dudi"));
-		personsById.put(3, new Person());
+		coursesById.put(1, new Course("2017", true, "Python"));
+		coursesById.put(2, new Course("2018", true, "Java"));
+		personsById.put(1, new Person(1, "Tuti", "Dudi"));
+		personsById.put(2, new Person(2, "Toto", "Dodo"));
 	}
 }

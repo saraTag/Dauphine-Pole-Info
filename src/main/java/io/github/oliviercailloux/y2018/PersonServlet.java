@@ -11,30 +11,39 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.GET;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.core.MediaType;
 
+
+
+@Path("/person")
 @WebServlet("/person")
 public class PersonServlet extends HttpServlet{
-	private static final long serialVersionUID = 1L;
 
+	private static final long serialVersionUID = 1L;
+	
 	//Temporary fake database
 	@Inject
 	private DatabaseManager DBM;
 
+	@GET()
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String id = req.getParameter("id");
 
 		resp.setCharacterEncoding(StandardCharsets.UTF_8.name());
-		resp.setContentType("application/json");
+		resp.setContentType(MediaType.APPLICATION_JSON);
 		resp.setLocale(Locale.ENGLISH);
 
+		String id = req.getParameter("id");
 		PrintWriter out = resp.getWriter();
 		Person targetPerson = DBM.getPersonsById().get(Integer.parseInt(id));
-		out.print(targetPerson.personneToJson());
+		out.print(targetPerson.toJson());
 		out.flush();
 	}
-	
 
+	@PUT()
 	@Override
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String id = req.getParameter("id");
@@ -43,12 +52,11 @@ public class PersonServlet extends HttpServlet{
 		resp.setContentType("application/json");
 		resp.setLocale(Locale.ENGLISH);
 
-
 		//Ensures id parameter exists
 		if(id != null) {
 			if(req.getParameter("person")!=null) {
 				//JSON request
-				DBM.updatePersonne(Integer.parseInt(id), Person.jsonToPerson(req.getParameter("person")));
+				DBM.updatePersonne(Integer.parseInt(id), Person.fromJson(req.getParameter("person")));
 			}
 			else {
 				Person person = DBM.getPersonsById().get(Integer.parseInt(id));
@@ -62,7 +70,7 @@ public class PersonServlet extends HttpServlet{
 			}
 		}
 		else {
-			//Wrong Parameters
+			//Wrong Parameters code  status envoyer une exception
 			PrintWriter out = resp.getWriter();
 			out.print("Wrong parameters : expecting either a complete JSON or all the fields of a Personne individually");
 			out.flush();

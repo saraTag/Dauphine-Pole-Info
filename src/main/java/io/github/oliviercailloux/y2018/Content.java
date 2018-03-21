@@ -1,38 +1,41 @@
 package io.github.oliviercailloux.y2018;
 
+import java.util.Optional;
+
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
 
 import com.google.common.base.Strings;
 
-public class Contents {
+public class Content {
 	
 	private int id;
 	private String name;
-	private String description;
-	private String training;
-	private int hourly_volume;
+	private Optional<String> description;
+	private Optional<String> training;
+	private int hourlyVolume;
 	private float etcs;
-	private int project_volume;
-	private String objectives;
-	private String contents;
-	private String biblio;
+	private int projectVolume;
+	private Optional<String> objectives;
+	private Optional<String> contents;
+	private Optional<String> biblio;
 	private static Jsonb jsonb = JsonbBuilder.create();
 	
 	
 	
 	
-	public Contents(int id, String name, int hourly_volume, float etcs) {
+	public Content(int id, String name, int hourly_volume, float etcs) {
 		super();
 		this.id = id;
 		this.name = Strings.nullToEmpty(name);
-		this.hourly_volume = hourly_volume;
+		this.hourlyVolume = hourly_volume;
 		this.etcs = etcs;
 	}
 
 
-	public Contents() {
+	public Content() {
 		super();
+		this.name =  "";
 	}
 
 	
@@ -60,35 +63,35 @@ public class Contents {
 	/**
 	 * @return not null.
 	 */
-	public String getDescription() {
+	public Optional<String> getDescription() {
 		return description;
 	}
 
 
 	public void setDescription(String description) {
-		this.description = Strings.nullToEmpty(description);
+		this.description = Optional.of(description);
 	}
 
 	/**
 	 * @return not null.
 	 */
-	public String getTraining() {
+	public Optional<String> getTraining() {
 		return training;
 	}
 
 
 	public void setTraining(String training) {
-		this.training = Strings.nullToEmpty(training);
+		this.training = Optional.of(training);
 	}
 
 
-	public int getHourly_volume() {
-		return hourly_volume;
+	public int getHourlyVolume() {
+		return hourlyVolume;
 	}
 
 
-	public void setHourly_volume(int hourly_volume) {
-		this.hourly_volume = hourly_volume;
+	public void setHourlyVolume(int hourly_volume) {
+		this.hourlyVolume = hourly_volume;
 	}
 
 
@@ -102,47 +105,47 @@ public class Contents {
 	}
 
 
-	public int getProject_volume() {
-		return project_volume;
+	public int getProjectVolume() {
+		return projectVolume;
 	}
 
 
-	public void setProject_volume(int project_volume) {
-		this.project_volume = project_volume;
+	public void setProjectVolume(int project_volume) {
+		this.projectVolume = project_volume;
 	}
 
 	/**
 	 * @return not null.
 	 */
-	public String getObjectives() {
+	public Optional<String> getObjectives() {
 		return objectives;
 	}
 
 
 	public void setObjectives(String objectives) {
-		this.objectives = Strings.nullToEmpty(objectives);
+		this.objectives = Optional.of(objectives);
 	}
 
 	/**
 	 * @return not null.
 	 */
-	public String getContents() {
+	public Optional<String> getContents() {
 		return contents;
 	}
 
 
 	public void setContents(String contents) {
-		this.contents = Strings.nullToEmpty(contents);
+		this.contents = Optional.of(contents);
 	}
 
 
-	public String getBiblio() {
+	public Optional<String> getBiblio() {
 		return biblio;
 	}
 
 
 	public void setBiblio(String biblio) {
-		this.biblio = Strings.nullToEmpty(biblio);
+		this.biblio = Optional.of(biblio);
 	}
 
 
@@ -152,7 +155,7 @@ public class Contents {
 
 
 	public static void setJsonb(Jsonb jsonb) {
-		Contents.jsonb = jsonb;
+		Content.jsonb = jsonb;
 	}
 
 
@@ -167,7 +170,7 @@ public class Contents {
 	 * @param jsonContenu : String
 	 * @return Object : Contenu not null
 	 */
-	public static Contents jsonToContenu(String jsonbContenu){
-		return jsonb.fromJson(Strings.nullToEmpty(jsonbContenu), Contents.class);
+	public static Content jsonToContenu(String jsonbContenu){
+		return jsonb.fromJson(Strings.nullToEmpty(jsonbContenu), Content.class);
 	}
 }

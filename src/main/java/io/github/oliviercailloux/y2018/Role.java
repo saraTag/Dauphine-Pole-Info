@@ -1,5 +1,7 @@
 package io.github.oliviercailloux.y2018;
 
+import java.util.Optional;
+
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
 
@@ -8,17 +10,19 @@ import com.google.common.base.Strings;
 public class Role {
 	
 	private String code;
-	private String entitled;
+	private Optional<String> entitled;
 	private static Jsonb jsonb = JsonbBuilder.create();
 	
 	public Role() {
 		super();
+		this.code = "";
+		this.entitled = Optional.empty();
 	}
 
 	public Role(String code, String entitled) {
 		super();
 		this.code = Strings.nullToEmpty(code);
-		this.entitled = Strings.nullToEmpty(entitled);
+		this.entitled = Optional.of(entitled);
 	}
 
 	/**
@@ -37,19 +41,19 @@ public class Role {
 	 * 
 	 * @return not null
 	 */
-	public String getEntitled() {
+	public Optional<String> getEntitled() {
 		return entitled;
 	}
 
 	public void setEntitled(String entitled) {
-		this.entitled = Strings.nullToEmpty(entitled);
+		this.entitled = Optional.of(entitled);
 	}
 	
 	/**
 	 * 
 	 * @return not null
 	 */
-	public String roleToJson(){
+	public String toJson(){
 		return jsonb.toJson(this);
 	}
 	
@@ -58,7 +62,7 @@ public class Role {
 	 * @param jsonRole : String 
 	 * @return Role not null
 	 */
-	public static Role jsonToRole(String jsonRole){
+	public static Role fromJson(String jsonRole){
 		return jsonb.fromJson(Strings.nullToEmpty(jsonRole), Role.class);
 	}
 	

@@ -1,17 +1,20 @@
 package io.github.oliviercailloux.y2018;
 
+import java.util.Optional;
+
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
 
 import com.google.common.base.Strings;
 
+// 
 public class Course {
 	
-	private int id_master;
-	private int id_contents;
-	private int id_teacher;
+	private Master idMaster;
+	private Content idContents;
+	private Person idTeacher;
 	private String periode;
-	private boolean compulsory;
+	private Optional<Boolean> compulsory;
 	/**
 	 * description correspond to note in db.
 	 */
@@ -20,6 +23,9 @@ public class Course {
 
 	public Course() {
 		super();
+		this.periode = ""; 
+		this.compulsory = Optional.empty();
+		this.description = "";
 	}
 
 	/**
@@ -30,32 +36,20 @@ public class Course {
 	public Course(String periode, boolean compulsory, String description) {
 		super();
 		this.periode = Strings.nullToEmpty(periode);
-		this.compulsory = compulsory;
-		this.description = description;
+		this.compulsory = Optional.of(compulsory) ;
+		this.description = Strings.nullToEmpty(description);
 	}
 
-	public int getId_master() {
-		return id_master;
+	public Master getIdMaster() {
+		return idMaster;
 	}
 
-	public void setId_master(int id_master) {
-		this.id_master = id_master;
+	public Content getIdContents() {
+		return idContents;
 	}
 
-	public int getId_contents() {
-		return id_contents;
-	}
-
-	public void setId_contents(int id_contenu) {
-		this.id_contents = id_contenu;
-	}
-
-	public int getId_teacher() {
-		return id_teacher;
-	}
-
-	public void setId_teacher(int id_enseignant) {
-		this.id_teacher = id_enseignant;
+	public Person getIdTeacher() {
+		return idTeacher;
 	}
 	
 	/**
@@ -69,12 +63,12 @@ public class Course {
 		periode = Strings.nullToEmpty(periode);
 	}
 
-	public boolean getCompulsory() {
+	public Optional<Boolean> getCompulsory() {
 		return compulsory;
 	}
 
 	public void setCompulsory(boolean compulsory) {
-		this.compulsory = compulsory;
+		this.compulsory = Optional.of(compulsory);
 	}
 	
 	/**
@@ -92,7 +86,7 @@ public class Course {
 	/**
 	 * @return Cours not null
 	 */
-	public String coursToJson(){
+	public String toJson(){
 		return	jsonb.toJson(this);
 	}
 	
@@ -100,7 +94,7 @@ public class Course {
 	 * @param jsonCours :String
 	 * @return Object : Cours not null
 	 */
-	public static Course JsonToCours(String jsonbCours){
+	public static Course fromJson(String jsonbCours){
 		return jsonb.fromJson(Strings.nullToEmpty(jsonbCours), Course.class);
 	}
 }

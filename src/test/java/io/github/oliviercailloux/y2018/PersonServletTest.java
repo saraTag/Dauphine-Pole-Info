@@ -3,49 +3,43 @@ package io.github.oliviercailloux.y2018;
 
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.mock;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.net.URL;
+import java.util.logging.Logger;
 
-import org.junit.Before;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
+
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.test.api.ArquillianResource;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 
 
 public class PersonServletTest {
 
-	private PersonServlet personServlet;
-	private DatabaseManager db;
-	private HttpServletRequest request;       
-	private HttpServletResponse response;
+	private static final Logger LOGGER = Logger.getLogger(PersonServletTest.class.getCanonicalName());
 
-	@Before
-	public void setUp() {
-		personServlet = new PersonServlet();
-		db = new DatabaseManager();
-		request = mock(HttpServletRequest.class);
-		response = mock(HttpServletResponse.class); 
-	}
-
-	@Test
-	public void testDoGet() throws Exception{
-		request.setAttribute("id", 1);
-		request.setAttribute("firstname", "Titi");
-		request.setAttribute("lastname", "Dodo");
-		personServlet.doGet(request, response); 
-		assertEquals("{\"id\" : \"1\", \"firstname\" : \"Titi\",\"lastname\" : \"Dodo\"}", response.getContentType());
-
+	@Deployment(testable = false)
+	public static WebArchive createDeployment() {
+		final WebArchive war = ShrinkWrap.create(WebArchive.class, "test.war").addPackages(true,
+				PersonServletTest.class.getPackage());
+		return war;
 	}
 	
+	@ArquillianResource
+	private URL baseURL;
+	
 	@Test
-	public void testDoPost() throws Exception{
-		request.setAttribute("id", 2);
-		request.setAttribute("firstname", "Tete");
-		request.setAttribute("firstname", "Dudi");	
-		personServlet.doPut(request, response);
-		assertEquals(db.getPersonsById().get(2).getFirstname(), "Tete");
-		
+	public void testDoGet() throws Exception{
+		final Client client = ClientBuilder.newClient();
+		final WebTarget webTarget = client.target(baseURL.toString()).path("/person").resolveTemplate("id", 1); 
+		LOGGER.info(webTarget.getUri().toString());
+		final String response = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
+		assertEquals("{\"id\" : \"1\", \"firstname\" : \"Tuti\",\"lastname\" : \"Dudi\"}", response);
+		client.close();
 	}
-
-
 }

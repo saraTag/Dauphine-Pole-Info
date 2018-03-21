@@ -13,13 +13,13 @@ public class Person {
 	private String email;
 	private String phone;
 	private String fax;
-	private String home_page;
+	private String homePage;
 	private String cv;
-	private String note;
+	private String note; //comment renommage !!!
 	private String password;
 	private String role;
-	private int id_master;
-	private int year_master;
+	private Master idMaster;
+	private int yearMaster;
 	private String address;
 	private String mobile;
 	private String temporary;
@@ -28,6 +28,8 @@ public class Person {
 	
 	public Person() {
 		super();
+		this.firstname = "";
+		this.lastname = "";
 	}
 
 	/**
@@ -40,12 +42,16 @@ public class Person {
 	public Person(int id, String firstname, String lastname) {
 		super();
 		this.id=id;
-		this.firstname=firstname;
-		this.lastname=lastname;
+		this.firstname = Strings.nullToEmpty(firstname);
+		this.lastname = Strings.nullToEmpty(lastname);
 	}
 	
 	public int getId() {
 		return id;
+	}
+	
+	public void setIde(int idPerson) {
+		this.id = idPerson;
 	}
 
 	/**
@@ -116,11 +122,11 @@ public class Person {
 	 * @return String not null
 	 */
 	public String getHome_page() {
-		return home_page;
+		return homePage;
 	}
 
-	public void setHome_page(String home_page) {
-		this.home_page = Strings.nullToEmpty(home_page);
+	public void setHomePage(String home_page) {
+		this.homePage = Strings.nullToEmpty(home_page);
 	}
 
 	/**
@@ -173,23 +179,23 @@ public class Person {
 	}
 
 
-	public int getId_master() {
-		return id_master;
+	public Master getId_master() {
+		return idMaster;
 	}
 
 
-	public void setId_master(int id_master) {
-		this.id_master = id_master;
+	public void setIdMaster(Master idMaster) {
+		this.idMaster = idMaster;
 	}
 
 
 	public int getYear_master() {
-		return year_master;
+		return yearMaster;
 	}
 
 
-	public void setYear_master(int year_master) {
-		this.year_master = year_master;
+	public void setYearMaster(int year_master) {
+		this.yearMaster = year_master;
 	}
 
 	/**
@@ -230,7 +236,7 @@ public class Person {
 	/**
 	 * @return Person not null
 	 */
-	public  String personneToJson(){
+	public  String toJson(){
 		return jsonb.toJson(this);
 	}
 	
@@ -238,7 +244,7 @@ public class Person {
 	 * @param jsonPerson : String
 	 * @return Object : Person
 	 */
-	public static Person jsonToPerson(String jsonPersonne){
+	public static Person fromJson(String jsonPersonne){
 		return jsonb.fromJson(jsonPersonne, Person.class);
 	}
 }
