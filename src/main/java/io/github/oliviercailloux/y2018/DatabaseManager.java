@@ -14,13 +14,17 @@ import javax.enterprise.context.*;
 
 @ApplicationScoped
 public class DatabaseManager {
-	private Map<Integer,Course> coursesById = new HashMap<>();
-	private Map<Integer,Person> personsById = new HashMap<>();
+	private Map<Integer,Course> coursesById;
+	private Map<Integer,Person> personsById;
 	private Map<Integer,ArrayList<RawPreference>> preferencesByStudentId = new HashMap<>();
 	private Map<Integer,ArrayList<RawPreference>> preferencesByCourseId = new HashMap<>();
 	
 	public DatabaseManager() {
-		init();
+		//init();
+		coursesById = new HashMap<>();
+		personsById = new HashMap<>();
+		personsById.put(1, new Person(1, "Tuti", "Dudi"));
+		personsById.put(2, new Person(2, "Toto", "Dodo"));
 	}
 	
 	public Map<Integer,Course> getCoursesById() {
