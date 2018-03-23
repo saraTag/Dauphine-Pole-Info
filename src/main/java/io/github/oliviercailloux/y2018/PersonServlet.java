@@ -53,11 +53,11 @@ public class PersonServlet extends HttpServlet{
 			LOGGER.info("Map : " + map); 
 			Person targetPerson = map.get(Integer.parseInt(id));
 			LOGGER.info("person" + targetPerson != null ? targetPerson.getFirstname() : "is null"); 
-			out.print(targetPerson.toJson());
+			//out.print(targetPerson.toJson());
 			out.flush();
 		}
 		else {
-			LOGGER.info("DBM db: " + DBM); 
+			LOGGER.info("DBM: " + DBM); 
 			out.print("id not exist");
 		}
 	}

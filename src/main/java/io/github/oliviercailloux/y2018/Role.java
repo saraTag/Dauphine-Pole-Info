@@ -2,8 +2,8 @@ package io.github.oliviercailloux.y2018;
 
 import java.util.Optional;
 
-import javax.json.bind.Jsonb;
-import javax.json.bind.JsonbBuilder;
+//import javax.json.bind.Jsonb;
+//import javax.json.bind.JsonbBuilder;
 
 import com.google.common.base.Strings;
 
@@ -11,7 +11,7 @@ public class Role {
 	
 	private String code;
 	private Optional<String> entitled;
-	private static Jsonb jsonb = JsonbBuilder.create();
+	//private static Jsonb jsonb = JsonbBuilder.create();
 	
 	public Role() {
 		super();
@@ -53,17 +53,17 @@ public class Role {
 	 * 
 	 * @return not null
 	 */
-	public String toJson(){
-		return jsonb.toJson(this);
-	}
-	
-	/**
-	 * 
-	 * @param jsonRole : String 
-	 * @return Role not null
-	 */
-	public static Role fromJson(String jsonRole){
-		return jsonb.fromJson(Strings.nullToEmpty(jsonRole), Role.class);
-	}
+//	public String toJson(){
+//		return jsonb.toJson(this);
+//	}
+//	
+//	/**
+//	 * 
+//	 * @param jsonRole : String 
+//	 * @return Role not null
+//	 */
+//	public static Role fromJson(String jsonRole){
+//		return jsonb.fromJson(Strings.nullToEmpty(jsonRole), Role.class);
+//	}
 	
 }

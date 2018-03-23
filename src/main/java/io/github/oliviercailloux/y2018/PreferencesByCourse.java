@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 import javax.inject.Inject;
-import javax.json.bind.Jsonb;
-import javax.json.bind.JsonbBuilder;
+//import javax.json.bind.Jsonb;
+//import javax.json.bind.JsonbBuilder;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,7 +38,7 @@ public class PreferencesByCourse extends HttpServlet {
 		resp.setLocale(Locale.ENGLISH);
 		PrintWriter out = resp.getWriter();
 		ArrayList<RawPreference> preferences = DBM.getPreferencesByCourseId(Integer.parseInt(id));
-		preferences.forEach(preference -> out.print(preference.preferenceToJson()));
+		//preferences.forEach(preference -> out.print(preference.preferenceToJson()));
 		out.flush();
 	}
 
@@ -53,7 +53,7 @@ public class PreferencesByCourse extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		doGet(request, response);
 		ArrayList<RawPreference> preferences = DBM.getPreferencesByCourseId(Integer.parseInt(id));
-		Jsonb jsonb = JsonbBuilder.create();
-		out.print(jsonb.toJson(preferences));
+		//Jsonb jsonb = JsonbBuilder.create();
+		//out.print(jsonb.toJson(preferences));
 	}
 }

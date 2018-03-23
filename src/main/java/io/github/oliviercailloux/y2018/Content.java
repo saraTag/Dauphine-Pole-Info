@@ -2,8 +2,8 @@ package io.github.oliviercailloux.y2018;
 
 import java.util.Optional;
 
-import javax.json.bind.Jsonb;
-import javax.json.bind.JsonbBuilder;
+//import javax.json.bind.Jsonb;
+//import javax.json.bind.JsonbBuilder;
 
 import com.google.common.base.Strings;
 
@@ -19,7 +19,7 @@ public class Content {
 	private Optional<String> objectives;
 	private Optional<String> contents;
 	private Optional<String> biblio;
-	private static Jsonb jsonb = JsonbBuilder.create();
+	//private static Jsonb jsonb = JsonbBuilder.create();
 	
 	
 	
@@ -149,28 +149,28 @@ public class Content {
 	}
 
 
-	public static Jsonb getJsonb() {
-		return jsonb;
-	}
-
-
-	public static void setJsonb(Jsonb jsonb) {
-		Content.jsonb = jsonb;
-	}
-
-
-	/**
-	 * @return Contenu not null
-	 */
-	public String contenuToJson(){
-		return jsonb.toJson(this);
-	}
-	
-	/**
-	 * @param jsonContenu : String
-	 * @return Object : Contenu not null
-	 */
-	public static Content jsonToContenu(String jsonbContenu){
-		return jsonb.fromJson(Strings.nullToEmpty(jsonbContenu), Content.class);
-	}
+//	public static Jsonb getJsonb() {
+//		return jsonb;
+//	}
+//
+//
+//	public static void setJsonb(Jsonb jsonb) {
+//		Content.jsonb = jsonb;
+//	}
+//
+//
+//	/**
+//	 * @return Contenu not null
+//	 */
+//	public String contenuToJson(){
+//		return jsonb.toJson(this);
+//	}
+//	
+//	/**
+//	 * @param jsonContenu : String
+//	 * @return Object : Contenu not null
+//	 */
+//	public static Content jsonToContenu(String jsonbContenu){
+//		return jsonb.fromJson(Strings.nullToEmpty(jsonbContenu), Content.class);
+//	}
 }

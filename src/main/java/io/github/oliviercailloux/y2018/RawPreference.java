@@ -1,7 +1,7 @@
 package io.github.oliviercailloux.y2018;
 
-import javax.json.bind.Jsonb;
-import javax.json.bind.JsonbBuilder;
+//import javax.json.bind.Jsonb;
+//import javax.json.bind.JsonbBuilder;
 
 import com.google.common.base.Strings;
 
@@ -14,7 +14,7 @@ public class RawPreference {
 	 * default value
 	 */
 	private int level; 
-	private static Jsonb jsonb = JsonbBuilder.create();
+//	private static Jsonb jsonb = JsonbBuilder.create();
 	
 	
 	public RawPreference() {
@@ -57,17 +57,17 @@ public class RawPreference {
 	 * 
 	 * @return not null
 	 */
-	public String preferenceToJson(){
-		return jsonb.toJson(this);
-	}
-	/**
-	 * 
-	 * @param jsonPreference : String
-	 * @return Preference not null
-	 */
-	public static RawPreference jsonToPrefernecy(String jsonPreference){
-		return jsonb.fromJson(Strings.nullToEmpty(jsonPreference), RawPreference.class);
-	}
+//	public String preferenceToJson(){
+//		return jsonb.toJson(this);
+//	}
+//	/**
+//	 * 
+//	 * @param jsonPreference : String
+//	 * @return Preference not null
+//	 */
+//	public static RawPreference jsonToPrefernecy(String jsonPreference){
+//		return jsonb.fromJson(Strings.nullToEmpty(jsonPreference), RawPreference.class);
+//	}
 
 	public void setIdContent(int idContent) {
 		this.idContents.setId(idContent);

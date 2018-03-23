@@ -2,8 +2,8 @@ package io.github.oliviercailloux.y2018;
 
 import java.util.Optional;
 
-import javax.json.bind.Jsonb;
-import javax.json.bind.JsonbBuilder;
+//import javax.json.bind.Jsonb;
+//import javax.json.bind.JsonbBuilder;
 
 import com.google.common.base.Strings;
 
@@ -19,7 +19,7 @@ public class Course {
 	 * description correspond to note in db.
 	 */
 	private String description; 
-	private static Jsonb jsonb = JsonbBuilder.create();
+	//private static Jsonb jsonb = JsonbBuilder.create();
 
 	public Course() {
 		super();
@@ -86,15 +86,15 @@ public class Course {
 	/**
 	 * @return Cours not null
 	 */
-	public String toJson(){
-		return	jsonb.toJson(this);
-	}
-	
-	/**
-	 * @param jsonCours :String
-	 * @return Object : Cours not null
-	 */
-	public static Course fromJson(String jsonbCours){
-		return jsonb.fromJson(Strings.nullToEmpty(jsonbCours), Course.class);
-	}
+//	public String toJson(){
+//		return	jsonb.toJson(this);
+//	}
+//	
+//	/**
+//	 * @param jsonCours :String
+//	 * @return Object : Cours not null
+//	 */
+//	public static Course fromJson(String jsonbCours){
+//		return jsonb.fromJson(Strings.nullToEmpty(jsonbCours), Course.class);
+//	}
 }

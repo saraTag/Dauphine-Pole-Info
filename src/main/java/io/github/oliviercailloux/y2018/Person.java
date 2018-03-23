@@ -1,7 +1,7 @@
 package io.github.oliviercailloux.y2018;
 
-import javax.json.bind.Jsonb;
-import javax.json.bind.JsonbBuilder;
+//import javax.json.bind.Jsonb;
+//import javax.json.bind.JsonbBuilder;
 
 import com.google.common.base.Strings;
 
@@ -23,7 +23,7 @@ public class Person {
 	private String address;
 	private String mobile;
 	private String temporary;
-	private static Jsonb jsonb = JsonbBuilder.create();
+	//private static Jsonb jsonb = JsonbBuilder.create();
 	
 	
 	public Person() {
@@ -236,15 +236,15 @@ public class Person {
 	/**
 	 * @return Person not null
 	 */
-	public  String toJson(){
-		return jsonb.toJson(this);
-	}
-	
-	/**
-	 * @param jsonPerson : String
-	 * @return Object : Person
-	 */
-	public static Person fromJson(String jsonPersonne){
-		return jsonb.fromJson(jsonPersonne, Person.class);
-	}
+//	public  String toJson(){
+//		return jsonb.toJson(this);
+//	}
+//	
+//	/**
+//	 * @param jsonPerson : String
+//	 * @return Object : Person
+//	 */
+//	public static Person fromJson(String jsonPersonne){
+//		return jsonb.fromJson(jsonPersonne, Person.class);
+//	}
 }
