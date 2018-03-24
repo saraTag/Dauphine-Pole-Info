@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.github.oliviercailloux.y2018</groupId>
-	<artifactId>dauphine-pole-info</artifactId>
+	<artifactId>Dauphine-Pole-Info</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
@@ -13,6 +13,15 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<failOnMissingWebXml>false</failOnMissingWebXml>
 	</properties>
+	
+	<repositories>
+	    <!-- Needed for JSON-B API -->
+	    <repository>
+	        <id>java.net-Public</id>
+	        <name>Maven Java Net Snapshots and Releases</name>
+	        <url>https://maven.java.net/content/groups/public/</url>
+	    </repository>
+	</repositories>
 
 	<dependencies>
 		<dependency>
@@ -20,7 +29,25 @@
 			<artifactId>guava</artifactId>
 			<version>23.0</version>
 		</dependency>
-
+		
+		<dependency>
+		    <groupId>javax.json.bind</groupId>
+		    <artifactId>javax.json.bind-api</artifactId>
+		    <version>1.0</version>
+		</dependency>
+		                    
+		<dependency>
+		    <groupId>org.eclipse</groupId>
+		    <artifactId>yasson</artifactId>
+		    <version>1.0</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.glassfish</groupId>
+		    <artifactId>javax.json</artifactId>
+		    <version>1.1</version>
+		</dependency>
+		
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
