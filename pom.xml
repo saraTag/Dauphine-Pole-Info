@@ -25,6 +25,13 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>7.0</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
 			<version>23.0</version>
@@ -54,12 +61,12 @@
 			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
-		
+        
 		<dependency>
-			<groupId>org.jboss.arquillian.junit</groupId>
-			<artifactId>arquillian-junit-container</artifactId>
-			<version>1.1.15.Final</version>
-			<scope>test</scope>
+		    <groupId>org.jboss.arquillian.junit</groupId>
+		    <artifactId>arquillian-junit-container</artifactId>
+		    <version>1.4.0.Final</version>
+		    <scope>test</scope>
 		</dependency>
 		
 		<dependency>
@@ -68,13 +75,13 @@
 			<version>1.0.2</version>
 			<scope>test</scope>
 		</dependency>
-
+		
 		<dependency>
-			<groupId>javax</groupId>
-			<artifactId>javaee-api</artifactId>
-			<version>7.0</version>
-			<scope>provided</scope>
-		</dependency>
+			<groupId>org.glassfish.main.extras</groupId>
+			<artifactId>glassfish-embedded-all</artifactId>
+			<version>4.1.2</version>
+			<scope>test</scope>
+		</dependency>		
 		
 		<dependency>
 		     <groupId>org.glassfish.jersey.core</groupId>
@@ -87,5 +94,12 @@
 	</dependencies>
 	<build>
 		<finalName>${project.artifactId}</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.21.0</version>
+			</plugin>
+		</plugins>
 	</build>
 </project>

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class ListCourseServlet
  */
-@WebServlet("/ListCourse")
+@WebServlet(name = "ListCourse", urlPatterns = {"/ListCourse"})
 public class ListCourseServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -23,7 +23,7 @@ public class ListCourseServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
-        request.setAttribute("items", DBM.getCoursesById());
+        request.setAttribute("items", DBM.getCoursesById().values());
         request.getRequestDispatcher("/pages/coursesList.jsp").forward(request, response);
 	}
 }

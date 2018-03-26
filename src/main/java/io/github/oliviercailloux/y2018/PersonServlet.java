@@ -37,9 +37,13 @@ public class PersonServlet extends HttpServlet{
 
 		String id = req.getParameter("id");
 		PrintWriter out = resp.getWriter();
-		Person targetPerson = DBM.getPersonsById().get(Integer.parseInt(id));
-		out.print(targetPerson.toJson());
-		out.flush();
+		if(id!=null) {
+			Person targetPerson = DBM.getPersonsById().get(Integer.parseInt(id));
+			out.print(targetPerson.toJson());	
+		}
+		else {
+			out.print("Can't find a Person : no ID passed as parameter.");
+		}
 	}
 
 	@PUT()

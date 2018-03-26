@@ -33,9 +33,13 @@ public class CourseServlet extends HttpServlet{
 		PrintWriter out = resp.getWriter();
 
 		String id = req.getParameter("id");
-		Course targetCourse = DBM.getCoursesById().get(Integer.parseInt(id));
-		out.print(targetCourse.toJson());
-		out.flush();
+		if(id!=null) {
+			Course targetCourse = DBM.getCoursesById().get(Integer.parseInt(id));
+			out.print(targetCourse.toJson());
+		}
+		else {
+			out.print("Can't find a course : no ID passed as parameter");
+		}
 	}
 	
 	@PUT()

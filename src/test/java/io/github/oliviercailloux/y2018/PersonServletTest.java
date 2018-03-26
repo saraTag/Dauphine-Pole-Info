@@ -38,10 +38,10 @@ public class PersonServletTest {
 	@Test
 	public void testDoGet() throws Exception{
 		final Client client = ClientBuilder.newClient();
-		final WebTarget webTarget = client.target(baseURL.toString()).path("/person").resolveTemplate("id", 1); 
+		final WebTarget webTarget = client.target(baseURL.toString()).path("/person").queryParam("id", 1); 
 		LOGGER.info(webTarget.getUri().toString());
 		final String response = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
-		assertEquals("{\"id\" : \"1\", \"firstname\" : \"Tuti\",\"lastname\" : \"Dudi\"}", response);
+		assertEquals("{\"firstname\":\"Tuti\",\"id\":1,\"lastname\":\"Dudi\",\"year_master\":0}", response);
 		client.close();
 	}
 }
