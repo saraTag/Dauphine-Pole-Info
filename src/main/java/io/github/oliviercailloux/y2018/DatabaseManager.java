@@ -16,11 +16,21 @@ import javax.enterprise.context.*;
 public class DatabaseManager {
 	private Map<Integer,Course> coursesById = new HashMap<>();
 	private Map<Integer,Person> personsById = new HashMap<>();
+	private Map<Integer,Master> mastersById = new HashMap<>();
+	private Map<Integer,Content> contentsById = new HashMap<>();
 	private Map<Integer,ArrayList<RawPreference>> preferencesByStudentId = new HashMap<>();
 	private Map<Integer,ArrayList<RawPreference>> preferencesByCourseId = new HashMap<>();
 	
 	public DatabaseManager() {
 		init();
+	}
+	
+	public Map<Integer,Master> getMastersById() {
+		return mastersById;
+	}
+	
+	public Map<Integer,Content> getContentsById() {
+		return contentsById;
 	}
 	
 	public Map<Integer,Course> getCoursesById() {
@@ -59,5 +69,10 @@ public class DatabaseManager {
 		coursesById.put(2, new Course("2018", true, "Java"));
 		personsById.put(1, new Person(1, "Tuti", "Dudi"));
 		personsById.put(2, new Person(2, "Toto", "Dodo"));
+		ArrayList<RawPreference> preferences = new ArrayList<RawPreference>();
+		RawPreference pref = new RawPreference(100);
+		pref.setIdPerson(personsById.get(1));
+		preferences.add(pref);
+		preferencesByStudentId.put(1,preferences);
 	}
 }

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import javax.inject.Inject;
@@ -18,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class PreferenceServlet
  */
-@WebServlet("/PreferenceServlet")
+@WebServlet("/preference")
 public class PreferenceServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -37,9 +38,17 @@ public class PreferenceServlet extends HttpServlet {
 		resp.setContentType("application/json");
 		resp.setLocale(Locale.ENGLISH);
 		PrintWriter out = resp.getWriter();
-		ArrayList<RawPreference> preferences = DBM.getPreferencesByStudentId(Integer.parseInt(id));
-		Jsonb jsonb = JsonbBuilder.create();
-		out.print(jsonb.toJson(preferences));
+		if(id!=null) {
+			//According to the documentation, the following code should work 
+			//	See : https://benas.github.io/jsonb-spec/docs/user-guide.html#mapping-a-generic-collection
+			//There seems to be an issue in the yasson implementation of the JSON-B API
+			List<RawPreference> preferences = DBM.getPreferencesByStudentId(Integer.parseInt(id));
+			Jsonb jsonb = JsonbBuilder.create();
+			out.print(jsonb.toJson(preferences));
+		}
+		else {
+			out.print("Can't find a Preference : Please provide an ID.");
+		}
 	}
 
 	/**
@@ -57,9 +66,12 @@ public class PreferenceServlet extends HttpServlet {
 		resp.setLocale(Locale.ENGLISH);
 		
 		RawPreference pref = new RawPreference(level);
-		pref.setIdContent(idContent);
-		pref.setIdMaster(idMaster);
-		pref.setIdPerson(idPerson);
+		Content content = DBM.getContentsById().get(idContent);
+		pref.setIdContent(content);
+		Master master = DBM.getMastersById().get(idMaster);
+		pref.setIdMaster(master);
+		Person person = DBM.getPersonsById().get(idPerson);
+		pref.setIdPerson(person);
 		
 		DBM.setPreference(idPerson, pref);
 	}

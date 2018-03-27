@@ -25,9 +25,8 @@ public class RawPreference {
 	 * 
 	 * obliger le user à fournir toutes les infos
 	 */
-	public RawPreference(int niveau) {
-		super();
-		this.level = 0;
+	public RawPreference(int level) {
+		this.level = level;
 	}
 	
 
@@ -69,17 +68,15 @@ public class RawPreference {
 		return jsonb.fromJson(Strings.nullToEmpty(jsonPreference), RawPreference.class);
 	}
 
-	public void setIdContent(int idContent) {
-		this.idContents.setId(idContent);
-		
+	public void setIdContent(Content idContent) {
+		this.idContents=idContent;
 	}
 
-	public void setIdMaster(int idMaster) {
-		this.idMaster.setId(idMaster);
+	public void setIdMaster(Master idMaster) {
+		this.idMaster=idMaster;
 	}
 
-	public void setIdPerson(int idPerson) {
-		this.idPerson.setIde(idPerson);
+	public void setIdPerson(Person idPerson) {
+		this.idPerson=idPerson;
 	}
-
 }
