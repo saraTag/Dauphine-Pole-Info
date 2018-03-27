@@ -4,13 +4,33 @@ import java.util.Optional;
 
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
+
 
 import com.google.common.base.Strings;
 
+
+
+@Entity
+@XmlRootElement
 public class Role {
 	
-	private String code;
+	@Id
+	@GeneratedValue( strategy = GenerationType.AUTO )
+	private int id;
+	
+	@Column(name = "code")
+	private String code; 
+	
+	@Column(name = "entitled")
 	private Optional<String> entitled;
+	
 	private static Jsonb jsonb = JsonbBuilder.create();
 	
 	public Role() {
@@ -29,6 +49,7 @@ public class Role {
 	 * 
 	 * @return not null
 	 */
+	@XmlAttribute(name = "code")
 	public String getCode() {
 		return code;
 	}
@@ -41,6 +62,7 @@ public class Role {
 	 * 
 	 * @return not null
 	 */
+	@XmlAttribute(name = "entitled")
 	public Optional<String> getEntitled() {
 		return entitled;
 	}
@@ -48,6 +70,7 @@ public class Role {
 	public void setEntitled(String entitled) {
 		this.entitled = Optional.of(entitled);
 	}
+	
 	
 	/**
 	 * 

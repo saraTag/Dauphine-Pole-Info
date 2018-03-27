@@ -4,13 +4,24 @@ import java.util.Optional;
 
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import com.google.common.base.Strings;
 
+@XmlRootElement
 public class Master {
 	
+	@Id
+	@GeneratedValue( strategy = GenerationType.AUTO )
 	private int id;
+	@Column(name = "name")
 	private String name;
+	@Column(name = "description")
 	private Optional<String> description;
 	private static Jsonb jsonb = JsonbBuilder.create();
 	
@@ -27,6 +38,7 @@ public class Master {
 		this.description = Optional.of(description);
 	}
 
+	@XmlAttribute(name = "id")
 	public int getId() {
 		return id;
 	}
@@ -38,6 +50,7 @@ public class Master {
 	/**
 	 * @return not null.
 	 */
+	@XmlAttribute(name = "name")
 	public String getName() {
 		return name;
 	}
@@ -49,6 +62,7 @@ public class Master {
 	/**
 	 * @return not null.
 	 */
+	@XmlAttribute(name = "description")
 	public Optional<String> getDescription() {
 		return description;
 	}

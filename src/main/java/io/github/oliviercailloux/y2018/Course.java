@@ -4,16 +4,43 @@ import java.util.Optional;
 
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import com.google.common.base.Strings;
 
 // 
+@XmlRootElement
 public class Course {
 	
+	@Id
+	@GeneratedValue( strategy = GenerationType.AUTO )
+	private int id;
+	
+	@ManyToOne
+	@JoinColumn(name = "idMaster")
 	private Master idMaster;
+	
+	@OneToMany
+	@JoinColumn(name = "idContents")
 	private Content idContents;
+	
+	@OneToMany
+	@JoinColumn(name = "idTeacher")
 	private Person idTeacher;
+	
+	@Column(name = "periode")
 	private String periode;
+	
+	@Column(name = "compulsory", nullable = false)
 	private Optional<Boolean> compulsory;
 	/**
 	 * description correspond to note in db.
@@ -40,14 +67,21 @@ public class Course {
 		this.description = Strings.nullToEmpty(description);
 	}
 
+	@XmlElement(name = "master")
 	public Master getIdMaster() {
 		return idMaster;
 	}
+	@XmlElement(name = "id")
+	public int getId() {
+		return id;
+	}
 
+	@XmlElement(name = "content")
 	public Content getIdContents() {
 		return idContents;
 	}
-
+	
+	@XmlElement(name = "person")
 	public Person getIdTeacher() {
 		return idTeacher;
 	}
@@ -55,6 +89,7 @@ public class Course {
 	/**
 	 * @return  not null.
 	 */
+	@XmlAttribute(name = "periode")
 	public String getPeriode() {
 		return periode;
 	}
@@ -63,6 +98,7 @@ public class Course {
 		periode = Strings.nullToEmpty(periode);
 	}
 
+	@XmlAttribute(name = "compulsory")
 	public Optional<Boolean> getCompulsory() {
 		return compulsory;
 	}
@@ -75,6 +111,7 @@ public class Course {
 	 * 
 	 * @return not null
 	 */
+	@XmlAttribute(name = "description")
 	public String getDescription() {
 		return description;
 	}
