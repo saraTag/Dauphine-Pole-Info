@@ -44,13 +44,15 @@ public class CourseServlet extends HttpServlet{
 	
 	@PUT()
 	@Override
-	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String id = req.getParameter("id");
 
 		resp.setCharacterEncoding(StandardCharsets.UTF_8.name());
 		resp.setContentType("application/json");
 		resp.setLocale(Locale.ENGLISH);
 
+		PrintWriter out = resp.getWriter();
+		
 		if(id != null) {
 			if(req.getParameter("course")!=null) {
 				DBM.updateCourse(Integer.parseInt(id), Course.fromJson(req.getParameter("course")));
@@ -67,14 +69,13 @@ public class CourseServlet extends HttpServlet{
 					course.setPeriode(req.getParameter("description"));
 				}
 				DBM.updateCourse(Integer.parseInt(id), course);
+				out.print("Succesfuly created/replaced Course : " + course.toJson());
 			}
 		}
 		
 		else {
 			// Wrong Parameters
-			PrintWriter out = resp.getWriter();
 			out.print("Wrong parameters : expecting either a complete JSON or all the fields of a Course individually");
-			out.flush();
 		}
 	}
 }

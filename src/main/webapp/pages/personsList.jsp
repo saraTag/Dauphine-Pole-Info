@@ -9,20 +9,23 @@
 	<body>
 		<div class="sidebar">
 			<ol>
-				<li>List Courses</li>
-				<li>List Persons</li>
+				<li><a href="ListCourse">List Courses</a></li>
+				<li><a href="ListPerson">List Persons</a></li>
+				<li><a href="./pages/newPerson.jsp">Create Person</a></li>
 			</ol>
 		</div>
 		<div class="content">
 			<table>
-				<th>ID</th>
-				<th>First Name</th>
-				<th>Last Name</th>
-				<th>Email</th>
-				<th>Role</th>
+				<tr>
+					<th>ID</th>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Email</th>
+					<th>Role</th>
+				</tr>
 				<c:forEach items="${items}" var="item">
                     <tr>
-                    	<td>${item.id}</td>
+                    	<td>${item.id}"</td>
                         <td>${item.firstname}</td>
                         <td>${item.lastname}</td>
                         <td>${item.email}</td>

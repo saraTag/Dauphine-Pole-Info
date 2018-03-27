@@ -9,8 +9,9 @@
 	<body>
 		<div class="sidebar">
 			<ol>
-				<li>List Courses</li>
-				<li>List Persons</li>
+				<li><a href="ListCourse">List Courses</a></li>
+				<li><a href="ListPerson">List Persons</a></li>
+				<li><a href="./pages/newCourse.jsp">Create Course</a></li>
 			</ol>
 		</div>
 	</body>
