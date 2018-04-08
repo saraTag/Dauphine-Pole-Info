@@ -4,7 +4,8 @@ import java.util.Optional;
 
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
-import javax.persistence.Column;
+import javax.json.bind.annotation.JsonbPropertyOrder;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,15 +14,16 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import com.google.common.base.Strings;
 
+@Entity
+@JsonbPropertyOrder({"id", "name", "description"})
 @XmlRootElement
 public class Master {
 	
 	@Id
-	@GeneratedValue( strategy = GenerationType.AUTO )
+	@GeneratedValue( strategy = GenerationType.IDENTITY )
+	@XmlAttribute
 	private int id;
-	@Column(name = "name")
 	private String name;
-	@Column(name = "description")
 	private Optional<String> description;
 	private static Jsonb jsonb = JsonbBuilder.create();
 	
@@ -38,7 +40,6 @@ public class Master {
 		this.description = Optional.of(description);
 	}
 
-	@XmlAttribute(name = "id")
 	public int getId() {
 		return id;
 	}
@@ -73,6 +74,7 @@ public class Master {
 	
 	/**
 	 * @return Master : json
+	 * 
 	 */
 	public String toJson(){
 		return jsonb.toJson(this);
@@ -83,6 +85,6 @@ public class Master {
 	 * @return Object : Master not null
 	 */
 	public static Master fromJson(String jsonbMaster){
-		return jsonb.fromJson(Strings.emptyToNull(jsonbMaster), Master.class);
+		return jsonb.fromJson(Strings.nullToEmpty(jsonbMaster), Master.class);
 	}
 }

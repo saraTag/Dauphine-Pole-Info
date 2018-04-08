@@ -4,7 +4,8 @@ import java.util.Optional;
 
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
-import javax.persistence.Column;
+import javax.json.bind.annotation.JsonbPropertyOrder;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,29 +19,34 @@ import javax.xml.bind.annotation.XmlRootElement;
 import com.google.common.base.Strings;
 
 // 
+
+@Entity
+@JsonbPropertyOrder({ "id", "description", "compulsory", "periode", "master", "teacher", "contents" })
 @XmlRootElement
 public class Course {
-	
+
 	@Id
-	@GeneratedValue( strategy = GenerationType.AUTO )
+	@GeneratedValue( strategy = GenerationType.IDENTITY)
+	@XmlAttribute
 	private int id;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "idMaster")
-	private Master idMaster;
-	
+	@XmlElement
+	private Master master;
+
 	@OneToMany
 	@JoinColumn(name = "idContents")
-	private Content idContents;
-	
+	@XmlElement
+	private Content contents;
+
 	@OneToMany
 	@JoinColumn(name = "idTeacher")
-	private Person idTeacher;
-	
-	@Column(name = "periode")
+	@XmlElement
+	private Person teacher;
+
 	private String periode;
-	
-	@Column(name = "compulsory", nullable = false)
+
 	private Optional<Boolean> compulsory;
 	/**
 	 * description correspond to note in db.
@@ -48,11 +54,14 @@ public class Course {
 	private String description; 
 	private static Jsonb jsonb = JsonbBuilder.create();
 
+	private CourseShort courseShort;
+
 	public Course() {
 		super();
 		this.periode = ""; 
 		this.compulsory = Optional.empty();
 		this.description = "";
+		this.courseShort = new CourseShort();
 	}
 
 	/**
@@ -65,31 +74,40 @@ public class Course {
 		this.periode = Strings.nullToEmpty(periode);
 		this.compulsory = Optional.of(compulsory) ;
 		this.description = Strings.nullToEmpty(description);
+		this.courseShort = new CourseShort(periode,compulsory,description);
 	}
 
-	@XmlElement(name = "master")
-	public Master getIdMaster() {
-		return idMaster;
+	/**
+	 * @param periode
+	 * @param compulsory
+	 * @param note
+	 */
+	public Course(int id, String periode, boolean compulsory, String description) {
+		super();
+		this.id = id;
+		this.periode = Strings.nullToEmpty(periode);
+		this.compulsory = Optional.of(compulsory) ;
+		this.description = Strings.nullToEmpty(description);
 	}
-	@XmlElement(name = "id")
+
+	public Master getIdMaster() {
+		return master;
+	}
 	public int getId() {
 		return id;
 	}
 
-	@XmlElement(name = "content")
-	public Content getIdContents() {
-		return idContents;
+	public Content getContents() {
+		return contents;
 	}
-	
-	@XmlElement(name = "person")
-	public Person getIdTeacher() {
-		return idTeacher;
+
+	public Person getTeacher() {
+		return teacher;
 	}
-	
+
 	/**
 	 * @return  not null.
 	 */
-	@XmlAttribute(name = "periode")
 	public String getPeriode() {
 		return periode;
 	}
@@ -98,7 +116,6 @@ public class Course {
 		periode = Strings.nullToEmpty(periode);
 	}
 
-	@XmlAttribute(name = "compulsory")
 	public Optional<Boolean> getCompulsory() {
 		return compulsory;
 	}
@@ -106,12 +123,11 @@ public class Course {
 	public void setCompulsory(boolean compulsory) {
 		this.compulsory = Optional.of(compulsory);
 	}
-	
+
 	/**
 	 * 
 	 * @return not null
 	 */
-	@XmlAttribute(name = "description")
 	public String getDescription() {
 		return description;
 	}
@@ -120,18 +136,35 @@ public class Course {
 		this.description = Strings.nullToEmpty(description);
 	}
 
+
+	public CourseShort getCourseShort() {
+		return courseShort;
+	}
+
+	public void setCourseShort(CourseShort courseShort) {
+		this.courseShort = courseShort;
+	}
+
 	/**
 	 * @return Cours not null
 	 */
 	public String toJson(){
 		return	jsonb.toJson(this);
+	} 
+
+	public String toShortJson() {
+		return jsonb.toJson(this.getCourseShort());
 	}
-	
+
 	/**
-	 * @param jsonCours :String
+	 * @param jsonCours is not null nor empty
 	 * @return Object : Cours not null
+	 * 
 	 */
-	public static Course fromJson(String jsonbCours){
-		return jsonb.fromJson(Strings.nullToEmpty(jsonbCours), Course.class);
+	public static Course fromJson(String jsonbCours) throws IllegalArgumentException, NullPointerException{
+		if(jsonbCours == null || jsonbCours.isEmpty()) {
+			throw new IllegalArgumentException();
+		}
+		return jsonb.fromJson(jsonbCours, Course.class);
 	}
 }

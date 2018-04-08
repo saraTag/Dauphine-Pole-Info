@@ -4,7 +4,7 @@ import java.util.Optional;
 
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
-import javax.persistence.Column;
+import javax.json.bind.annotation.JsonbPropertyOrder;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,23 +12,22 @@ import javax.persistence.Id;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
-
 import com.google.common.base.Strings;
 
 
 
 @Entity
+@JsonbPropertyOrder({"id", "code", "entitled"})
 @XmlRootElement
 public class Role {
 	
 	@Id
-	@GeneratedValue( strategy = GenerationType.AUTO )
+	@GeneratedValue( strategy = GenerationType.IDENTITY )
+	@XmlAttribute
 	private int id;
 	
-	@Column(name = "code")
 	private String code; 
 	
-	@Column(name = "entitled")
 	private Optional<String> entitled;
 	
 	private static Jsonb jsonb = JsonbBuilder.create();
@@ -49,7 +48,6 @@ public class Role {
 	 * 
 	 * @return not null
 	 */
-	@XmlAttribute(name = "code")
 	public String getCode() {
 		return code;
 	}
@@ -62,7 +60,6 @@ public class Role {
 	 * 
 	 * @return not null
 	 */
-	@XmlAttribute(name = "entitled")
 	public Optional<String> getEntitled() {
 		return entitled;
 	}

@@ -23,7 +23,6 @@ import org.junit.runner.RunWith;
 @RunWith(Arquillian.class)
 public class PreferenceServletTest {
 
-	private static final Logger LOGGER = Logger.getLogger(PreferenceServletTest.class.getCanonicalName());
 
 	@Deployment(testable = false)
 	public static WebArchive createDeployment() {
@@ -37,12 +36,5 @@ public class PreferenceServletTest {
 	
 	@Test
 	public void testDoGet() throws Exception{
-		//Test does nothing, waiting for the yasson issue to be solved.
-		/*final Client client = ClientBuilder.newClient();
-		final WebTarget webTarget = client.target(baseURL.toString()).path("/preference").queryParam("id", 1); 
-		LOGGER.info(webTarget.getUri().toString());
-		final String response = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
-		assertEquals("\"\"",response);
-		client.close();*/
 	}
 }

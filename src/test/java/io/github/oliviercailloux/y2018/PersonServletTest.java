@@ -41,7 +41,8 @@ public class PersonServletTest {
 		final WebTarget webTarget = client.target(baseURL.toString()).path("/person").queryParam("id", 1); 
 		LOGGER.info(webTarget.getUri().toString());
 		final String response = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
-		assertEquals("{\"firstname\":\"Tuti\",\"id\":1,\"lastname\":\"Dudi\",\"year_master\":0}", response);
+		String str = "{\"id\":1,\"firstname\":\"Tuti\",\"lastname\":\"Dudi\"}";
+		assertEquals(str, response);
 		client.close();
 	}
 }

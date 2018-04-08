@@ -39,8 +39,9 @@ public class CourseServletTest {
 		final Client client = ClientBuilder.newClient();
 		final WebTarget webTarget = client.target(baseURL.toString()).path("/course").queryParam("id",2); 
 		LOGGER.info(webTarget.getUri().toString());
-		final String response = webTarget.request(MediaType.APPLICATION_JSON).get(String.class); 
-		assertEquals("{\"compulsory\":true,\"description\":\"Java\",\"periode\":\"2018\"}", response);
+		final String response = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
+		String str = "{\"id\":2,\"description\":\"Java\",\"compulsory\":true,\"periode\":\"2018\"}";
+		assertEquals(str, response);
 	}
 
 }

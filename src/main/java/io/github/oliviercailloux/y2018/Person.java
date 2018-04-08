@@ -2,11 +2,25 @@ package io.github.oliviercailloux.y2018;
 
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
+import javax.json.bind.annotation.JsonbPropertyOrder;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import com.google.common.base.Strings;
 
+@Entity
+@JsonbPropertyOrder({"id", "firstname", "lastname"})
+@XmlRootElement
 public class Person {
 	
+	@Id
+	@GeneratedValue( strategy = GenerationType.IDENTITY )
+	@XmlAttribute
 	private int id;
 	private String firstname;
 	private String lastname;
@@ -18,7 +32,8 @@ public class Person {
 	private String note; //comment renommage !!!
 	private String password;
 	private String role;
-	private Master idMaster;
+	@OneToOne
+	private Master master;
 	private int yearMaster;
 	private String address;
 	private String mobile;
@@ -179,13 +194,13 @@ public class Person {
 	}
 
 
-	public Master getId_master() {
-		return idMaster;
+	public Master getMaster() {
+		return master;
 	}
 
 
-	public void setIdMaster(Master idMaster) {
-		this.idMaster = idMaster;
+	public void setMaster(Master idMaster) {
+		this.master = idMaster;
 	}
 
 
