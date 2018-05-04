@@ -15,22 +15,25 @@ import javax.xml.bind.annotation.XmlRootElement;
 import com.google.common.base.Strings;
 
 @Entity
-@JsonbPropertyOrder({"id", "name", "description"})
+@JsonbPropertyOrder({ "id", "name", "description" })
 @XmlRootElement
 public class Master {
-	
+
 	@Id
-	@GeneratedValue( strategy = GenerationType.IDENTITY )
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@XmlAttribute
 	private int id;
+
 	private String name;
+
 	private Optional<String> description;
+
 	private static Jsonb jsonb = JsonbBuilder.create();
-	
+
 	public Master() {
 		super();
 		this.name = "";
-		
+
 	}
 
 	public Master(int id, String nom, String description) {
@@ -71,20 +74,21 @@ public class Master {
 	public void setDescription(String description) {
 		this.description = Optional.of(description);
 	}
-	
+
 	/**
 	 * @return Master : json
 	 * 
 	 */
-	public String toJson(){
+	public String toJson() {
 		return jsonb.toJson(this);
 	}
-	
+
 	/**
-	 * @param jsonMaster : String
+	 * @param jsonMaster
+	 *            : String
 	 * @return Object : Master not null
 	 */
-	public static Master fromJson(String jsonbMaster){
+	public static Master fromJson(String jsonbMaster) {
 		return jsonb.fromJson(Strings.nullToEmpty(jsonbMaster), Master.class);
 	}
 }

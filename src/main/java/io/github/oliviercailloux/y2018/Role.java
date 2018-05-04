@@ -14,24 +14,22 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import com.google.common.base.Strings;
 
-
-
 @Entity
-@JsonbPropertyOrder({"id", "code", "entitled"})
+@JsonbPropertyOrder({ "id", "code", "entitled" })
 @XmlRootElement
 public class Role {
-	
+
 	@Id
-	@GeneratedValue( strategy = GenerationType.IDENTITY )
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@XmlAttribute
 	private int id;
-	
-	private String code; 
-	
+
+	private String code;
+
 	private Optional<String> entitled;
-	
+
 	private static Jsonb jsonb = JsonbBuilder.create();
-	
+
 	public Role() {
 		super();
 		this.code = "";
@@ -67,23 +65,23 @@ public class Role {
 	public void setEntitled(String entitled) {
 		this.entitled = Optional.of(entitled);
 	}
-	
-	
+
 	/**
 	 * 
 	 * @return not null
 	 */
-	public String toJson(){
+	public String toJson() {
 		return jsonb.toJson(this);
 	}
-	
+
 	/**
 	 * 
-	 * @param jsonRole : String 
+	 * @param jsonRole
+	 *            : String
 	 * @return Role not null
 	 */
-	public static Role fromJson(String jsonRole){
+	public static Role fromJson(String jsonRole) {
 		return jsonb.fromJson(Strings.nullToEmpty(jsonRole), Role.class);
 	}
-	
+
 }

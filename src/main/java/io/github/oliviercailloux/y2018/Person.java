@@ -14,33 +14,48 @@ import javax.xml.bind.annotation.XmlRootElement;
 import com.google.common.base.Strings;
 
 @Entity
-@JsonbPropertyOrder({"id", "firstname", "lastname"})
+@JsonbPropertyOrder({ "id", "firstname", "lastname" })
 @XmlRootElement
 public class Person {
-	
+
 	@Id
-	@GeneratedValue( strategy = GenerationType.IDENTITY )
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@XmlAttribute
 	private int id;
+
 	private String firstname;
+
 	private String lastname;
+
 	private String email;
+
 	private String phone;
+
 	private String fax;
+
 	private String homePage;
+
 	private String cv;
-	private String note; //comment renommage !!!
+
+	private String note; // comment renommage !!!
+
 	private String password;
+
 	private String role;
+
 	@OneToOne
 	private Master master;
+
 	private int yearMaster;
+
 	private String address;
+
 	private String mobile;
+
 	private String temporary;
+
 	private static Jsonb jsonb = JsonbBuilder.create();
-	
-	
+
 	public Person() {
 		super();
 		this.firstname = "";
@@ -48,23 +63,26 @@ public class Person {
 	}
 
 	/**
-	 * Short constructor by design.
-	 * Use setters to complete the object.
-	 * @param id int
-	 * @param firstname String
-	 * @param lastname String
+	 * Short constructor by design. Use setters to complete the object.
+	 * 
+	 * @param id
+	 *            int
+	 * @param firstname
+	 *            String
+	 * @param lastname
+	 *            String
 	 */
 	public Person(int id, String firstname, String lastname) {
 		super();
-		this.id=id;
+		this.id = id;
 		this.firstname = Strings.nullToEmpty(firstname);
 		this.lastname = Strings.nullToEmpty(lastname);
 	}
-	
+
 	public int getId() {
 		return id;
 	}
-	
+
 	public void setIde(int idPerson) {
 		this.id = idPerson;
 	}
@@ -101,7 +119,6 @@ public class Person {
 		return email;
 	}
 
-
 	public void setEmail(String email) {
 		this.email = Strings.nullToEmpty(email);
 	}
@@ -114,7 +131,6 @@ public class Person {
 		return phone;
 	}
 
-
 	public void setPhone(String phone) {
 		this.phone = Strings.nullToEmpty(phone);
 	}
@@ -126,7 +142,6 @@ public class Person {
 	public String getFax() {
 		return fax;
 	}
-
 
 	public void setFax(String fax) {
 		this.fax = Strings.nullToEmpty(fax);
@@ -151,7 +166,6 @@ public class Person {
 	public String getCv() {
 		return cv;
 	}
-
 
 	public void setCv(String cv) {
 		this.cv = Strings.nullToEmpty(cv);
@@ -193,21 +207,17 @@ public class Person {
 		this.role = Strings.nullToEmpty(role);
 	}
 
-
 	public Master getMaster() {
 		return master;
 	}
-
 
 	public void setMaster(Master idMaster) {
 		this.master = idMaster;
 	}
 
-
 	public int getYear_master() {
 		return yearMaster;
 	}
-
 
 	public void setYearMaster(int year_master) {
 		this.yearMaster = year_master;
@@ -248,18 +258,20 @@ public class Person {
 	public void setTemporary(String temporary) {
 		this.temporary = Strings.nullToEmpty(temporary);
 	}
+
 	/**
 	 * @return Person not null
 	 */
-	public  String toJson(){
+	public String toJson() {
 		return jsonb.toJson(this);
 	}
-	
+
 	/**
-	 * @param jsonPerson : String
+	 * @param jsonPerson
+	 *            : String
 	 * @return Object : Person
 	 */
-	public static Person fromJson(String jsonPersonne){
+	public static Person fromJson(String jsonPersonne) {
 		return jsonb.fromJson(jsonPersonne, Person.class);
 	}
 }

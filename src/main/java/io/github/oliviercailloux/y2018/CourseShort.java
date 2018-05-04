@@ -12,18 +12,22 @@ import com.google.common.base.Strings;
 public class CourseShort {
 
 	private String periode;
+
 	private Optional<Boolean> compulsory;
+
 	private String description;
 
 	private int idMaster;
+
 	private int idContent;
+
 	private int idTeacher;
-	
+
 	private static Jsonb jsonb = JsonbBuilder.create();
 
 	public CourseShort() {
 		super();
-		this.periode = ""; 
+		this.periode = "";
 		this.compulsory = Optional.empty();
 		this.description = "";
 	}
@@ -31,8 +35,8 @@ public class CourseShort {
 	public CourseShort(String periode, boolean compulsory, String description) {
 		super();
 		this.periode = Strings.nullToEmpty(periode);
-		this.compulsory = Optional.of(compulsory) ;
-		this.description = Strings.nullToEmpty(description);	
+		this.compulsory = Optional.of(compulsory);
+		this.description = Strings.nullToEmpty(description);
 	}
 
 	public String getPeriode() {
@@ -82,22 +86,21 @@ public class CourseShort {
 	public void setIdTeacher(int idTeacher) {
 		this.idTeacher = idTeacher;
 	}
-	
+
 	/**
 	 * @return CourseShort not null
 	 */
-	public String toJson(){
-		return	jsonb.toJson(this);
+	public String toJson() {
+		return jsonb.toJson(this);
 	}
-	
+
 	/**
-	 * @param jsonCours :String
+	 * @param jsonCours
+	 *            :String
 	 * @return Object : CourseShort not null
 	 */
-	public static CourseShort fromJson(String jsonbCourseShort){
+	public static CourseShort fromJson(String jsonbCourseShort) {
 		return jsonb.fromJson(Strings.nullToEmpty(jsonbCourseShort), CourseShort.class);
 	}
-	
-	
 
 }

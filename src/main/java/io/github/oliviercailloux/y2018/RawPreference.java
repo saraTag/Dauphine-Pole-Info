@@ -6,17 +6,20 @@ import javax.json.bind.JsonbBuilder;
 import com.google.common.base.Strings;
 
 public class RawPreference {
-	
+
 	private Master idMaster;
+
 	private Content idContents;
+
 	private Person idPerson;
+
 	/**
 	 * default value
 	 */
-	private int level; 
+	private int level;
+
 	private static Jsonb jsonb = JsonbBuilder.create();
-	
-	
+
 	public RawPreference() {
 		super();
 	}
@@ -28,12 +31,10 @@ public class RawPreference {
 	public RawPreference(int level) {
 		this.level = level;
 	}
-	
 
 	public int getIdMaster() {
 		return idMaster.getId();
 	}
-	
 
 	public int getIdContent() {
 		return idContents.getId();
@@ -47,36 +48,37 @@ public class RawPreference {
 		return level;
 	}
 
-
 	public void setLevel(int level) {
 		this.level = level;
 	}
-	
+
 	/**
 	 * 
 	 * @return not null
 	 */
-	public String preferenceToJson(){
+	public String preferenceToJson() {
 		return jsonb.toJson(this);
 	}
+
 	/**
 	 * 
-	 * @param jsonPreference : String
+	 * @param jsonPreference
+	 *            : String
 	 * @return Preference not null
 	 */
-	public static RawPreference jsonToPrefernecy(String jsonPreference){
+	public static RawPreference jsonToPrefernecy(String jsonPreference) {
 		return jsonb.fromJson(Strings.nullToEmpty(jsonPreference), RawPreference.class);
 	}
 
 	public void setIdContent(Content idContent) {
-		this.idContents=idContent;
+		this.idContents = idContent;
 	}
 
 	public void setIdMaster(Master idMaster) {
-		this.idMaster=idMaster;
+		this.idMaster = idMaster;
 	}
 
 	public void setIdPerson(Person idPerson) {
-		this.idPerson=idPerson;
+		this.idPerson = idPerson;
 	}
 }

@@ -17,33 +17,40 @@ import com.google.common.base.Strings;
 @Entity
 @XmlRootElement
 public class Content {
-	
+
 	@Id
-	@GeneratedValue( strategy = GenerationType.AUTO )
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+
 	@Column(name = "name")
 	private String name;
+
 	@Column(name = "description")
 	private Optional<String> description;
+
 	@Column(name = "training")
 	private Optional<String> training;
+
 	@Column(name = "hourlyVolume")
 	private int hourlyVolume;
+
 	@Column(name = "etcs")
 	private float etcs;
+
 	@Column(name = "projectVolume")
 	private int projectVolume;
+
 	@Column(name = "objectives")
 	private Optional<String> objectives;
+
 	@Column(name = "contents")
 	private Optional<String> contents;
+
 	@Column(name = "biblio")
 	private Optional<String> biblio;
+
 	private static Jsonb jsonb = JsonbBuilder.create();
-	
-	
-	
-	
+
 	public Content(int id, String name, int hourly_volume, float etcs) {
 		super();
 		this.id = id;
@@ -52,17 +59,15 @@ public class Content {
 		this.etcs = etcs;
 	}
 
-
 	public Content() {
 		super();
-		this.name =  "";
+		this.name = "";
 	}
 
 	@XmlAttribute(name = "id")
 	public int getId() {
 		return id;
 	}
-
 
 	public void setId(int id) {
 		this.id = id;
@@ -76,7 +81,6 @@ public class Content {
 		return name;
 	}
 
-
 	public void setName(String name) {
 		this.name = Strings.nullToEmpty(name);
 	}
@@ -88,7 +92,6 @@ public class Content {
 	public Optional<String> getDescription() {
 		return description;
 	}
-
 
 	public void setDescription(String description) {
 		this.description = Optional.of(description);
@@ -102,7 +105,6 @@ public class Content {
 		return training;
 	}
 
-
 	public void setTraining(String training) {
 		this.training = Optional.of(training);
 	}
@@ -111,7 +113,6 @@ public class Content {
 	public int getHourlyVolume() {
 		return hourlyVolume;
 	}
-
 
 	public void setHourlyVolume(int hourly_volume) {
 		this.hourlyVolume = hourly_volume;
@@ -122,18 +123,14 @@ public class Content {
 		return etcs;
 	}
 
-
-	
 	public void setEtcs(float etcs) {
 		this.etcs = etcs;
 	}
-
 
 	@XmlAttribute(name = "projectVolume")
 	public int getProjectVolume() {
 		return projectVolume;
 	}
-
 
 	public void setProjectVolume(int project_volume) {
 		this.projectVolume = project_volume;
@@ -146,7 +143,6 @@ public class Content {
 	public Optional<String> getObjectives() {
 		return objectives;
 	}
-
 
 	public void setObjectives(String objectives) {
 		this.objectives = Optional.of(objectives);
@@ -170,7 +166,6 @@ public class Content {
 		return biblio;
 	}
 
-
 	public void setBiblio(String biblio) {
 		this.biblio = Optional.of(biblio);
 	}
@@ -178,21 +173,20 @@ public class Content {
 	public static void setJsonb(Jsonb jsonb) {
 		Content.jsonb = jsonb;
 	}
-	
-
 
 	/**
 	 * @return Contenu not null
 	 */
-	public String contenuToJson(){
+	public String contenuToJson() {
 		return jsonb.toJson(this);
 	}
-	
+
 	/**
-	 * @param jsonContenu : String
+	 * @param jsonContenu
+	 *            : String
 	 * @return Object : Contenu not null
 	 */
-	public static Content jsonToContenu(String jsonbContenu){
+	public static Content jsonToContenu(String jsonbContenu) {
 		return jsonb.fromJson(Strings.nullToEmpty(jsonbContenu), Content.class);
 	}
 }

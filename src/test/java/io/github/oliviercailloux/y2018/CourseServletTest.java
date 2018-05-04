@@ -1,6 +1,5 @@
 package io.github.oliviercailloux.y2018;
 
-
 import static org.junit.Assert.assertEquals;
 
 import java.net.URL;
@@ -30,15 +29,14 @@ public class CourseServletTest {
 				CourseServletTest.class.getPackage());
 		return war;
 	}
-	
+
 	@ArquillianResource
 	private URL baseURL;
-	
-	
+
 	@Test
-	public void testDoGet() throws Exception{
+	public void testDoGet() throws Exception {
 		final Client client = ClientBuilder.newClient();
-		final WebTarget webTarget = client.target(baseURL.toString()).path("/course").queryParam("id",2); 
+		final WebTarget webTarget = client.target(baseURL.toString()).path("/course").queryParam("id", 2);
 		LOGGER.info(webTarget.getUri().toString());
 		final String response = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
 		String str = "{\"id\":2,\"description\":\"Java\",\"compulsory\":true,\"periode\":\"2018\"}";

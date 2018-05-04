@@ -1,6 +1,5 @@
 package io.github.oliviercailloux.y2018;
 
-
 import static org.junit.Assert.assertEquals;
 
 import java.net.URL;
@@ -30,14 +29,14 @@ public class PersonServletTest {
 				PersonServletTest.class.getPackage());
 		return war;
 	}
-	
+
 	@ArquillianResource
 	private URL baseURL;
-	
+
 	@Test
-	public void testDoGet() throws Exception{
+	public void testDoGet() throws Exception {
 		final Client client = ClientBuilder.newClient();
-		final WebTarget webTarget = client.target(baseURL.toString()).path("/person").queryParam("id", 1); 
+		final WebTarget webTarget = client.target(baseURL.toString()).path("/person").queryParam("id", 1);
 		LOGGER.info(webTarget.getUri().toString());
 		final String response = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
 		String str = "{\"id\":1,\"firstname\":\"Tuti\",\"lastname\":\"Dudi\",\"year_master\":0}";

@@ -26,7 +26,7 @@ import com.google.common.base.Strings;
 public class Course {
 
 	@Id
-	@GeneratedValue( strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@XmlAttribute
 	private int id;
 
@@ -48,17 +48,19 @@ public class Course {
 	private String periode;
 
 	private Optional<Boolean> compulsory;
+
 	/**
 	 * description correspond to note in db.
 	 */
-	private String description; 
+	private String description;
+
 	private static Jsonb jsonb = JsonbBuilder.create();
 
 	private CourseShort courseShort;
 
 	public Course() {
 		super();
-		this.periode = ""; 
+		this.periode = "";
 		this.compulsory = Optional.empty();
 		this.description = "";
 		this.courseShort = new CourseShort();
@@ -72,9 +74,9 @@ public class Course {
 	public Course(String periode, boolean compulsory, String description) {
 		super();
 		this.periode = Strings.nullToEmpty(periode);
-		this.compulsory = Optional.of(compulsory) ;
+		this.compulsory = Optional.of(compulsory);
 		this.description = Strings.nullToEmpty(description);
-		this.courseShort = new CourseShort(periode,compulsory,description);
+		this.courseShort = new CourseShort(periode, compulsory, description);
 	}
 
 	/**
@@ -86,13 +88,14 @@ public class Course {
 		super();
 		this.id = id;
 		this.periode = Strings.nullToEmpty(periode);
-		this.compulsory = Optional.of(compulsory) ;
+		this.compulsory = Optional.of(compulsory);
 		this.description = Strings.nullToEmpty(description);
 	}
 
 	public Master getIdMaster() {
 		return master;
 	}
+
 	public int getId() {
 		return id;
 	}
@@ -106,7 +109,7 @@ public class Course {
 	}
 
 	/**
-	 * @return  not null.
+	 * @return not null.
 	 */
 	public String getPeriode() {
 		return periode;
@@ -132,10 +135,9 @@ public class Course {
 		return description;
 	}
 
-	public void setDescription(String description) {	
+	public void setDescription(String description) {
 		this.description = Strings.nullToEmpty(description);
 	}
-
 
 	public CourseShort getCourseShort() {
 		return courseShort;
@@ -148,21 +150,22 @@ public class Course {
 	/**
 	 * @return Cours not null
 	 */
-	public String toJson(){
-		return	jsonb.toJson(this);
-	} 
+	public String toJson() {
+		return jsonb.toJson(this);
+	}
 
 	public String toShortJson() {
 		return jsonb.toJson(this.getCourseShort());
 	}
 
 	/**
-	 * @param jsonCours is not null nor empty
+	 * @param jsonCours
+	 *            is not null nor empty
 	 * @return Object : Cours not null
 	 * 
 	 */
-	public static Course fromJson(String jsonbCours) throws IllegalArgumentException, NullPointerException{
-		if(jsonbCours == null || jsonbCours.isEmpty()) {
+	public static Course fromJson(String jsonbCours) throws IllegalArgumentException, NullPointerException {
+		if (jsonbCours == null || jsonbCours.isEmpty()) {
 			throw new IllegalArgumentException();
 		}
 		return jsonb.fromJson(jsonbCours, Course.class);
