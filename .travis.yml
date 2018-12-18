@@ -1,6 +1,3 @@
-branches:
-  only:
-    - dev
 language: java
 git:
   depth: 1
