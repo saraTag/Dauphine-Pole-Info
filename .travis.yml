@@ -1,4 +1,7 @@
 language: java
+php:
+  - '5.5'
+  - '5.6'
 git:
   depth: 1
 jdk:
@@ -7,6 +10,13 @@ dist: trusty
 cache:
   directories:
     - $HOME/.m2
+service:
+  - mysql
+install:
+  - composer install
+before_install:
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS baladay;'  
+  - mysql -u root --default-character-set=utf8 baladay < Schema.sql    
 deploy:
   provider: bluemixcloudfoundry
   skip_cleanup: true
@@ -15,3 +25,4 @@ deploy:
   organization: cboudville@free.fr
   space: dev
   region: eu-gb
+
