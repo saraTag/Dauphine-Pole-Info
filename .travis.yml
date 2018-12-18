@@ -1,7 +1,6 @@
 branches:
   only:
     - dev
-    - master
 language: java
 git:
   depth: 1
