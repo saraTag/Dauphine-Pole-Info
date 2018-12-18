@@ -15,3 +15,14 @@ deploy:
   organization: cboudville@free.fr
   space: dev
   region: eu-gb
+  on:
+    branch:dev
+  provider: bluemixcloudfoundry
+  skip_cleanup: true
+  username: cboudville@free.fr
+  password: $BLUEMIX_PASSWORD
+  organization: cboudville@free.fr
+  space: dev
+  region: eu-gb
+  on:
+    branch:master
