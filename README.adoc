@@ -1,6 +1,7 @@
 = Dauphine Pole Info
 :sectanchors:
 
+image:https://travis-ci.org/MAMERY-DOUMBIA/Dauphine-Pole-Info.svg?branch=master["Build Status", link="https://travis-ci.org/MAMERY-DOUMBIA/Dauphine-Pole-Info"]
 
 A Java project developed during the https://github.com/oliviercailloux/java-course[Java course] taught at Université Paris-Dauphine (in http://www.mido.dauphine.fr/[MIDO] M2 MIAGE). The code is jointly copyrighted by Olivier Cailloux and the following students:
 
