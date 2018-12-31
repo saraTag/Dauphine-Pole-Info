@@ -1,8 +1,7 @@
 = Dauphine Pole Info
 :sectanchors:
 
-image:https://travis-ci.org/MAMERY-DOUMBIA/Dauphine-Pole-Info.svg?branch=master["Build Status", link="https://travis-ci.org/MAMERY-DOUMBIA/Dauphine-Pole-Info"]
-
+image:https://travis-ci.com/saraTag/Dauphine-Pole-Info.svg?branch=master["Build Status", link="https://travis-ci.com/saraTag/Dauphine-Pole-Info"]
 = Les membres du groupe:
 
  - Sara TAGZIRIA
