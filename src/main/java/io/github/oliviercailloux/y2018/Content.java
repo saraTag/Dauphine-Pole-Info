@@ -18,26 +18,29 @@ import com.google.common.base.Strings;
 @XmlRootElement
 public class Content {
 
+	@Entity
+@Table(name = "contenu")
+public class Content {
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 
-	@Column(name = "name")
+	@Column(name = "nom")
 	private String name;
 
 	@Column(name = "description")
 	private Optional<String> description;
 
-	@Column(name = "training")
+	@Column(name = "apprentissage")
 	private Optional<String> training;
 
-	@Column(name = "hourlyVolume")
+	@Column(name = "volume_horaire")
 	private int hourlyVolume;
 
-	@Column(name = "etcs")
+	@Column(name = "ects")
 	private float etcs;
 
-	@Column(name = "projectVolume")
+	@Column(name = "volume_projet")
 	private int projectVolume;
 
 	@Column(name = "objectives")
