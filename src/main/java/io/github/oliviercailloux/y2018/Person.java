@@ -14,45 +14,51 @@ import javax.xml.bind.annotation.XmlRootElement;
 import com.google.common.base.Strings;
 
 @Entity
-@JsonbPropertyOrder({ "id", "firstname", "lastname" })
-@XmlRootElement
+@Table(name = "personne")
 public class Person {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@XmlAttribute
 	private int id;
-
+	
+	@Column(name = "prenom", unique = false)
 	private String firstname;
 
+	@Column(name = "nom", unique = false)
 	private String lastname;
 
 	private String email;
 
+	@Column(name = "telephone", unique = false)
 	private String phone;
 
 	private String fax;
 
+	@Column(name = "home_page", unique = false)
 	private String homePage;
 
 	private String cv;
-
+	
+	@Column(name = "notes", unique = false)
 	private String note; // comment renommage !!!
 
 	private String password;
 
+	@Column(name = "roles", unique = false)
 	private String role;
+
+	@Column(name = "adresse", unique = false)
+	private String address;
+
+	private String mobile;
+
+	@Column(name = "vacataire", unique = false)
+	private String temporary;
 
 	@OneToOne
 	private Master master;
 
 	private int yearMaster;
 
-	private String address;
-
-	private String mobile;
-
-	private String temporary;
 
 	private static Jsonb jsonb = JsonbBuilder.create();
 
