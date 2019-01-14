@@ -141,7 +141,7 @@ INSERT INTO Personne (id, prenom, nom, email, telephone, fax,
 	VALUES (1000,'admin','admin', 'admin', '', '', 
                 'admin', 'M, A');
 
-SERT INTO `Role` (`code`, `intitule`) VALUES
+INSERT INTO `Role` (`code`, `intitule`) VALUES
 ('M', 'Enseignant'),
 ('S', 'Etudiant');
 
