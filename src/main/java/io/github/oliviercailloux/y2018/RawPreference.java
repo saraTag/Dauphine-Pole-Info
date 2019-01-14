@@ -86,6 +86,13 @@ public class RawPreference {
 	public static RawPreference jsonToPrefernecy(String jsonPreference) {
 		return jsonb.fromJson(Strings.nullToEmpty(jsonPreference), RawPreference.class);
 	}
+	/*
+	public static RawPreference jsonToPrefernecyBis(String jsonPreference) throws IllegalArgumentException, NullPointerException {
+		if (jsonPreference == null || jsonPreference.isEmpty()) {
+			throw new IllegalArgumentException();
+		}
+		return jsonb.fromJson(jsonPreference, RawPreference.class);
+	}*/
 
 	public void setIdContent(Content idContent) {
 		this.idContents = idContent;
