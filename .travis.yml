@@ -18,7 +18,7 @@ addons:
 before_install:
   - mysqladmin -u root --password="" create Master
   - mysql -u root --password="" Master < Schema.sql 
-#deploy:
+deploy:
 #  provider: bluemixcloudfoundry
 #  skip_cleanup: true
 #  username: cboudville@free.fr
