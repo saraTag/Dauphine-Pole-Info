@@ -2,32 +2,15 @@ package io.github.oliviercailloux.y2018;
 
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
-import javax.json.bind.annotation.JsonbPropertyOrder;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.xml.bind.annotation.XmlElement;
 
 import com.google.common.base.Strings;
 
-@Entity
-@JsonbPropertyOrder({ "idMaster", "idContents", "idPerson"})
 public class RawPreference {
-	
-	@ManyToOne
-	@JoinColumn(name = "idMaster")
-	@XmlElement
+
 	private Master idMaster;
-	
-	@OneToMany
-	@JoinColumn(name = "idContents")
-	@XmlElement
+
 	private Content idContents;
-	
-	@OneToMany
-	@JoinColumn(name = "idPerson")
-	@XmlElement
+
 	private Person idPerson;
 
 	/**
@@ -79,19 +62,11 @@ public class RawPreference {
 
 	/**
 	 * 
-	 * @param jsonPreference
-	 *            : String
+	 * @param jsonPreference : String
 	 * @return Preference not null
 	 */
 	public static RawPreference jsonToPrefernecy(String jsonPreference) {
 		return jsonb.fromJson(Strings.nullToEmpty(jsonPreference), RawPreference.class);
-	}
-	
-	public static RawPreference jsonToPrefernecyBis(String jsonPreference) throws IllegalArgumentException, NullPointerException {
-		if (jsonPreference == null || jsonPreference.isEmpty()) {
-			throw new IllegalArgumentException();
-		}
-		return jsonb.fromJson(jsonPreference, RawPreference.class);
 	}
 
 	public void setIdContent(Content idContent) {
@@ -105,5 +80,4 @@ public class RawPreference {
 	public void setIdPerson(Person idPerson) {
 		this.idPerson = idPerson;
 	}
-	//commented this part just to do a new proper pull request
 }
