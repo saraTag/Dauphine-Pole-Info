@@ -62,7 +62,8 @@ public class RawPreference {
 
 	/**
 	 * 
-	 * @param jsonPreference : String
+	 * @param jsonPreference
+	 *            : String
 	 * @return Preference not null
 	 */
 	public static RawPreference jsonToPrefernecy(String jsonPreference) {
