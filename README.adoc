@@ -1,15 +1,16 @@
 = Dauphine Pole Info
 :sectanchors:
 
+image:https://travis-ci.org/saraTag/Dauphine-Pole-Info.svg?branch=master["Build Status", link="https://travis-ci.org/saraTag/Dauphine-Pole-Info"]
 
-Les membres du groupe:
+=Les membres du groupe:
 
 * Sara TAGZIRIA
 * Ouaaz Chahine
 * Lahsen Jannani
 * Anas BEN EL MAHJOUB
 
-Vue globale sur l’ensemble du projet:
+=Vue globale sur l’ensemble du projet:
 
 * Nous allons nous baser sur le projet Dauphine-Pole-Info déjà existant, pour l’enrichir avec les fonctionnalités choisies par tous les membres du groupe.
 * Nous avons répartie la réalisation du projet sur 3 sprints, chaque sprint correspond à la finalisation de quatre fonctionnalités.
