@@ -90,7 +90,7 @@ public class Person {
 		return id;
 	}
 
-	public void setIde(int idPerson) {
+	public void setId(int idPerson) {
 		this.id = idPerson;
 	}
 
