@@ -3,6 +3,7 @@
 
 
 Les membres du groupe:
+
 * Sara TAGZIRIA
 * Ouaaz Chahine
 * Lahsen Jannani
@@ -34,6 +35,7 @@ Sprint 2:
 * Lahsen Jannani : LinkServlets (0.5 Point) + Repr (0.5 Point)
 
 Sprint 3:
+
 * TAGZIRIA Sara :ObjectsXML (1 Point)
 * Ouaaz Chahine : SOAP (1 Point)
 * Anas : Lib (1 Point)
