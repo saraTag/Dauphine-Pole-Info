@@ -9,35 +9,35 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import com.google.common.base.Strings;
 
 @Entity
-@Table(name = "contenu")
+@XmlRootElement
 public class Content {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 
-	@Column(name = "nom")
+	@Column(name = "name")
 	private String name;
 
 	@Column(name = "description")
 	private Optional<String> description;
 
-	@Column(name = "apprentissage")
+	@Column(name = "training")
 	private Optional<String> training;
 
-	@Column(name = "volume_horaire")
+	@Column(name = "hourlyVolume")
 	private int hourlyVolume;
 
-	@Column(name = "ects")
+	@Column(name = "etcs")
 	private float etcs;
 
-	@Column(name = "volume_projet")
+	@Column(name = "projectVolume")
 	private int projectVolume;
 
 	@Column(name = "objectives")
