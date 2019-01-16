@@ -25,7 +25,6 @@ image:https://travis-ci.org/saraTag/Dauphine-Pole-Info.svg?branch=master["Build 
 *Sprint 1:*
 
 * TAGZIRIA Sara : AutoDB (1 Point)
- 
  Automatiser la création d’une BD MySQL de schéma attendu par l’application PoleInfo3.
  
 * Ouaaz Chahine : Basics (1 Point)
