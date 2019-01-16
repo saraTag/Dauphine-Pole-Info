@@ -7,6 +7,17 @@ dist: trusty
 cache:
   directories:
     - $HOME/.m2
+services:
+  - mysql
+addons:
+  apt:
+    sources:
+      - mysql-5.7-trusty
+    packages:
+      - mysql-server
+before_install:
+  - mysqladmin -u root --password="" create Master
+  - mysql -u root --password="" Master < Schema.sql 
 #deploy:
 #  provider: bluemixcloudfoundry
 #  skip_cleanup: true
