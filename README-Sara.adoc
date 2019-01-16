@@ -46,9 +46,7 @@ Chaque objet de base Thing (Pour Thing valant Course, Person) a un id et trois s
 
 Implémenter un client qui permet, avec un GUI rudimentaire ou en ligne de commande, la modification des informations de base de Course et Person. 
 
-* Ouaaz Chahine : *SetDB* (1,5 Point )
-
-Implémenter des entités JPA et les méthodes permettant d’écrire et de lire depuis la BD de façon à garantir la compatibilité avec l’application existante.
+* Ouaaz Chahine : Affectation d'une nouvelle fonctionnalité plus tard.
 
 * Anas : *ServletPref* (1 Point )
 
