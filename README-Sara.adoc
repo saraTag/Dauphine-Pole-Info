@@ -61,6 +61,7 @@ Servlet permettant de récupérer, effacer, ajouter des liens entre master, cour
 * TAGZIRIA Sara : *ObjectsXML* (1 Point)
 
 Encoder / décoder une partie de vos objets de base en XML. Repartir du schéma CDM-fr, simplifié. (« Vos objets de base » comprend ici Master.) Encoder / décoder le reste de vos objets de base en JSON, y compris les relations.
+Le projet Dauphine Open Data pour ont déjà implementé une fonctionnalité de très similaire, nous envisageons discuter avec eux à propos de cette fonctionnalité. 
 
 * Ouaaz Chahine : SOAP (1 Point)
 
