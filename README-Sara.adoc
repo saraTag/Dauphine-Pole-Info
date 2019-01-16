@@ -22,7 +22,7 @@ image:https://travis-ci.org/saraTag/Dauphine-Pole-Info.svg?branch=master["Build 
 * Chaque membre est engagé à faire les tests unitaires qui concerne l’ensemble du code modifié par lui afin d’avoir une traçabilité de debugage tout cela garantir une transparence et définir les responsabilités de chacun.
 * Nous allons tout le long de la réalisation de ce projet essayer de fixer des réunions pour s’entraider et être au courant de l’état d’avancement.
 
-Sprint 1:
+*Sprint 1:*
 
 * TAGZIRIA Sara : AutoDB (1 Point)
  Automatiser la création d’une BD MySQL de schéma attendu par l’application PoleInfo3.
@@ -36,7 +36,7 @@ Un objet permet de stocker les préférences d’un étudiant concernant les cou
 * Lahsen Jannani : basicServlets (1 Point)
 Chaque objet de base Thing (Pour Thing valant Course, Person) a un id et trois servlets associées : setThing(id, txt), où txt est la représentation textuelle de Thing, getThing(id), et setThing(id, field1, field2, …). Les servlets ne permettent pas de modifier les interactions entre objets (par exemple de changer l’enseignant d’un cours), seulement les détails des objets eux-mêmes (par exemple le titre d’un cours). 
 
-Sprint 2:
+*Sprint 2:*
 
 * TAGZIRIA Sara : BasicClient (1 Point)
 Implémenter un client qui permet, avec un GUI rudimentaire ou en ligne de commande, la modification des informations de base de Course et Person. 
@@ -50,9 +50,9 @@ Servlet setPref(id étudiant, pref), getPref(id étudiant), getPrefByCourse(id c
 * Lahsen Jannani : LinkServlets (0.5 Point) + Repr (0.5 Point)
 Servlet permettant de récupérer, effacer, ajouter des liens entre master, cours et person, par id uniquement. 
 
-Sprint 3:
+*Sprint 3:*
 
-* TAGZIRIA Sara :ObjectsXML (1 Point)
+* TAGZIRIA Sara : ObjectsXML (1 Point)
 Encoder / décoder une partie de vos objets de base en XML. Repartir du schéma CDM-fr, simplifié. (« Vos objets de base » comprend ici Master.) Encoder / décoder le reste de vos objets de base en JSON, y compris les relations.
 
 * Ouaaz Chahine : SOAP (1 Point)
