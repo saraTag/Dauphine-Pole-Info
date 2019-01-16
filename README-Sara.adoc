@@ -1,0 +1,45 @@
+= Dauphine Pole Info
+:sectanchors:
+
+image:https://travis-ci.org/saraTag/Dauphine-Pole-Info.svg?branch=master["Build Status", link="https://travis-ci.org/saraTag/Dauphine-Pole-Info"]
+
+= Les membres du groupe:
+
+* Sara TAGZIRIA
+* Ouaaz Chahine
+* Lahsen Jannani
+* Anas BEN EL MAHJOUB
+
+= Vue globale sur l’ensemble du projet:
+
+* Nous allons nous baser sur le projet Dauphine-Pole-Info déjà existant, pour l’enrichir avec les fonctionnalités choisies par tous les membres du groupe.
+* Nous avons répartie la réalisation du projet sur 3 sprints, chaque sprint correspond à la finalisation de quatre fonctionnalités.
+* Le choix des fonctionnalités par sprint repose sur l’indépendance de ses derniers, nous allons commencé par celles qui sont les plus indépendantes pour avoir une flexibilité de livraison de chaque membre.
+* Les démarches qui nous semblent dépendantes sont réservées aux derniers sprints.
+* Nous pouvons éventuellement à tout moment avancer ou reporter une fonctionnalité qui nous semble difficile à livrer dans les temps ou qui depend d’un code qui serait absent ou incomplet.
+* Nous mettrons à jour le readme au fur et à mesure des changements effectués.
+* Le projet va être mis sur le depot en branche dev, nous seront toujours en attente de la validation de Monsieur Olivier CAILLOUX avant chaque merge dans la branche master.
+* Chaque membre est engagé à faire les tests unitaires qui concerne l’ensemble du code modifié par lui afin d’avoir une traçabilité de debugage tout cela garantir une transparence et définir les responsabilités de chacun.
+* Nous allons tout le long de la réalisation de ce projet essayer de fixer des réunions pour s’entraider et être au courant de l’état d’avancement.
+
+Sprint 1:
+
+* TAGZIRIA Sara : AutoDB (1 Point)
+* Ouaaz Chahine : Basics (1 Point)
+* Anas : Prefs (1 Point)
+* Lahsen Jannani : basicServlets (1 Point)
+
+Sprint 2:
+
+* TAGZIRIA Sara : BasicClient (1 Point)
+* Ouaaz Chahine : SetDB (1 Point )
+* Anas : ServletPref (1 Point )
+* Lahsen Jannani : LinkServlets (0.5 Point) + Repr (0.5 Point)
+
+Sprint 3:
+
+* TAGZIRIA Sara :ObjectsXML (1 Point)
+* Ouaaz Chahine : SOAP (1 Point)
+* Anas : Lib (1 Point)
+* Lahsen Jannani : ExtBasicServlets (1 Point)
+
