@@ -1,7 +1,39 @@
-= Dauphine Pole Info
+
+= Dauphine Pole Info 2017
 :sectanchors:
 
 image:https://travis-ci.org/saraTag/Dauphine-Pole-Info.svg?branch=master["Build Status", link="https://travis-ci.org/saraTag/Dauphine-Pole-Info"]
+
+A Java project developed during the https://github.com/oliviercailloux/java-course[Java course] taught at Université Paris-Dauphine (in http://www.mido.dauphine.fr/[MIDO] M2 MIAGE). The code is jointly copyrighted by Olivier Cailloux and the following students:
+
+* Fatima-Ezzahra Abbar
+* Clement Boudville
+* Mamery Doumbia
+* Bleriot Kuate Kamga
+
+The code is hereby published under the MIT License, with their permission.
+
+== Original description
+Installation de poleinfo3
+
+Un serveur PHP et une base mySQL sont nécessaires : vous pouvez installer wamp,xamp ou mamp suivant votre OS.  
+La démarche suivante a été réalisée avec wamp.  
+  
+1. Récupérer le code sur https://github.com/oliviercailloux/poleinfo3  
+2. Déplacer le code dans le répertoire <www> de wamp  
+3. Créer une base de données mySQL nommée "Master"  
+  3.1 Soit en ligne de commande : mysqladmin -u root -p create Master  
+  3.2 Soit avec phpMyAdmin  
+4. Importer le fichier Schema.sql dans la base de données  
+  4.1 ligne de commande : mysql -u root -p Master < Schema.sql
+  4.2 ou avec phpMyAdmin
+5. Indiquer les identifiants d'accès à la DB dans "DBinfo.php"
+6. Activer les *short open tags* dans la configuration PHP
+7. Accéder à l'application ! 
+8. (Vous pouvez éventuellement réduire le niveau des erreurs rapportées pour ne pas prendre en compte les dépréciations)
+
+= Dauphine Pole Info 2018
+:sectanchors:
 
 = Les membres du groupe:
 
