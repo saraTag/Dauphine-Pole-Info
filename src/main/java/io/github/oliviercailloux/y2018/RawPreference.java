@@ -1,5 +1,7 @@
 package io.github.oliviercailloux.y2018;
 
+import java.util.Set;
+
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
 
@@ -80,5 +82,11 @@ public class RawPreference {
 
 	public void setIdPerson(Person idPerson) {
 		this.idPerson = idPerson;
+	}
+	
+	public StudentsPreference rawPreferenceToStudentsPreference() {
+		Set<RawPreference> preferences = null;
+		preferences.add(this);
+		return new StudentsPreference(null,preferences);
 	}
 }
