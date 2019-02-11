@@ -36,11 +36,15 @@ public class StudentsPreference {
 	public Set<RawPreference> getPreference(Person student) {
 		return studPref.get(student);
 	}
-	
+	/**
+	 * this method has been added to transform StudentsPreference into json
+	 * */
 	public String studentsPreferenceToJson() {
 		return jsonb.toJson(this);
 	}
-	
+	/**
+	 * this method has been added to transform json into StudentsPreference
+	 * */
 	public static StudentsPreference jsonToStudentsPreference(String jsonPreference) {
 		return jsonb.fromJson(Strings.nullToEmpty(jsonPreference), StudentsPreference.class);
 	}
