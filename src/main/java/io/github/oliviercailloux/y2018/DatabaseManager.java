@@ -78,7 +78,7 @@ public class DatabaseManager {
 
 		ArrayList<RawPreference> preferences = new ArrayList<RawPreference>();
 		RawPreference pref = new RawPreference(100);
-		pref.setIdPerson(personsById.get(1));
+		pref.setPerson(personsById.get(1));
 		preferences.add(pref);
 		preferencesByStudentId.put(1, preferences);
 	}

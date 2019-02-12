@@ -1,26 +1,30 @@
 package io.github.oliviercailloux.y2018;
 
-import java.util.HashMap;
+
 import java.util.Map;
 import java.util.Set;
 
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
+import javax.json.bind.annotation.JsonbProperty;
+import javax.json.bind.annotation.JsonbPropertyOrder;
 
 import com.google.common.base.Strings;
 
-public class StudentsPreference {
+@JsonbPropertyOrder({"studPref"})
 
+public class StudentsPreference {
+	@JsonbProperty("studPref")
 	private Map<Person, Set<RawPreference>> studPref;
 	
 	private static Jsonb jsonb = JsonbBuilder.create();
 
 	public StudentsPreference() {
-		studPref = new HashMap<>();
+		studPref = null;
 	}
 	
 	public StudentsPreference(Person student, Set<RawPreference> les_preferences) {
-		this.studPref = new HashMap<>();
+		this.studPref = null;
 		this.studPref.put(student, les_preferences);
 				
 	}
@@ -38,6 +42,7 @@ public class StudentsPreference {
 	}
 	/**
 	 * this method has been added to transform StudentsPreference into json
+	 * the order is inherited from the order of RawPreference 
 	 * */
 	public String studentsPreferenceToJson() {
 		return jsonb.toJson(this);

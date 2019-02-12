@@ -4,6 +4,8 @@ import java.util.Optional;
 
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
+import javax.json.bind.annotation.JsonbProperty;
+import javax.json.bind.annotation.JsonbPropertyOrder;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,13 +18,16 @@ import com.google.common.base.Strings;
 
 @Entity
 @XmlRootElement
+@JsonbPropertyOrder({ "id", "name" })
 public class Content {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@JsonbProperty("id")
 	private int id;
 
-	@Column(name = "name")
+	
+	@Column(name = "name") @JsonbProperty("name")
 	private String name;
 
 	@Column(name = "description")

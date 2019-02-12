@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
+import javax.json.bind.annotation.JsonbProperty;
 import javax.json.bind.annotation.JsonbPropertyOrder;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,11 +22,13 @@ public class Master {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@XmlAttribute
+	@XmlAttribute @JsonbProperty("id")
 	private int id;
-
+	
+	@JsonbProperty("name")
 	private String name;
 
+	@JsonbProperty("description")
 	private Optional<String> description;
 
 	private static Jsonb jsonb = JsonbBuilder.create();

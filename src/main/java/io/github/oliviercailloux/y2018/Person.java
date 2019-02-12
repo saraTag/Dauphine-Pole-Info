@@ -2,6 +2,7 @@ package io.github.oliviercailloux.y2018;
 
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
+import javax.json.bind.annotation.JsonbProperty;
 import javax.json.bind.annotation.JsonbPropertyOrder;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,11 +21,13 @@ public class Person {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@XmlAttribute
+	@XmlAttribute @JsonbProperty("id")
 	private int id;
-
+	
+	@JsonbProperty("firstname")
 	private String firstname;
-
+	
+	@JsonbProperty("lastname")
 	private String lastname;
 
 	private String email;

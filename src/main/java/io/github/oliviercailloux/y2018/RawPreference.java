@@ -1,23 +1,35 @@
 package io.github.oliviercailloux.y2018;
 
-import java.util.Set;
 
+import java.util.Set;
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
+import javax.json.bind.annotation.JsonbProperty;
+import javax.json.bind.annotation.JsonbPropertyOrder;
+import javax.persistence.*;
 
 import com.google.common.base.Strings;
 
+@JsonbPropertyOrder({
+    "person",
+    "master",
+    "content",
+    "level"
+})
+
+@Entity
 public class RawPreference {
-
-	private Master idMaster;
-
-	private Content idContents;
-
-	private Person idPerson;
-
-	/**
-	 * default value
-	 */
+	
+	@JsonbProperty("master")
+	private Master master;
+	
+	@JsonbProperty("master")
+	private Content content;
+	
+	@JsonbProperty("person")
+	private Person person;
+	
+	@JsonbProperty("level")
 	private int level;
 
 	private static Jsonb jsonb = JsonbBuilder.create();
@@ -34,16 +46,28 @@ public class RawPreference {
 		this.level = level;
 	}
 
-	public int getIdMaster() {
-		return idMaster.getId();
+	public int getMasterId() {
+		return master.getId();
 	}
 
-	public int getIdContent() {
-		return idContents.getId();
+	public int getContentId() {
+		return content.getId();
 	}
 
-	public int getIdPerson() {
-		return idPerson.getId();
+	public int getPersonId() {
+		return person.getId();
+	}
+	
+	public Master getMaster() {
+		return master;
+	}
+
+	public Content getContent() {
+		return content;
+	}
+
+	public Person getPerson() {
+		return person;
 	}
 
 	public int getLevel() {
@@ -72,21 +96,21 @@ public class RawPreference {
 		return jsonb.fromJson(Strings.nullToEmpty(jsonPreference), RawPreference.class);
 	}
 
-	public void setIdContent(Content idContent) {
-		this.idContents = idContent;
+	public void setContent(Content content) {
+		this.content = content;
 	}
 
-	public void setIdMaster(Master idMaster) {
-		this.idMaster = idMaster;
+	public void setMaster(Master master) {
+		this.master = master;
 	}
 
-	public void setIdPerson(Person idPerson) {
-		this.idPerson = idPerson;
+	public void setPerson(Person person) {
+		this.person = person;
 	}
 	
-	public StudentsPreference rawPreferenceToStudentsPreference() {
+	public StudentsPreference rawPreferenceToStudentsPreference(Person student) {
 		Set<RawPreference> preferences = null;
 		preferences.add(this);
-		return new StudentsPreference(null,preferences);
+		return new StudentsPreference(student,preferences);
 	}
 }

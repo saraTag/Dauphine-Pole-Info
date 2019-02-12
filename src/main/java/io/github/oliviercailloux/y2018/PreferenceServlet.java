@@ -70,11 +70,11 @@ public class PreferenceServlet extends HttpServlet {
 
 		RawPreference pref = new RawPreference(level);
 		Content content = DBM.getContentsById().get(idContent);
-		pref.setIdContent(content);
+		pref.setContent(content);
 		Master master = DBM.getMastersById().get(idMaster);
-		pref.setIdMaster(master);
+		pref.setMaster(master);
 		Person person = DBM.getPersonsById().get(idPerson);
-		pref.setIdPerson(person);
+		pref.setPerson(person);
 
 		DBM.setPreference(idPerson, pref);
 	}
