@@ -144,3 +144,5 @@ INSERT INTO Personne (id, prenom, nom, email, telephone, fax,
 INSERT INTO `Role` (`code`, `intitule`) VALUES
 ('M', 'Enseignant'),
 ('S', 'Etudiant');
+
+
