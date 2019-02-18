@@ -1,9 +1,7 @@
 package io.github.oliviercailloux.y2018;
 
 
-import java.util.Set;
 import javax.json.bind.Jsonb;
-import javax.json.bind.JsonbBuilder;
 import javax.json.bind.annotation.JsonbProperty;
 import javax.json.bind.annotation.JsonbPropertyOrder;
 import javax.persistence.*;
@@ -32,7 +30,7 @@ public class RawPreference {
 	@JsonbProperty("level")
 	private int level;
 
-	private static Jsonb jsonb = JsonbBuilder.create();
+	private static Jsonb jsonb = JsonUtils.getInstance();
 
 	public RawPreference() {
 		super();
@@ -92,7 +90,7 @@ public class RawPreference {
 	 *            : String
 	 * @return Preference not null
 	 */
-	public static RawPreference jsonToPrefernecy(String jsonPreference) {
+	public static RawPreference jsonToRawPreference(String jsonPreference) {
 		return jsonb.fromJson(Strings.nullToEmpty(jsonPreference), RawPreference.class);
 	}
 
@@ -108,9 +106,5 @@ public class RawPreference {
 		this.person = person;
 	}
 	
-	public StudentsPreference rawPreferenceToStudentsPreference(Person student) {
-		Set<RawPreference> preferences = null;
-		preferences.add(this);
-		return new StudentsPreference(student,preferences);
-	}
+	
 }

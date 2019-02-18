@@ -3,7 +3,6 @@ package io.github.oliviercailloux.y2018;
 import java.util.Optional;
 
 import javax.json.bind.Jsonb;
-import javax.json.bind.JsonbBuilder;
 import javax.json.bind.annotation.JsonbProperty;
 import javax.json.bind.annotation.JsonbPropertyOrder;
 import javax.persistence.Column;
@@ -18,7 +17,7 @@ import com.google.common.base.Strings;
 
 @Entity
 @XmlRootElement
-@JsonbPropertyOrder({ "id", "name" })
+@JsonbPropertyOrder({ "id", "name","etcs","description","training","hourlyVolume","projectVolume","objectives","contents","biblio"})
 public class Content {
 
 	@Id
@@ -54,7 +53,7 @@ public class Content {
 	@Column(name = "biblio")
 	private Optional<String> biblio;
 
-	private static Jsonb jsonb = JsonbBuilder.create();
+	private static Jsonb jsonb = JsonUtils.getInstance();
 
 	public Content(int id, String name, int hourly_volume, float etcs) {
 		super();

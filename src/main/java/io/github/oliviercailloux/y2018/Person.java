@@ -15,7 +15,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import com.google.common.base.Strings;
 
 @Entity
-@JsonbPropertyOrder({ "id", "firstname", "lastname" })
+@JsonbPropertyOrder({ "id", "firstname", "lastname", "email", "phone","fax","homePage","cv","note","role","master","yearMaster","address","mobile","temporary" })
 @XmlRootElement
 public class Person {
 
@@ -29,35 +29,48 @@ public class Person {
 	
 	@JsonbProperty("lastname")
 	private String lastname;
-
+	
+	@JsonbProperty("email")
 	private String email;
 
+	@JsonbProperty("phone")
 	private String phone;
 
+	@JsonbProperty("fax")
 	private String fax;
 
+	@JsonbProperty("homePage")
 	private String homePage;
 
+	@JsonbProperty("cv")
 	private String cv;
 
+	@JsonbProperty("note")
 	private String note; // comment renommage !!!
 
+	@JsonbProperty("password")
 	private String password;
 
+	@JsonbProperty("role")
 	private String role;
 
+	@JsonbProperty("master")
 	@OneToOne
 	private Master master;
-
+	
+	@JsonbProperty("yearMaster")
 	private int yearMaster;
 
+	@JsonbProperty("address")
 	private String address;
 
+	@JsonbProperty("mobile")
 	private String mobile;
 
+	@JsonbProperty("temporary")
 	private String temporary;
 
-	private static Jsonb jsonb = JsonbBuilder.create();
+	private static Jsonb jsonb = JsonUtils.getInstance();
 
 	public Person() {
 		super();

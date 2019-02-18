@@ -3,7 +3,6 @@ package io.github.oliviercailloux.y2018;
 import java.util.Optional;
 
 import javax.json.bind.Jsonb;
-import javax.json.bind.JsonbBuilder;
 import javax.json.bind.annotation.JsonbProperty;
 import javax.json.bind.annotation.JsonbPropertyOrder;
 import javax.persistence.Entity;
@@ -31,7 +30,7 @@ public class Master {
 	@JsonbProperty("description")
 	private Optional<String> description;
 
-	private static Jsonb jsonb = JsonbBuilder.create();
+	private static Jsonb jsonb = JsonUtils.getInstance();
 
 	public Master() {
 		super();
