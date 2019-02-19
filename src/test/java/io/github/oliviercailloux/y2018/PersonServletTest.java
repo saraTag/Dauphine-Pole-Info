@@ -33,5 +33,9 @@ public class PersonServletTest {
 	@ArquillianResource
 	private URL baseURL;
 
-	
+	@Test
+	public void testDoGet() throws Exception {
+		final Client client = ClientBuilder.newClient();
+		
+	}
 }
