@@ -1,6 +1,7 @@
 package io.github.oliviercailloux.y2018;
 
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -28,10 +29,10 @@ public class StudentsPreference {
 	 * @param student
 	 *            not <code>null</code>.
 	 * @param les_preferences
-	 *             <code>null</code>.      
+	 *                 
 	 */
 	public StudentsPreference(Person student, Set<RawPreference> les_preferences) {
-		this.studPref = null;
+		this.studPref = new HashMap<Person, Set<RawPreference>>();
 		this.studPref.put(student, les_preferences);
 				
 	}
