@@ -2,16 +2,17 @@ package io.github.oliviercailloux.y2018;
 
 import static org.junit.Assert.*;
 
+
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
-
-
 
 import org.junit.Before;
 import org.junit.Test;
 
 import com.sun.istack.NotNull;
+
+
 
 public class StudentsPreferenceTest {
 	public Person student;
@@ -25,7 +26,7 @@ public class StudentsPreferenceTest {
 		RawPreference pref = new RawPreference(100);
 		this.les_preferences = new HashSet<RawPreference>(Arrays.asList(pref));
 		this.oneStudentPreference = new StudentsPreference(student, les_preferences);
-		
+
 	}
 
 	@Test
@@ -43,20 +44,20 @@ public class StudentsPreferenceTest {
 	@Test
 	public void addPrefTest() {
 		RawPreference pref = new RawPreference(200);
-		this.oneStudentPreference.addPref(this.student,pref);
+		this.oneStudentPreference.addPref(this.student, pref);
 		assertEquals(1, this.oneStudentPreference.getStudPref().size());
 		assertEquals(2, this.oneStudentPreference.getPreference(student).size());
-		}
+	}
 
-	@Test
-	public void studentsPreferenceToJson() {
-		/*String jsonResult = this.oneStudentPreference.studentsPreferenceToJson();
-		//assertNotNull(jsonResult);
-		System.out.println(jsonResult);
-
-		StudentsPreference testDecodeTest = this.oneStudentPreference.jsonToStudentsPreference(jsonResult);
-		//assertNotNull(testDecodeTest);
-		//assertEquals(testDecodeTest, this.oneStudentPreference);*/
+	@Test (expected = IllegalArgumentException.class)
+	public void studentsPreferenceToJson() throws IllegalArgumentException{
+		
+			 String jsonResult = this.oneStudentPreference.studentsPreferenceToJson();
+			 assertNotNull(jsonResult);
+			 System.out.println(jsonResult);
+			 assertNotNull(StudentsPreference.jsonToStudentsPreference(jsonResult));
+			 
+		
 	}
 
 }

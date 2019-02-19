@@ -6,15 +6,14 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.json.bind.Jsonb;
-import javax.json.bind.annotation.JsonbProperty;
-import javax.json.bind.annotation.JsonbPropertyOrder;
+
 
 import com.google.common.base.Strings;
 
-@JsonbPropertyOrder({"studPref"})
+
 
 public class StudentsPreference {
-	@JsonbProperty("studPref")
+	
 	private Map<Person, Set<RawPreference>> studPref;
 	
 	private static Jsonb jsonb = JsonUtils.getInstance();
