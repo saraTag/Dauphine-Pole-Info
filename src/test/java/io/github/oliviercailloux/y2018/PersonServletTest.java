@@ -33,14 +33,5 @@ public class PersonServletTest {
 	@ArquillianResource
 	private URL baseURL;
 
-	@Test
-	public void testDoGet() throws Exception {
-		final Client client = ClientBuilder.newClient();
-		final WebTarget webTarget = client.target(baseURL.toString()).path("/person").queryParam("id", 1);
-		LOGGER.info(webTarget.getUri().toString());
-		final String response = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
-		String str = "{\"firstname\":\"Tuti\",\"id\":1,\"lastname\":\"Dudi\",\"year_master\":0}";
-		assertEquals(str, response);
-		client.close();
-	}
+	
 }
