@@ -17,16 +17,24 @@ import com.google.common.base.Strings;
 
 @Entity
 public class RawPreference {
-	
+	/**
+	 * Not <code>null</code>.
+	 */
 	@JsonbProperty("master")
 	private Master master;
-	
-	@JsonbProperty("master")
+	/**
+	 * Not <code>null</code>.
+	 */
+	@JsonbProperty("content")
 	private Content content;
-	
+	/**
+	 * Not <code>null</code>.
+	 */
 	@JsonbProperty("person")
 	private Person person;
-	
+	/**
+	 * Not <code>null</code>.
+	 */
 	@JsonbProperty("level")
 	private int level;
 
@@ -43,35 +51,37 @@ public class RawPreference {
 	public RawPreference(int level) {
 		this.level = level;
 	}
-
-	public int getMasterId() {
-		return master.getId();
-	}
-
-	public int getContentId() {
-		return content.getId();
-	}
-
-	public int getPersonId() {
-		return person.getId();
-	}
 	
+	/**
+	 * @return not <code>null</code>.
+	 * */
 	public Master getMaster() {
 		return master;
 	}
-
+	/**
+	 * @return not <code>null</code>.
+	 * */
 	public Content getContent() {
 		return content;
 	}
-
+	/**
+	 * @return not <code>null</code>.
+	 * */
 	public Person getPerson() {
 		return person;
 	}
-
+	/**
+	 * @return not <code>null</code>.
+	 * */
 	public int getLevel() {
 		return level;
 	}
-
+	/**
+	 * 
+	 *
+	 * @param level
+	 *            not <code>null</code>.
+	 */
 	public void setLevel(int level) {
 		this.level = level;
 	}
@@ -93,15 +103,30 @@ public class RawPreference {
 	public static RawPreference jsonToRawPreference(String jsonPreference) {
 		return jsonb.fromJson(Strings.nullToEmpty(jsonPreference), RawPreference.class);
 	}
-
+	/**
+	 * 
+	 *
+	 * @param content
+	 *            not <code>null</code>.
+	 */
 	public void setContent(Content content) {
 		this.content = content;
 	}
-
+	/**
+	 * 
+	 *
+	 * @param master
+	 *            not <code>null</code>.
+	 */
 	public void setMaster(Master master) {
 		this.master = master;
 	}
-
+	/**
+	 * 
+	 *
+	 * @param person
+	 *            not <code>null</code>.
+	 */
 	public void setPerson(Person person) {
 		this.person = person;
 	}

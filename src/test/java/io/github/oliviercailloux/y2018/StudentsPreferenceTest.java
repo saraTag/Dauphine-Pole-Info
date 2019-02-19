@@ -7,6 +7,8 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.json.bind.JsonbException;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -46,18 +48,26 @@ public class StudentsPreferenceTest {
 		RawPreference pref = new RawPreference(200);
 		this.oneStudentPreference.addPref(this.student, pref);
 		assertEquals(1, this.oneStudentPreference.getStudPref().size());
+		
+	}
+	
+	@Test
+	public void getPreferenceTest() {
+		RawPreference pref = new RawPreference(200);
+		this.oneStudentPreference.addPref(this.student, pref);
 		assertEquals(2, this.oneStudentPreference.getPreference(student).size());
 	}
-
-	@Test (expected = IllegalArgumentException.class)
-	public void studentsPreferenceToJson() throws IllegalArgumentException{
-		
-			 String jsonResult = this.oneStudentPreference.studentsPreferenceToJson();
-			 assertNotNull(jsonResult);
-			 System.out.println(jsonResult);
-			 assertNotNull(StudentsPreference.jsonToStudentsPreference(jsonResult));
-			 
-		
+	
+	@Test 
+	public void studentsPreferenceToJson(){
+		 
+			String jsonResult = this.oneStudentPreference.studentsPreferenceToJson();
+			String expectedString = "{\"id\":1,\"firstname\":\"firstname\",\"lastname\":\"lastname\",\"year_master\":0}:preferences{\"level\":100}";
+			assertNotNull(jsonResult);
+			assertEquals(expectedString,jsonResult);
+			StudentsPreference testDecodeTest = this.oneStudentPreference.jsonToStudentsPreference(jsonResult);
+			assertNotNull(testDecodeTest);
+			
 	}
 
 }
