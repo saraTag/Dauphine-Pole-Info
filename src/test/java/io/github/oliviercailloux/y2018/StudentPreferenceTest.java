@@ -28,6 +28,8 @@ public class StudentPreferenceTest {
 	public void setUp() throws Exception {
 		this.student = new Person(1, "firstname", "lastname");
 		RawPreference pref = new RawPreference(100);
+		Master master = new Master(1,"SITN","Description");
+		pref.setMaster(master);
 		List<RawPreference> preferences = new ArrayList<RawPreference>();
 		preferences.add(pref);
 		this.les_preferences = new HashSet<RawPreference>(ImmutableSet.copyOf(preferences));
@@ -68,26 +70,24 @@ public class StudentPreferenceTest {
 		this.oneStudentPreference.addPref(student, pref);
 		assertFalse(this.oneStudentPreference.hasPreferenceWithDistinctLevels(student));
 	}
-	/*
-	 * commented because: java.lang.illegalArgumentException : wrong number of arguments
+	
 	@Test 
 	public void studentPreferenceToJson(){
-		 	
+			
 			String jsonResult = this.oneStudentPreference.studentPreferenceToJson();
-			String expectedString = "{\"id\":1,\"firstname\":\"firstname\",\"lastname\":\"lastname\",\"year_master\":0}:preferences{\"level\":100}";
+			String expectedString = "{\"studentPreference\":[{\"student\":\"{\\\"id\\\":1,\\\"firstname\\\":\\\"firstname\\\",\\\"lastname\\\":\\\"lastname\\\",\\\"year_master\\\":0}\"},[{\"preference\":\"{\\\"master\\\":{\\\"id\\\":1,\\\"name\\\":\\\"SITN\\\",\\\"description\\\":\\\"Description\\\"},\\\"level\\\":100}\"}]]}";
 			assertNotNull(jsonResult);
 			assertEquals(expectedString,jsonResult);
-			StudentPreference testDecodeTest = this.oneStudentPreference.jsonToStudentPreference(jsonResult);
-			assertNotNull(testDecodeTest);
-			
-	}*/
+	}
+	
+	
 	@Test 
 	public void JsonToStudentPreference(){
-		String jsonResult = "{\"id\":1,\"firstname\":\"firstname\",\"lastname\":\"lastname\",\"year_master\":0}:preferences{\"level\":100}";
-		StudentPreference testDecodeTest = this.oneStudentPreference.jsonToStudentPreference(jsonResult);
-		assertNotNull(testDecodeTest);
+		String jsonResult = "{\"studentPreference\":[{\"student\":\"{\\\"id\\\":1,\\\"firstname\\\":\\\"firstname\\\",\\\"lastname\\\":\\\"lastname\\\",\\\"year_master\\\":0}\"},[{\"preference\":\"{\\\"master\\\":{\\\"id\\\":1,\\\"name\\\":\\\"SITN\\\",\\\"description\\\":\\\"Description\\\"},\\\"level\\\":100}\"}]]}";
+		//StudentPreference testDecodeTest = this.oneStudentPreference.jsonToStudentPreference(jsonResult);
+		//assertNotNull(testDecodeTest);
 		//assertEquals(testDecodeTest.getStudPref().size(),this.oneStudentPreference.getStudPref().size());
-		//System.out.println(testDecodeTest);
+		//System.out.println(testDecodeTest.getStudPref());
 	}
 	
 	

@@ -223,6 +223,9 @@ public class Person {
 		this.role = Strings.nullToEmpty(role);
 	}
 
+	/**
+	 * @return not <code>null</code>.
+	 * */
 	public Master getMaster() {
 		return master;
 	}
@@ -231,6 +234,9 @@ public class Person {
 		this.master = idMaster;
 	}
 
+	/**
+	 * @return not <code>null</code>.
+	 * */
 	public int getYear_master() {
 		return yearMaster;
 	}
