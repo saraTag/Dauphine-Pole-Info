@@ -2,17 +2,13 @@ package io.github.oliviercailloux.y2018;
 
 import static org.junit.Assert.*;
 
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-import javax.json.bind.JsonbException;
-
 import org.junit.Before;
 import org.junit.Test;
-
 import com.google.common.collect.ImmutableSet;
 import com.sun.istack.NotNull;
 
@@ -84,10 +80,8 @@ public class StudentPreferenceTest {
 	@Test 
 	public void JsonToStudentPreference(){
 		String jsonResult = "{\"studentPreference\":[{\"student\":\"{\\\"id\\\":1,\\\"firstname\\\":\\\"firstname\\\",\\\"lastname\\\":\\\"lastname\\\",\\\"year_master\\\":0}\"},[{\"preference\":\"{\\\"master\\\":{\\\"id\\\":1,\\\"name\\\":\\\"SITN\\\",\\\"description\\\":\\\"Description\\\"},\\\"level\\\":100}\"}]]}";
-		//StudentPreference testDecodeTest = this.oneStudentPreference.jsonToStudentPreference(jsonResult);
-		//assertNotNull(testDecodeTest);
-		//assertEquals(testDecodeTest.getStudPref().size(),this.oneStudentPreference.getStudPref().size());
-		//System.out.println(testDecodeTest.getStudPref());
+		StudentPreference testDecodeTest = StudentPreference.jsonToStudentPreference(jsonResult);
+		assertNotNull(testDecodeTest);
 	}
 	
 	
