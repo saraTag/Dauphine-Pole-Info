@@ -16,6 +16,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import com.google.common.base.Strings;
 
 @Entity
+@JsonbPropertyOrder({"id", "firstname", "lastname"})
 @Table(name = "person")
 public class Person {
 
