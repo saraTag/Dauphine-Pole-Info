@@ -16,16 +16,16 @@ import javax.xml.bind.annotation.XmlRootElement;
 import com.google.common.base.Strings;
 
 @Entity
-@Table(name = "personne")
+@Table(name = "person")
 public class Person {
 
 	@Id
 	private int id;
 	
-	@Column(name = "prenom", unique = false)
+	@Column(name = "firstname", unique = false)
 	private String firstname;
 
-	@Column(name = "nom", unique = false)
+	@Column(name = "lastname", unique = false)
 	private String lastname;
 
 	private String email;
