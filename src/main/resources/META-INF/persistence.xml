@@ -6,8 +6,6 @@
 	<description>
 		this persistence unit is destined to carry out the Person calss for a first time.
         </description>
-		<!-- Persistence provider -->
-		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<!-- Entity classes -->
 		<class>Person</class>
 	</persistence-unit>
