@@ -1,6 +1,5 @@
 package io.github.oliviercailloux.y2018;
 
-
 import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -9,11 +8,13 @@ import java.util.Set;
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
-import javax.json.JsonWriter;
+
+import javax.json.JsonWriterFactory;
 import javax.json.bind.Jsonb;
 import javax.json.bind.annotation.JsonbProperty;
-import com.google.common.base.Strings;
+import javax.json.stream.JsonGenerator;
 
+import com.google.common.base.Strings;
 
 public class StudentPreference {
 	/**
@@ -78,43 +79,41 @@ public class StudentPreference {
 		return levels.size() == preferences.size();
 	}
 
-	
-
 	/**
 	 * 
 	 * @return not <code>null</code>.
 	 */
 	public String studentPreferenceToJson() {
 		JsonArrayBuilder jarr = Json.createArrayBuilder();
-		for (Person person : this.studPref.keySet())
-		{
+
+		for (Person person : this.studPref.keySet()) {
 			String personAsTring = person.toJson();
-			jarr.add(Json.createObjectBuilder().add("student", personAsTring));
-			
+			jarr.add(Json.createObjectBuilder().add("person", personAsTring));
+
 			JsonArrayBuilder jarForRow = Json.createArrayBuilder();
 			Set<RawPreference> preferences = getPreference(person);
+
 			for (RawPreference pref : preferences) {
 				String preferenceAsTring = pref.preferenceToJson();
 				jarForRow.add(Json.createObjectBuilder().add("preference", preferenceAsTring));
 			}
+
 			jarr.add(jarForRow);
 		}
-		    JsonObject jsonObj = Json.createObjectBuilder().add("studentPreference",jarr).build();
-		    StringWriter stringWriter = new StringWriter();
-		    try (JsonWriter writer = Json.createWriter(stringWriter)) {
-		    writer.writeObject(jsonObj);
-		    //System.out.println(stringWriter.toString());
-		    } catch (Exception e) {
-		    e.printStackTrace();
-		    }
-		    return stringWriter.toString();
+
+		JsonObject jsonObj = Json.createObjectBuilder().add("studentPreference", jarr).build();
+		Map<String, Boolean> config = new HashMap<>();
+		config.put(JsonGenerator.PRETTY_PRINTING, true);
+		JsonWriterFactory writerFactory = Json.createWriterFactory(config);
+		StringWriter stringWriter = new StringWriter();
+		writerFactory.createWriter(stringWriter).write(jsonObj);
+
+		return stringWriter.toString();
 	}
-	
 
 	public static StudentPreference jsonToStudentPreference(String jsonPreference) {
 		return jsonb.fromJson(Strings.nullToEmpty(jsonPreference), StudentPreference.class);
-		
-	}
 
+	}
 
 }

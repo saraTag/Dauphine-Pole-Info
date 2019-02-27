@@ -1,4 +1,7 @@
+//Excusez-moi Monsieur je n'ai toujours pas compris l'erreur sur le package, merci de me le préciser
+//merci
 package io.github.oliviercailloux.y2018;
+
 
 
 import javax.json.bind.Jsonb;
