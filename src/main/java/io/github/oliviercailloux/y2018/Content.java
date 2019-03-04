@@ -1,5 +1,7 @@
 package io.github.oliviercailloux.y2018;
 
+
+
 import java.util.Optional;
 
 import javax.json.bind.Jsonb;
@@ -10,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -17,10 +20,11 @@ import com.google.common.base.Strings;
 
 @Entity
 @XmlRootElement
+@Table(name = "contenu")
 @JsonbPropertyOrder({ "id", "name","etcs","description","training","hourlyVolume","projectVolume","objectives","contents","biblio"})
-public class Content {
 
-	@Id
+public class Content {
+@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@JsonbProperty("id")
 	private int id;
@@ -32,16 +36,16 @@ public class Content {
 	@Column(name = "description")
 	private Optional<String> description;
 
-	@Column(name = "training")
+	@Column(name = "apprentissage")
 	private Optional<String> training;
 
-	@Column(name = "hourlyVolume")
+	@Column(name = "volume_horaire")
 	private int hourlyVolume;
 
-	@Column(name = "etcs")
+	@Column(name = "ects")
 	private float etcs;
 
-	@Column(name = "projectVolume")
+	@Column(name = "volume_projet")
 	private int projectVolume;
 
 	@Column(name = "objectives")
