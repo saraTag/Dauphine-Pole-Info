@@ -90,7 +90,6 @@ Servlet setPref(id étudiant, pref), getPref(id étudiant), getPrefByCourse(id c
 * Lahsen Jannani : *LinkServlets* (0.5 Point) + Repr (0.5 Point)
 
 Servlet permettant de récupérer, effacer, ajouter des liens entre master, cours et person, par id uniquement. 
-Pouvoir encoder et décoder en JSON chacun de ces objets pris isolément, donc sans les informations de lien entre eux (par exemple, la représentation textuelle d’un cours ne mentionne pas ses enseignants ni les masters qui le comprennent)
 
 *Sprint 3:*
 
