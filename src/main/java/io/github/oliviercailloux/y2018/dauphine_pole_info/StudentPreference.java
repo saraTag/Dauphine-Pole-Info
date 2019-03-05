@@ -81,6 +81,7 @@ public class StudentPreference {
 
 	/**
 	 * JSON non correct à revoir lors de la prochaine séance.
+	 * à en strictement parler avec le professeur
 	 * @return not <code>null</code>.
 	 */
 	public String studentPreferenceToJson() {
