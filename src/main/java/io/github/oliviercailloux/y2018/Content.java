@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import com.google.common.base.Strings;
 
 @Entity
-@Table(name = "contenu")
+@Table(name = "Contenu")
 public class Content {
 
 	@Id
@@ -60,6 +60,15 @@ public class Content {
 		this.hourlyVolume = hourly_volume;
 		this.etcs = etcs;
 	}
+
+	
+	public Content(String name, Optional<String> training, int hourlyVolume) {
+		super();
+		this.name = name;
+		this.training = training;
+		this.hourlyVolume = hourlyVolume;
+	}
+
 
 	public Content() {
 		super();

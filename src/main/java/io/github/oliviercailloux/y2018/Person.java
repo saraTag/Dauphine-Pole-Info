@@ -85,6 +85,18 @@ public class Person {
 		this.firstname = Strings.nullToEmpty(firstname);
 		this.lastname = Strings.nullToEmpty(lastname);
 	}
+	
+	
+
+	public Person(String firstname, String lastname, String email, String phone, String fax, String homePage) {
+		super();
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.email = email;
+		this.phone = phone;
+		this.fax = fax;
+		this.homePage = homePage;
+	}
 
 	public int getId() {
 		return id;
@@ -264,6 +276,10 @@ public class Person {
 
 	public void setTemporary(String temporary) {
 		this.temporary = Strings.nullToEmpty(temporary);
+	}
+
+	public String getTemporary() {
+		return temporary;
 	}
 
 	/**
