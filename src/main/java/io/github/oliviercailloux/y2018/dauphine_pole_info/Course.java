@@ -1,9 +1,8 @@
-package io.github.oliviercailloux.y2018;
+package io.github.oliviercailloux.y2018.dauphine_pole_info;
 
 import java.util.Optional;
 
 import javax.json.bind.Jsonb;
-import javax.json.bind.JsonbBuilder;
 import javax.json.bind.annotation.JsonbPropertyOrder;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -54,7 +53,7 @@ public class Course {
 	 */
 	private String description;
 
-	private static Jsonb jsonb = JsonbBuilder.create();
+	private static Jsonb jsonb = JsonUtils.getInstance();
 
 	private CourseShort courseShort;
 
@@ -92,7 +91,7 @@ public class Course {
 		this.description = Strings.nullToEmpty(description);
 	}
 
-	public Master getIdMaster() {
+	public Master getMaster() {
 		return master;
 	}
 

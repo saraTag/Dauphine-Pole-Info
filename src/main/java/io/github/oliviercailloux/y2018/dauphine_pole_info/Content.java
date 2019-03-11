@@ -1,45 +1,51 @@
-package io.github.oliviercailloux.y2018;
-
-
+package io.github.oliviercailloux.y2018.dauphine_pole_info;
 
 import java.util.Optional;
 
 import javax.json.bind.Jsonb;
-import javax.json.bind.JsonbBuilder;
+import javax.json.bind.annotation.JsonbProperty;
+import javax.json.bind.annotation.JsonbPropertyOrder;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import com.google.common.base.Strings;
 
 @Entity
+<<<<<<< HEAD:src/main/java/io/github/oliviercailloux/y2018/Content.java
 @Table(name = "Contenu")
+=======
+@XmlRootElement
+@JsonbPropertyOrder({ "id", "name","etcs","description","training","hourlyVolume","projectVolume","objectives","contents","biblio"})
+>>>>>>> 21ed6c18e620f39cb119f0d638b53b8e101dc41e:src/main/java/io/github/oliviercailloux/y2018/dauphine_pole_info/Content.java
 public class Content {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@JsonbProperty("id")
 	private int id;
 
-	@Column(name = "nom")
+	
+	@Column(name = "name") @JsonbProperty("name")
 	private String name;
 
 	@Column(name = "description")
 	private Optional<String> description;
 
-	@Column(name = "apprentissage")
+	@Column(name = "training")
 	private Optional<String> training;
 
-	@Column(name = "volume_horaire")
+	@Column(name = "hourlyVolume")
 	private int hourlyVolume;
 
-	@Column(name = "ects")
+	@Column(name = "etcs")
 	private float etcs;
 
-	@Column(name = "volume_projet")
+	@Column(name = "projectVolume")
 	private int projectVolume;
 
 	@Column(name = "objectives")
@@ -51,7 +57,7 @@ public class Content {
 	@Column(name = "biblio")
 	private Optional<String> biblio;
 
-	private static Jsonb jsonb = JsonbBuilder.create();
+	private static Jsonb jsonb = JsonUtils.getInstance();
 
 	public Content(int id, String name, int hourly_volume, float etcs) {
 		super();

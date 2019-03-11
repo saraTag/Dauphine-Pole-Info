@@ -1,67 +1,87 @@
-package io.github.oliviercailloux.y2018;
+package io.github.oliviercailloux.y2018.dauphine_pole_info;
 
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
+import javax.json.bind.annotation.JsonbProperty;
 import javax.json.bind.annotation.JsonbPropertyOrder;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import com.google.common.base.Strings;
 
 @Entity
+<<<<<<< HEAD:src/main/java/io/github/oliviercailloux/y2018/Person.java
 @Table(name = "personne")
+=======
+@JsonbPropertyOrder({ "id", "firstname", "lastname", "email", "phone","fax","homePage","cv","note","role","master","yearMaster","address","mobile","temporary" })
+@XmlRootElement
+>>>>>>> 21ed6c18e620f39cb119f0d638b53b8e101dc41e:src/main/java/io/github/oliviercailloux/y2018/dauphine_pole_info/Person.java
 public class Person {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@XmlAttribute @JsonbProperty("id")
 	private int id;
 	
+<<<<<<< HEAD:src/main/java/io/github/oliviercailloux/y2018/Person.java
 	@Column(name = "prenom", unique = false)
 	private String firstname;
 
 	@Column(name = "nom", unique = false)
+=======
+	@JsonbProperty("firstname")
+	private String firstname;
+	
+	@JsonbProperty("lastname")
+>>>>>>> 21ed6c18e620f39cb119f0d638b53b8e101dc41e:src/main/java/io/github/oliviercailloux/y2018/dauphine_pole_info/Person.java
 	private String lastname;
-
+	
+	@JsonbProperty("email")
 	private String email;
 
-	@Column(name = "telephone", unique = false)
+	@JsonbProperty("phone")
 	private String phone;
 
+	@JsonbProperty("fax")
 	private String fax;
 
-	@Column(name = "home_page", unique = false)
+	@JsonbProperty("homePage")
 	private String homePage;
 
+	@JsonbProperty("cv")
 	private String cv;
-	
-	@Column(name = "notes", unique = false)
+
+	@JsonbProperty("note")
 	private String note; // comment renommage !!!
 
+	@JsonbProperty("password")
 	private String password;
 
-	@Column(name = "roles", unique = false)
+	@JsonbProperty("role")
 	private String role;
 
-	@Column(name = "adresse", unique = false)
-	private String address;
-
-	private String mobile;
-
-	@Column(name = "vacataire", unique = false)
-	private String temporary;
-
+	@JsonbProperty("master")
 	@OneToOne
 	private Master master;
-
+	
+	@JsonbProperty("yearMaster")
 	private int yearMaster;
 
-	private static Jsonb jsonb = JsonbBuilder.create();
+	@JsonbProperty("address")
+	private String address;
+
+	@JsonbProperty("mobile")
+	private String mobile;
+
+	@JsonbProperty("temporary")
+	private String temporary;
+
+	private static Jsonb jsonb = JsonUtils.getInstance();
 
 	public Person() {
 		super();
@@ -102,7 +122,7 @@ public class Person {
 		return id;
 	}
 
-	public void setId(int idPerson) {
+	public void setIde(int idPerson) {
 		this.id = idPerson;
 	}
 
@@ -226,6 +246,9 @@ public class Person {
 		this.role = Strings.nullToEmpty(role);
 	}
 
+	/**
+	 * @return not <code>null</code>.
+	 * */
 	public Master getMaster() {
 		return master;
 	}
@@ -234,6 +257,9 @@ public class Person {
 		this.master = idMaster;
 	}
 
+	/**
+	 * @return not <code>null</code>.
+	 * */
 	public int getYear_master() {
 		return yearMaster;
 	}

@@ -1,4 +1,4 @@
-package io.github.oliviercailloux.y2018;
+package io.github.oliviercailloux.y2018.dauphine_pole_info;
 
 import java.io.IOException;
 
