@@ -15,12 +15,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 import com.google.common.base.Strings;
 
 @Entity
-<<<<<<< HEAD:src/main/java/io/github/oliviercailloux/y2018/Person.java
-@Table(name = "personne")
-=======
 @JsonbPropertyOrder({ "id", "firstname", "lastname", "email", "phone","fax","homePage","cv","note","role","master","yearMaster","address","mobile","temporary" })
 @XmlRootElement
->>>>>>> 21ed6c18e620f39cb119f0d638b53b8e101dc41e:src/main/java/io/github/oliviercailloux/y2018/dauphine_pole_info/Person.java
 public class Person {
 
 	@Id
@@ -28,17 +24,10 @@ public class Person {
 	@XmlAttribute @JsonbProperty("id")
 	private int id;
 	
-<<<<<<< HEAD:src/main/java/io/github/oliviercailloux/y2018/Person.java
-	@Column(name = "prenom", unique = false)
-	private String firstname;
-
-	@Column(name = "nom", unique = false)
-=======
 	@JsonbProperty("firstname")
 	private String firstname;
 	
 	@JsonbProperty("lastname")
->>>>>>> 21ed6c18e620f39cb119f0d638b53b8e101dc41e:src/main/java/io/github/oliviercailloux/y2018/dauphine_pole_info/Person.java
 	private String lastname;
 	
 	@JsonbProperty("email")
@@ -104,18 +93,6 @@ public class Person {
 		this.id = id;
 		this.firstname = Strings.nullToEmpty(firstname);
 		this.lastname = Strings.nullToEmpty(lastname);
-	}
-	
-	
-
-	public Person(String firstname, String lastname, String email, String phone, String fax, String homePage) {
-		super();
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.email = email;
-		this.phone = phone;
-		this.fax = fax;
-		this.homePage = homePage;
 	}
 
 	public int getId() {
@@ -302,10 +279,6 @@ public class Person {
 
 	public void setTemporary(String temporary) {
 		this.temporary = Strings.nullToEmpty(temporary);
-	}
-
-	public String getTemporary() {
-		return temporary;
 	}
 
 	/**
