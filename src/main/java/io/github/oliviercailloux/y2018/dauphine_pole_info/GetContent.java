@@ -27,58 +27,38 @@ public class GetContent {
 	@GET
 	@Path("all")
 	@Produces(MediaType.TEXT_PLAIN)
-	public List<Content> getAllContents() {
+	public List<Content> getAllContents() throws Exception{
 		
 		 List<Content> contents = null;
 		 List<Content> cont = new ArrayList<Content>();
 
-	        EntityManager manager = ENTITY_MANAGER_FACTORY.createEntityManager();
-	        EntityTransaction transaction = null;
-
-	        try {
-	            transaction = manager.getTransaction();
-	            transaction.begin();
-
-	            contents = manager.createQuery("SELECT s FROM Content s",
-	                    Content.class).getResultList();
-	            transaction.commit();
-	        } catch (Exception ex) {
-	            if (transaction != null) {
-	                transaction.rollback();
-	            }
-	            ex.printStackTrace();
-	        } finally {
-	            manager.close();
-	        }
-	        for (Content entity : contents) {
+	     EntityManager manager = ENTITY_MANAGER_FACTORY.createEntityManager();
+	     EntityTransaction transaction = null;
+	     transaction = manager.getTransaction();
+	     transaction.begin();
+	     contents = manager.createQuery("SELECT s FROM Content s",Content.class).getResultList();
+	     transaction.commit();
+	     manager.close();
+	     for (Content entity : contents) {
 	        	cont.add(entity);
 	        }
-	        return cont;
+	     return cont;
 		
 	}
 	@GET
 	@Path("one")
 	@Produces(MediaType.TEXT_PLAIN)
-	public Content getContent(@PathParam("id") int id) {
+	public Content getContent(@PathParam("id") int id) throws Exception {
 
     	Content cont = null;
         EntityManager manager = ENTITY_MANAGER_FACTORY.createEntityManager();
         EntityTransaction transaction = null;
-
-        try {
-            transaction = manager.getTransaction();
-            transaction.begin();
-
-             cont = manager.find(Content.class, id);
-            transaction.commit();
-        } catch (TransactionalException e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            log.log(Level.SEVERE, "an exception was thrown", e);
-        } finally {
-            manager.close();
-        }
+        transaction = manager.getTransaction();
+        transaction.begin();
+        cont = manager.find(Content.class, id);
+        transaction.commit();
+        manager.close();
+        
 		return cont;
 	
 	}

@@ -29,31 +29,19 @@ public class UpdatePerson {
 	
 	@PUT
 	@Produces(MediaType.TEXT_PLAIN)
-	public Response Update(@PathParam("id") int id,@QueryParam("firstname") String fname,@QueryParam("lastname") String lname) {
+	public Response Update(@PathParam("id") int id,@QueryParam("firstname") String fname,@QueryParam("lastname") String lname) throws Exception{
 		
 		EntityManager manager = ENTITY_MANAGER_FACTORY.createEntityManager();
         EntityTransaction transaction = null;
-
-        try {
-            transaction = manager.getTransaction();
-            transaction.begin();
-            Person pers = manager.find(Person.class, id);
-            
-            pers.setId(id);
-            pers.setFirstname(fname);
-            pers.setLastname(lname);
-
-            manager.persist(pers);
-
-            transaction.commit();
-        } catch (TransactionalException e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            log.log(Level.SEVERE, "an exception was thrown", e);
-        } finally {
-            manager.close();
-        }
+        transaction = manager.getTransaction();
+        transaction.begin();
+        Person pers = manager.find(Person.class, id);
+        pers.setId(id);
+        pers.setFirstname(fname);
+        pers.setLastname(lname);
+        manager.persist(pers);
+        transaction.commit();
+        manager.close();
     
         return Response.ok("ok").build();
 	}

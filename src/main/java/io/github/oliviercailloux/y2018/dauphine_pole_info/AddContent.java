@@ -31,36 +31,26 @@ public class AddContent {
 	
 	@POST
 	@Produces(MediaType.TEXT_PLAIN)
-	public Response add(@QueryParam("name") String name) {
+	public Response add(@QueryParam("name") String name) throws Exception{
 		
 		Content cont =new Content(name);
 		CreateContent(cont);
 		return Response.ok("ok").build();
 	}
 	
-	void CreateContent(Content cont) {
+	void CreateContent(Content cont) throws Exception{
         EntityManager manager = ENTITY_MANAGER_FACTORY.createEntityManager();
         EntityTransaction transaction = null;
-
-        try {
-            transaction = manager.getTransaction();
-            transaction.begin();
-
-            cont.setId(cont.getId());
-            cont.setName(cont.getName());
-            cont.setHourlyVolume(cont.getHourlyVolume());
-            cont.setEtcs(cont.getEtcs());
-            cont.setProjectVolume(cont.getProjectVolume());
-
-            manager.persist(cont);
-            transaction.commit();
-        } catch (TransactionalException e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            log.log(Level.SEVERE, "an exception was thrown", e);
-        } finally {
-            manager.close();
-        }
+        transaction = manager.getTransaction();
+        transaction.begin();
+        cont.setId(cont.getId());
+        cont.setName(cont.getName());
+        cont.setHourlyVolume(cont.getHourlyVolume());
+        cont.setEtcs(cont.getEtcs());
+        cont.setProjectVolume(cont.getProjectVolume());
+        manager.persist(cont);
+        transaction.commit();    
+        manager.close();
+        
     }
 }

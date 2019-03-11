@@ -27,47 +27,38 @@ public class AddPerson {
 	
 	@POST
 	@Produces(MediaType.TEXT_PLAIN)
-	public Response add(@QueryParam("firstname") String fname,@QueryParam("lastname") String lname,@QueryParam("email") String email,@QueryParam("phone") String phone,@QueryParam("fax") String fax) {
+	public Response add(@QueryParam("firstname") String fname,@QueryParam("lastname") String lname,@QueryParam("email") String email,@QueryParam("phone") String phone,@QueryParam("fax") String fax) throws Exception {
 		
 		Person per =new Person(fname,lname,email,phone,fax);
 		CreatePerson(per);
 		return Response.ok("ok").build();
 	}
 	
-	void CreatePerson(Person per) {
+	void CreatePerson(Person per) throws Exception {
 		
     	EntityManager manager = ENTITY_MANAGER_FACTORY.createEntityManager();
         EntityTransaction transaction = null;
-
-        try {
-            transaction = manager.getTransaction();
-            transaction.begin();
-
-            per.setId(per.getId());
-            per.setFirstname(per.getFirstname());
-            per.setLastname(per.getLastname());
-            per.setEmail(per.getEmail());
-            per.setPhone(per.getMobile());
-			per.setFax(per.getFax());
-            per.setHomePage(per.getHome_page());
-            per.setCv(per.getCv());
-            per.setNote(per.getNote());
-            per.setPassword(per.getPassword());
-            per.setRole(per.getRole());
-            per.setAddress(per.getAddress());
-            per.setMobile(per.getMobile());
-            per.setTemporary(per.getTemporary());
+        transaction = manager.getTransaction();
+        transaction.begin();
+        per.setId(per.getId());
+        per.setFirstname(per.getFirstname());
+        per.setLastname(per.getLastname());
+        per.setEmail(per.getEmail());
+        per.setPhone(per.getMobile());
+	    per.setFax(per.getFax());
+        per.setHomePage(per.getHome_page());
+        per.setCv(per.getCv());
+        per.setNote(per.getNote());
+        per.setPassword(per.getPassword());
+        per.setRole(per.getRole());
+        per.setAddress(per.getAddress());
+        per.setMobile(per.getMobile());
+        per.setTemporary(per.getTemporary());
             
-            manager.persist(per);
-            transaction.commit();
-        } catch (TransactionalException e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            log.log(Level.SEVERE, "an exception was thrown", e);
-        } finally {
-            manager.close();
-        }
+        manager.persist(per);
+        transaction.commit();
+        manager.close();
+        
 }
 
 

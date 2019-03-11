@@ -27,26 +27,16 @@ public class DeleteContent {
 	
 	@DELETE
 	@Produces(MediaType.TEXT_PLAIN)
-	public Response Delete(@PathParam("id") int id) {
+	public Response Delete(@PathParam("id") int id) throws Exception {
 		  EntityManager manager = ENTITY_MANAGER_FACTORY.createEntityManager();
-	       EntityTransaction transaction = null;
-
-	        try {
-	            transaction = manager.getTransaction();
-	            transaction.begin();
-	            Content cont = manager.find(Content.class, id);
-
-	            manager.remove(cont);
-	            transaction.commit();
-	        } catch (TransactionalException e) {
-	            if (transaction != null) {
-	                transaction.rollback();
-	            }
-	            log.log(Level.SEVERE, "an exception was thrown", e);
-	        } finally {
-	            manager.close();
-	        }
-	        return Response.ok("ok").build();
+	      EntityTransaction transaction = null;
+	      transaction = manager.getTransaction();
+	      transaction.begin();
+	      Content cont = manager.find(Content.class, id);
+	      manager.remove(cont);
+	      transaction.commit();
+	      manager.close();
+	      return Response.ok("ok").build();
 	    }
 	
 	}
