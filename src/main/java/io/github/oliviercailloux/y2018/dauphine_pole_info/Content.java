@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -18,6 +19,7 @@ import com.google.common.base.Strings;
 @Entity
 @XmlRootElement
 @JsonbPropertyOrder({ "id", "name","etcs","description","training","hourlyVolume","projectVolume","objectives","contents","biblio"})
+@Table(name = "Contenu")
 public class Content {
 
 	@Id
@@ -32,16 +34,16 @@ public class Content {
 	@Column(name = "description")
 	private Optional<String> description;
 
-	@Column(name = "training")
+	@Column(name = "apprentissage")
 	private Optional<String> training;
 
-	@Column(name = "hourlyVolume")
+	@Column(name = "volume_horaire")
 	private int hourlyVolume;
 
-	@Column(name = "etcs")
+	@Column(name = "ects")
 	private float etcs;
 
-	@Column(name = "projectVolume")
+	@Column(name = "volume_projet")
 	private int projectVolume;
 
 	@Column(name = "objectives")
@@ -62,6 +64,13 @@ public class Content {
 		this.hourlyVolume = hourly_volume;
 		this.etcs = etcs;
 	}
+	
+
+	public Content(String name) {
+		super();
+		this.name = name;
+	}
+
 
 	public Content() {
 		super();
