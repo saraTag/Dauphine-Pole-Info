@@ -123,6 +123,26 @@ public class Person {
 		this.fax = fax;
 	}
 
+	
+	public Person(int id, String firstname, String lastname, String email, String phone, String fax, String homePage,
+			String cv, String note, String password, String role, String address, String mobile, String temporary) {
+		super();
+		this.id = id;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.email = email;
+		this.phone = phone;
+		this.fax = fax;
+		this.homePage = homePage;
+		this.cv = cv;
+		this.note = note;
+		this.password = password;
+		this.role = role;
+		this.address = address;
+		this.mobile = mobile;
+		this.temporary = temporary;
+	}
+
 	public int getId() {
 		return id;
 	}

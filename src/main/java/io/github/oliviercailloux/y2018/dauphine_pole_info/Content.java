@@ -18,7 +18,7 @@ import com.google.common.base.Strings;
 
 @Entity
 @XmlRootElement
-@JsonbPropertyOrder({ "id", "name","etcs","description","training","hourlyVolume","projectVolume","objectives","contents","biblio"})
+@JsonbPropertyOrder({ "id", "name","description","training","hourlyVolume","etcs","projectVolume","objectives","contents","biblio"})
 @Table(name = "Contenu")
 public class Content {
 
@@ -65,6 +65,25 @@ public class Content {
 		this.etcs = etcs;
 	}
 	
+	
+	
+	public Content(int id, String name, Optional<String> description, Optional<String> training, int hourlyVolume,
+			float etcs, int projectVolume, Optional<String> objectives, Optional<String> contents,
+			Optional<String> biblio) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.training = training;
+		this.hourlyVolume = hourlyVolume;
+		this.etcs = etcs;
+		this.projectVolume = projectVolume;
+		this.objectives = objectives;
+		this.contents = contents;
+		this.biblio = biblio;
+	}
+
+
 
 	public Content(String name) {
 		super();
