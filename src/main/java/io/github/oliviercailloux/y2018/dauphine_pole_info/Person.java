@@ -128,6 +128,25 @@ public class Person {
 		this.fax = fax;
 	}
 
+	
+	public Person(int id, String firstname, String lastname, String email, String phone, String fax, String homePage,
+			String cv, String note, String password, String role, String address, String mobile, String temporary) {
+		super();
+		this.id = id;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.email = email;
+		this.phone = phone;
+		this.fax = fax;
+		this.homePage = homePage;
+		this.cv = cv;
+		this.note = note;
+		this.password = password;
+		this.role = role;
+		this.address = address;
+		this.mobile = mobile;
+		this.temporary = temporary;
+	}
 
 	public int getId() {
 		return id;
@@ -321,9 +340,13 @@ public class Person {
 	 * @throws FileNotFoundException 
 	 * @throws JsonbException 
 	 */
-	public void toJson(Person per, String url) throws JsonbException, FileNotFoundException {
+	public void toJsonFile(Person per, String url) throws JsonbException, FileNotFoundException {
 		jsonb.toJson(per, new FileOutputStream(url));
 		
+	}
+	
+	public String toJson() {
+		return jsonb.toJson(this);
 	}
 
 	/**
@@ -333,7 +356,11 @@ public class Person {
 	 * @throws FileNotFoundException 
 	 * @throws JsonbException 
 	 */
-	public Person fromJson(String url) throws JsonbException, FileNotFoundException {
+	public Person fromJsonFile(String url) throws JsonbException, FileNotFoundException {
 		return jsonb.fromJson(new FileInputStream(url), Person.class);
+	}
+	
+	public static Person fromJson(String jsonPersonne) {
+		return jsonb.fromJson(jsonPersonne, Person.class);
 	}
 }

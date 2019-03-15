@@ -28,8 +28,8 @@ public class TestJsonBEncode {
 		per.setLastname("jannani");
 		per.setEmail("lahsen.jannani@gmil.com");
 		per.setPhone("0645326754");
-		per.toJson(per,url );
-		per2=per2.fromJson(url);
+		per.toJsonFile(per,url );
+		per2=per2.fromJsonFile(url);
 		assertEquals(per.getId(), per2.getId());
 		assertEquals(per.getFirstname(), per2.getFirstname());
 		assertEquals(per.getLastname(), per2.getLastname());

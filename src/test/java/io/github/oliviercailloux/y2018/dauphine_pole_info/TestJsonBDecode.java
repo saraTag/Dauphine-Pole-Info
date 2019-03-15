@@ -13,7 +13,7 @@ public class TestJsonBDecode {
 	public void TestDecodePerson() throws Exception {
 		String url = "src\\test\\resources\\Person.json";
 		Person pers = new Person();
-		pers=pers.fromJson(url);
+		pers=pers.fromJsonFile(url);
 		assertEquals(1, pers.getId());
 		assertEquals("lahsen", pers.getFirstname());
 		assertEquals("jannani", pers.getLastname());
