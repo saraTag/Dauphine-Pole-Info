@@ -1,8 +1,12 @@
 package io.github.oliviercailloux.y2018.dauphine_pole_info;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.util.Optional;
 
 import javax.json.bind.Jsonb;
+import javax.json.bind.JsonbException;
 import javax.json.bind.annotation.JsonbProperty;
 import javax.json.bind.annotation.JsonbPropertyOrder;
 import javax.persistence.Column;
@@ -65,25 +69,6 @@ public class Content {
 		this.etcs = etcs;
 	}
 	
-	
-	
-	public Content(int id, String name, Optional<String> description, Optional<String> training, int hourlyVolume,
-			float etcs, int projectVolume, Optional<String> objectives, Optional<String> contents,
-			Optional<String> biblio) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.description = description;
-		this.training = training;
-		this.hourlyVolume = hourlyVolume;
-		this.etcs = etcs;
-		this.projectVolume = projectVolume;
-		this.objectives = objectives;
-		this.contents = contents;
-		this.biblio = biblio;
-	}
-
-
 
 	public Content(String name) {
 		super();
@@ -208,17 +193,21 @@ public class Content {
 
 	/**
 	 * @return Contenu not null
+	 * @throws FileNotFoundException 
+	 * @throws JsonbException 
 	 */
-	public String contenuToJson() {
-		return jsonb.toJson(this);
+	public void contenuToJson(Content cont, String url) throws JsonbException, FileNotFoundException {
+		jsonb.toJson(cont, new FileOutputStream(url));
 	}
 
 	/**
 	 * @param jsonContenu
 	 *            : String
 	 * @return Object : Contenu not null
+	 * @throws FileNotFoundException 
+	 * @throws JsonbException 
 	 */
-	public static Content jsonToContenu(String jsonbContenu) {
-		return jsonb.fromJson(Strings.nullToEmpty(jsonbContenu), Content.class);
+	public Content jsonToContenu(String url) throws JsonbException, FileNotFoundException {
+		return jsonb.fromJson(new FileInputStream(url), Content.class);
 	}
 }
