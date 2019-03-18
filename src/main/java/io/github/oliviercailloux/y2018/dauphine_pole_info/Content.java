@@ -59,7 +59,7 @@ public class Content {
 	@Column(name = "biblio")
 	private Optional<String> biblio;
 
-	private static Jsonb jsonb = JsonUtils.getInstance();
+	private static Jsonb jsonb = JsonUtilFomat.getInstance();
 
 	public Content(int id, String name, int hourly_volume, float etcs) {
 		super();

@@ -93,7 +93,7 @@ public class Person {
 	@Column(name = "vacataire", unique = false)
 	private String temporary;
 
-	private static Jsonb jsonb = JsonUtils.getInstance();
+	private static Jsonb jsonb = JsonUtilFomat.getInstance();
 
 	public Person() {
 		super();
