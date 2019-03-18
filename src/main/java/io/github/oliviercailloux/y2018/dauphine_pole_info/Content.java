@@ -193,21 +193,17 @@ public class Content {
 
 	/**
 	 * @return Contenu not null
-	 * @throws FileNotFoundException 
-	 * @throws JsonbException 
 	 */
-	public void contenuToJson(Content cont, String url) throws JsonbException, FileNotFoundException {
-		jsonb.toJson(cont, new FileOutputStream(url));
+	public String ToJson() {
+		return jsonb.toJson(this);
 	}
 
 	/**
 	 * @param jsonContenu
 	 *            : String
 	 * @return Object : Contenu not null
-	 * @throws FileNotFoundException 
-	 * @throws JsonbException 
 	 */
-	public Content jsonToContenu(String url) throws JsonbException, FileNotFoundException {
-		return jsonb.fromJson(new FileInputStream(url), Content.class);
+	public static Content FromJson(String jsonbContenu) {
+		return jsonb.fromJson(Strings.nullToEmpty(jsonbContenu), Content.class);
 	}
 }
