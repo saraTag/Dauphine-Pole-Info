@@ -35,3 +35,7 @@ deploy:
 #  organization: cboudville@free.fr
 #  space: dev
 #  region: eu-gb
+
+branches:
+  only:
+  - master
