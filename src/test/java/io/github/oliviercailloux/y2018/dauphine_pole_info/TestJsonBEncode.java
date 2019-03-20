@@ -74,7 +74,7 @@ public class TestJsonBEncode {
 		truncateIndex = res.lastIndexOf('\n', truncateIndex - 1);
 		String ressub = res.substring(0, truncateIndex);
 		in.close();	
-		String result2=cont.ToJson();
+		String result2=cont.toJson();
 		assertEquals(result2,ressub);
 		}
 	

@@ -194,7 +194,7 @@ public class Content {
 	/**
 	 * @return Contenu not null
 	 */
-	public String ToJson() {
+	public String toJson() {
 		return jsonb.toJson(this);
 	}
 
@@ -203,7 +203,7 @@ public class Content {
 	 *            : String
 	 * @return Object : Contenu not null
 	 */
-	public static Content FromJson(String jsonbContenu) {
+	public static Content fromJson(String jsonbContenu) {
 		return jsonb.fromJson(Strings.nullToEmpty(jsonbContenu), Content.class);
 	}
 }
