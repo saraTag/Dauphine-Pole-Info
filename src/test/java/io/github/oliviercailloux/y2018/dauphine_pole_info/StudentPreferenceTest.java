@@ -93,7 +93,7 @@ public class StudentPreferenceTest {
 
 	@Test
 	public void JsonToStudentPreference() {
-		String jsonResult = "{\"studentPreference\":[{\"person\":\"{\\\"id\\\":1,\\\"firstname\\\":\\\"firstname\\\",\\\"lastname\\\":\\\"lastname\\\",\\\"year_master\\\":0}\"},[{\"preference\":\"{\\\"master\\\":{\\\"id\\\":1,\\\"name\\\":\\\"SITN\\\",\\\"description\\\":\\\"Description\\\"},\\\"level\\\":100}\"}]]}";
+		String jsonResult = "{"studentPreference":[{"person":"\n{\n    \"id\": 1,\n    \"firstname\": \"firstname\",\n    \"lastname\": \"lastname\",\n    \"year_master\": 0\n}"},[{"preference":"{\"master\":{\"id\":1,\"name\":\"SITN\",\"description\":\"Description\"},\"level\":100}"}]]};
 		StudentPreference testDecodeTest = StudentPreference.jsonToStudentPreference(jsonResult);
 		assertNotNull(testDecodeTest);
 		
