@@ -2,8 +2,13 @@ package io.github.oliviercailloux.y2018.dauphine_pole_info;
 
 
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
+import javax.json.bind.JsonbException;
 import javax.json.bind.annotation.JsonbProperty;
 import javax.json.bind.annotation.JsonbPropertyOrder;
 import javax.persistence.Column;
@@ -88,7 +93,7 @@ public class Person {
 	@Column(name = "vacataire", unique = false)
 	private String temporary;
 
-	private static Jsonb jsonb = JsonUtils.getInstance();
+	private static Jsonb jsonb = JsonUtilFomat.getInstance();
 
 	public Person() {
 		super();
@@ -122,6 +127,7 @@ public class Person {
 		this.phone = phone;
 		this.fax = fax;
 	}
+
 
 	public int getId() {
 		return id;

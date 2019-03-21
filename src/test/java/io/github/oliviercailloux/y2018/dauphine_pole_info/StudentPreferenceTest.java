@@ -86,7 +86,7 @@ public class StudentPreferenceTest {
 		JsonObject jsonObject = reader.readObject();
 		assertTrue(jsonObject.containsKey("studentPreference"));
 
-		String jsonExpected = "{\"studentPreference\":[{\"person\":\"{\\\"id\\\":1,\\\"firstname\\\":\\\"firstname\\\",\\\"lastname\\\":\\\"lastname\\\",\\\"year_master\\\":0}\"},[{\"preference\":\"{\\\"master\\\":{\\\"id\\\":1,\\\"name\\\":\\\"SITN\\\",\\\"description\\\":\\\"Description\\\"},\\\"level\\\":100}\"}]]}";
+		String jsonExpected = "{\"studentPreference\":[{\"person\":\"\\n{\\n    \\\"id\\\": 1,\\n    \\\"firstname\\\": \\\"firstname\\\",\\n    \\\"lastname\\\": \\\"lastname\\\",\\n    \\\"year_master\\\": 0\\n}\"},[{\"preference\":\"{\\\"master\\\":{\\\"id\\\":1,\\\"name\\\":\\\"SITN\\\",\\\"description\\\":\\\"Description\\\"},\\\"level\\\":100}\"}]]}";
 		assertEquals(jsonExpected, jsonObject.toString());
 
 	}

@@ -1,8 +1,12 @@
 package io.github.oliviercailloux.y2018.dauphine_pole_info;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.util.Optional;
 
 import javax.json.bind.Jsonb;
+import javax.json.bind.JsonbException;
 import javax.json.bind.annotation.JsonbProperty;
 import javax.json.bind.annotation.JsonbPropertyOrder;
 import javax.persistence.Column;
@@ -18,7 +22,7 @@ import com.google.common.base.Strings;
 
 @Entity
 @XmlRootElement
-@JsonbPropertyOrder({ "id", "name","etcs","description","training","hourlyVolume","projectVolume","objectives","contents","biblio"})
+@JsonbPropertyOrder({ "id", "name","description","training","hourlyVolume","etcs","projectVolume","objectives","contents","biblio"})
 @Table(name = "Contenu")
 public class Content {
 
@@ -55,7 +59,7 @@ public class Content {
 	@Column(name = "biblio")
 	private Optional<String> biblio;
 
-	private static Jsonb jsonb = JsonUtils.getInstance();
+	private static Jsonb jsonb = JsonUtilFomat.getInstance();
 
 	public Content(int id, String name, int hourly_volume, float etcs) {
 		super();
@@ -190,7 +194,7 @@ public class Content {
 	/**
 	 * @return Contenu not null
 	 */
-	public String contenuToJson() {
+	public String toJson() {
 		return jsonb.toJson(this);
 	}
 
@@ -199,7 +203,7 @@ public class Content {
 	 *            : String
 	 * @return Object : Contenu not null
 	 */
-	public static Content jsonToContenu(String jsonbContenu) {
+	public static Content fromJson(String jsonbContenu) {
 		return jsonb.fromJson(Strings.nullToEmpty(jsonbContenu), Content.class);
 	}
 }
