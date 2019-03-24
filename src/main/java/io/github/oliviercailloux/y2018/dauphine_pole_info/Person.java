@@ -1,7 +1,8 @@
-package io.github.oliviercailloux.y2018;
+package io.github.oliviercailloux.y2018.dauphine_pole_info;
 
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
+import javax.json.bind.annotation.JsonbProperty;
 import javax.json.bind.annotation.JsonbPropertyOrder;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,47 +15,62 @@ import javax.xml.bind.annotation.XmlRootElement;
 import com.google.common.base.Strings;
 
 @Entity
-@JsonbPropertyOrder({ "id", "firstname", "lastname" })
+@JsonbPropertyOrder({ "id", "firstname", "lastname", "email", "phone","fax","homePage","cv","note","role","master","yearMaster","address","mobile","temporary" })
 @XmlRootElement
 public class Person {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@XmlAttribute
+	@XmlAttribute @JsonbProperty("id")
 	private int id;
-
+	
+	@JsonbProperty("firstname")
 	private String firstname;
-
+	
+	@JsonbProperty("lastname")
 	private String lastname;
-
+	
+	@JsonbProperty("email")
 	private String email;
 
+	@JsonbProperty("phone")
 	private String phone;
 
+	@JsonbProperty("fax")
 	private String fax;
 
+	@JsonbProperty("homePage")
 	private String homePage;
 
+	@JsonbProperty("cv")
 	private String cv;
 
+	@JsonbProperty("note")
 	private String note; // comment renommage !!!
 
+	@JsonbProperty("password")
 	private String password;
 
+	@JsonbProperty("role")
 	private String role;
 
+	@JsonbProperty("master")
 	@OneToOne
 	private Master master;
-
+	
+	@JsonbProperty("yearMaster")
 	private int yearMaster;
 
+	@JsonbProperty("address")
 	private String address;
 
+	@JsonbProperty("mobile")
 	private String mobile;
 
+	@JsonbProperty("temporary")
 	private String temporary;
 
-	private static Jsonb jsonb = JsonbBuilder.create();
+	private static Jsonb jsonb = JsonUtils.getInstance();
 
 	public Person() {
 		super();
@@ -207,6 +223,9 @@ public class Person {
 		this.role = Strings.nullToEmpty(role);
 	}
 
+	/**
+	 * @return not <code>null</code>.
+	 * */
 	public Master getMaster() {
 		return master;
 	}
@@ -215,6 +234,9 @@ public class Person {
 		this.master = idMaster;
 	}
 
+	/**
+	 * @return not <code>null</code>.
+	 * */
 	public int getYear_master() {
 		return yearMaster;
 	}

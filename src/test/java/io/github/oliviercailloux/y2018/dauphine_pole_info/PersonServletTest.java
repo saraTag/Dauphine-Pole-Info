@@ -1,4 +1,4 @@
-package io.github.oliviercailloux.y2018;
+package io.github.oliviercailloux.y2018.dauphine_pole_info;
 
 import static org.junit.Assert.assertEquals;
 
@@ -19,14 +19,14 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(Arquillian.class)
-public class CourseServletTest {
+public class PersonServletTest {
 
-	private static final Logger LOGGER = Logger.getLogger(CourseServletTest.class.getCanonicalName());
+	private static final Logger LOGGER = Logger.getLogger(PersonServletTest.class.getCanonicalName());
 
 	@Deployment(testable = false)
 	public static WebArchive createDeployment() {
 		final WebArchive war = ShrinkWrap.create(WebArchive.class, "test.war").addPackages(true,
-				CourseServletTest.class.getPackage());
+				PersonServletTest.class.getPackage());
 		return war;
 	}
 
@@ -36,11 +36,11 @@ public class CourseServletTest {
 	@Test
 	public void testDoGet() throws Exception {
 		final Client client = ClientBuilder.newClient();
-		final WebTarget webTarget = client.target(baseURL.toString()).path("/course").queryParam("id", 2);
+		final WebTarget webTarget = client.target(baseURL.toString()).path("/person").queryParam("id", 1);
 		LOGGER.info(webTarget.getUri().toString());
 		final String response = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
-		String str = "{\"id\":2,\"description\":\"Java\",\"compulsory\":true,\"periode\":\"2018\"}";
+		String str = "{\"id\":1,\"firstname\":\"Tuti\",\"lastname\":\"Dudi\",\"year_master\":0}";
 		assertEquals(str, response);
+		client.close();
 	}
-
 }

@@ -1,9 +1,10 @@
-package io.github.oliviercailloux.y2018;
+package io.github.oliviercailloux.y2018.dauphine_pole_info;
 
 import java.util.Optional;
 
 import javax.json.bind.Jsonb;
-import javax.json.bind.JsonbBuilder;
+import javax.json.bind.annotation.JsonbProperty;
+import javax.json.bind.annotation.JsonbPropertyOrder;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,13 +17,16 @@ import com.google.common.base.Strings;
 
 @Entity
 @XmlRootElement
+@JsonbPropertyOrder({ "id", "name","etcs","description","training","hourlyVolume","projectVolume","objectives","contents","biblio"})
 public class Content {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@JsonbProperty("id")
 	private int id;
 
-	@Column(name = "name")
+	
+	@Column(name = "name") @JsonbProperty("name")
 	private String name;
 
 	@Column(name = "description")
@@ -49,7 +53,7 @@ public class Content {
 	@Column(name = "biblio")
 	private Optional<String> biblio;
 
-	private static Jsonb jsonb = JsonbBuilder.create();
+	private static Jsonb jsonb = JsonUtils.getInstance();
 
 	public Content(int id, String name, int hourly_volume, float etcs) {
 		super();
@@ -62,6 +66,11 @@ public class Content {
 	public Content() {
 		super();
 		this.name = "";
+	}
+	
+	public Content(String name) {
+		super();
+		this.name = name;
 	}
 
 	@XmlAttribute(name = "id")
