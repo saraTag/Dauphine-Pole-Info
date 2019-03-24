@@ -7,6 +7,9 @@
 		this persistence unit is destined to carry out the Person calss for a first time.
         </description>
 		<!-- Entity classes -->
-		<class>Person</class>
+		<class>io.github.oliviercailloux.y2018.dauphine_pole_info.Person</class>
+		<class>io.github.oliviercailloux.y2018.dauphine_pole_info.Master</class>
+		<class>io.github.oliviercailloux.y2018.dauphine_pole_info.Course</class>
+		<class>io.github.oliviercailloux.y2018.dauphine_pole_info.Content</class>
 	</persistence-unit>
 </persistence>

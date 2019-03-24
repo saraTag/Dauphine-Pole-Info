@@ -32,14 +32,14 @@ public class Content {
 	private int id;
 
 	
-	@Column(name = "name") @JsonbProperty("name")
+	@Column(name = "nom") @JsonbProperty("name")
 	private String name;
 
 	@Column(name = "description")
-	private Optional<String> description;
+	private String description;
 
 	@Column(name = "apprentissage")
-	private Optional<String> training;
+	private String training;
 
 	@Column(name = "volume_horaire")
 	private int hourlyVolume;
@@ -51,13 +51,13 @@ public class Content {
 	private int projectVolume;
 
 	@Column(name = "objectives")
-	private Optional<String> objectives;
+	private String objectives;
 
 	@Column(name = "contents")
-	private Optional<String> contents;
+	private String contents;
 
 	@Column(name = "biblio")
-	private Optional<String> biblio;
+	private String biblio;
 
 	private static Jsonb jsonb = JsonUtilFomat.getInstance();
 
@@ -106,24 +106,24 @@ public class Content {
 	 * @return not null.
 	 */
 	@XmlAttribute(name = "description")
-	public Optional<String> getDescription() {
-		return description;
+	public Optional getDescription() {
+		return Optional.ofNullable(description);
 	}
 
 	public void setDescription(String description) {
-		this.description = Optional.of(description);
+		this.description = description;
 	}
 
 	/**
 	 * @return not null.
 	 */
 	@XmlAttribute(name = "training")
-	public Optional<String> getTraining() {
-		return training;
+	public Optional getTraining() {
+		return Optional.ofNullable(training);
 	}
 
 	public void setTraining(String training) {
-		this.training = Optional.of(training);
+		this.training = training;
 	}
 
 	@XmlAttribute(name = "hourlyVolume")
@@ -157,34 +157,34 @@ public class Content {
 	 * @return not null.
 	 */
 	@XmlAttribute(name = "objectives")
-	public Optional<String> getObjectives() {
-		return objectives;
+	public Optional getObjectives() {
+		return Optional.ofNullable(objectives);
 	}
 
 	public void setObjectives(String objectives) {
-		this.objectives = Optional.of(objectives);
+		this.objectives = objectives;
 	}
 
 	/**
 	 * @return not null.
 	 */
 	@XmlAttribute(name = "contents")
-	public Optional<String> getContents() {
-		return contents;
+	public Optional getContents() {
+		return Optional.ofNullable(contents);
 	}
 
 	@XmlAttribute(name = "contents")
 	public void setContents(String contents) {
-		this.contents = Optional.of(contents);
+		this.contents = contents;
 	}
 
 	@XmlAttribute(name = "biblio")
-	public Optional<String> getBiblio() {
-		return biblio;
+	public Optional getBiblio() {
+		return Optional.ofNullable(biblio);
 	}
 
 	public void setBiblio(String biblio) {
-		this.biblio = Optional.of(biblio);
+		this.biblio = biblio;
 	}
 
 	public static void setJsonb(Jsonb jsonb) {

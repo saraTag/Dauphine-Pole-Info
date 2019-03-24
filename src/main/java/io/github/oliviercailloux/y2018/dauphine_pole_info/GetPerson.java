@@ -14,6 +14,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 @Path("GetPerson")
@@ -49,7 +50,7 @@ public class GetPerson {
 	@GET
 	@Path("one")
 	@Produces(MediaType.TEXT_PLAIN)
-	public Person getPerson(@PathParam("id") int id) throws Exception {
+	public Person getPerson(@QueryParam("id") int id) throws Exception {
 		Person pers = null;
         EntityManager manager = ENTITY_MANAGER_FACTORY.createEntityManager();
         EntityTransaction transaction = null;

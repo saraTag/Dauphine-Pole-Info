@@ -30,7 +30,7 @@ public class DeletePerson {
 	
 	@DELETE
 	@Produces(MediaType.TEXT_PLAIN)
-	public Response Delete(@PathParam("id") int id) throws Exception {
+	public Response Delete(@QueryParam("id") int id) throws Exception {
 		 EntityManager manager = ENTITY_MANAGER_FACTORY.createEntityManager();
 	     EntityTransaction transaction = null;
 	     transaction = manager.getTransaction();
