@@ -81,7 +81,7 @@ Chaque objet de base Thing (Pour Thing valant Course, Person) a un id et trois s
 
 Implémenter un client qui permet, avec un GUI rudimentaire ou en ligne de commande, la modification des informations de base de Course et Person. 
 
-* Ouaaz Chahine : Affectation d'une nouvelle fonctionnalité plus tard.
+* Ouaaz Chahine :Déploiement automatique sur IBM cloud de l'ancienne application (PI3), la nouvelle application et vérifier que les deux communiquent et marchent.
 
 * Anas : *ServletPref* (1 Point )
 
