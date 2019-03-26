@@ -22,7 +22,8 @@ import com.google.common.base.Strings;
 
 @Entity
 @XmlRootElement
-@JsonbPropertyOrder({ "id", "name","description","training","hourlyVolume","etcs","projectVolume","objectives","contents","biblio"})
+@JsonbPropertyOrder({ "id", "name", "description", "training", "hourlyVolume", "etcs", "projectVolume", "objectives",
+		"contents", "biblio" })
 @Table(name = "Contenu")
 public class Content {
 
@@ -31,15 +32,15 @@ public class Content {
 	@JsonbProperty("id")
 	private int id;
 
-	
-	@Column(name = "nom") @JsonbProperty("name")
+	@Column(name = "nom")
+	@JsonbProperty("name")
 	private String name;
 
 	@Column(name = "description")
-	private String description;
+	private Optional<String> description;
 
 	@Column(name = "apprentissage")
-	private String training;
+	private Optional<String> training;
 
 	@Column(name = "volume_horaire")
 	private int hourlyVolume;
@@ -51,13 +52,13 @@ public class Content {
 	private int projectVolume;
 
 	@Column(name = "objectives")
-	private String objectives;
+	private Optional<String> objectives;
 
 	@Column(name = "contents")
-	private String contents;
+	private Optional<String> contents;
 
 	@Column(name = "biblio")
-	private String biblio;
+	private Optional<String> biblio;
 
 	private static Jsonb jsonb = JsonUtilFomat.getInstance();
 
@@ -68,13 +69,11 @@ public class Content {
 		this.hourlyVolume = hourly_volume;
 		this.etcs = etcs;
 	}
-	
 
 	public Content(String name) {
 		super();
 		this.name = name;
 	}
-
 
 	public Content() {
 		super();
@@ -106,24 +105,24 @@ public class Content {
 	 * @return not null.
 	 */
 	@XmlAttribute(name = "description")
-	public Optional getDescription() {
-		return Optional.ofNullable(description);
+	public Optional<String> getDescription() {
+		return description;
 	}
 
 	public void setDescription(String description) {
-		this.description = description;
+		this.description = Optional.of(description);
 	}
 
 	/**
 	 * @return not null.
 	 */
 	@XmlAttribute(name = "training")
-	public Optional getTraining() {
-		return Optional.ofNullable(training);
+	public Optional<String> getTraining() {
+		return training;
 	}
 
 	public void setTraining(String training) {
-		this.training = training;
+		this.training = Optional.of(training);
 	}
 
 	@XmlAttribute(name = "hourlyVolume")
@@ -157,34 +156,34 @@ public class Content {
 	 * @return not null.
 	 */
 	@XmlAttribute(name = "objectives")
-	public Optional getObjectives() {
-		return Optional.ofNullable(objectives);
+	public Optional<String> getObjectives() {
+		return objectives;
 	}
 
 	public void setObjectives(String objectives) {
-		this.objectives = objectives;
+		this.objectives = Optional.of(objectives);
 	}
 
 	/**
 	 * @return not null.
 	 */
 	@XmlAttribute(name = "contents")
-	public Optional getContents() {
-		return Optional.ofNullable(contents);
+	public Optional<String> getContents() {
+		return contents;
 	}
 
 	@XmlAttribute(name = "contents")
 	public void setContents(String contents) {
-		this.contents = contents;
+		this.contents = Optional.of(contents);
 	}
 
 	@XmlAttribute(name = "biblio")
-	public Optional getBiblio() {
-		return Optional.ofNullable(biblio);
+	public Optional<String> getBiblio() {
+		return biblio;
 	}
 
 	public void setBiblio(String biblio) {
-		this.biblio = biblio;
+		this.biblio = Optional.of(biblio);
 	}
 
 	public static void setJsonb(Jsonb jsonb) {

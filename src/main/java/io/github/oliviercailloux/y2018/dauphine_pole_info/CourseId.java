@@ -9,8 +9,8 @@ import javax.persistence.OneToOne;
 import javax.xml.bind.annotation.XmlElement;
 
 @Embeddable
-public class CourseId implements Serializable{
-	
+public class CourseId implements Serializable {
+
 	@ManyToOne
 	@JoinColumn(name = "id_master", referencedColumnName = "id")
 	@XmlElement
@@ -21,7 +21,6 @@ public class CourseId implements Serializable{
 	@XmlElement
 	private Content contents;
 
-	
 	public CourseId() {
 		super();
 	}
@@ -47,6 +46,5 @@ public class CourseId implements Serializable{
 	public void setContents(Content contents) {
 		this.contents = contents;
 	}
-
 
 }

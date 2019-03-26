@@ -1,7 +1,5 @@
 package io.github.oliviercailloux.y2018.dauphine_pole_info;
 
-
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -25,24 +23,26 @@ import javax.xml.bind.annotation.XmlRootElement;
 import com.google.common.base.Strings;
 
 @Entity
-@JsonbPropertyOrder({ "id", "firstname", "lastname", "email", "phone","fax","homePage","cv","note","role","master","yearMaster","address","mobile","temporary" })
+@JsonbPropertyOrder({ "id", "firstname", "lastname", "email", "phone", "fax", "homePage", "cv", "note", "role",
+		"master", "yearMaster", "address", "mobile", "temporary" })
 @XmlRootElement
 @Table(name = "Personne")
 public class Person {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@XmlAttribute @JsonbProperty("id")
+	@XmlAttribute
+	@JsonbProperty("id")
 	private int id;
-	
+
 	@JsonbProperty("firstname")
 	@Column(name = "prenom", unique = false)
 	private String firstname;
-	
+
 	@JsonbProperty("lastname")
 	@Column(name = "nom", unique = false)
 	private String lastname;
-	
+
 	@JsonbProperty("email")
 	@Column(name = "email", unique = false)
 	private String email;
@@ -79,7 +79,7 @@ public class Person {
 	@OneToOne
 	@JoinColumn(name = "id_master", referencedColumnName = "id")
 	private Master master;
-	
+
 	@JsonbProperty("yearMaster")
 	private int yearMaster;
 
@@ -119,7 +119,6 @@ public class Person {
 		this.firstname = Strings.nullToEmpty(firstname);
 		this.lastname = Strings.nullToEmpty(lastname);
 	}
-	
 
 	public Person(String firstname, String lastname, String email, String phone, String fax) {
 		super();
@@ -129,7 +128,6 @@ public class Person {
 		this.phone = phone;
 		this.fax = fax;
 	}
-
 
 	public int getId() {
 		return id;
@@ -261,7 +259,7 @@ public class Person {
 
 	/**
 	 * @return not <code>null</code>.
-	 * */
+	 */
 	public Master getMaster() {
 		return master;
 	}
@@ -272,7 +270,7 @@ public class Person {
 
 	/**
 	 * @return not <code>null</code>.
-	 * */
+	 */
 	public int getYear_master() {
 		return yearMaster;
 	}

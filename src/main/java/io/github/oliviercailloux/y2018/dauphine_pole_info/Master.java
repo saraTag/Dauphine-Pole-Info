@@ -21,9 +21,10 @@ public class Master {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@XmlAttribute @JsonbProperty("id")
+	@XmlAttribute
+	@JsonbProperty("id")
 	private int id;
-	
+
 	@JsonbProperty("name")
 	private String name;
 

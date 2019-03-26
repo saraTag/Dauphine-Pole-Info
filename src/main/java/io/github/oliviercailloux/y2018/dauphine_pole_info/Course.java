@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import javax.json.bind.Jsonb;
 import javax.json.bind.annotation.JsonbPropertyOrder;
+import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,9 +27,13 @@ import com.google.common.base.Strings;
 @XmlRootElement
 public class Course {
 
+	/**
+	 * J-ai utilisé un CourseID pour maper le clé primaire de Course qui est composé
+	 * de id_master et id_contenu PRIMARY KEY (`id_master`,`id_contenu`)
+	 */
 	@EmbeddedId
-    private CourseId id;
-	
+	private CourseId id;
+
 	@OneToOne
 	@JoinColumn(name = "id_enseignant", referencedColumnName = "id")
 	@XmlElement
@@ -39,6 +44,7 @@ public class Course {
 	/**
 	 * description correspond to note in db.
 	 */
+	@Column(name = "notes")
 	private String description;
 
 	private static Jsonb jsonb = JsonUtils.getInstance();
@@ -58,7 +64,7 @@ public class Course {
 		super();
 		this.periode = Strings.nullToEmpty(periode);
 		this.description = Strings.nullToEmpty(description);
-		
+
 	}
 
 	/**
@@ -80,7 +86,6 @@ public class Course {
 	public void setId(CourseId id) {
 		this.id = id;
 	}
-
 
 	public Person getTeacher() {
 		return teacher;
