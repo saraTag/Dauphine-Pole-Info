@@ -17,10 +17,10 @@ import javax.ws.rs.core.MediaType;
 
 @Path("GetCourseByContent")
 public class GetcourseByContent {
-	
+
 	private static final long serialVersionUID = 1L;
 	private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence
-            .createEntityManagerFactory("dauphine");
+			.createEntityManagerFactory("dauphine");
 	static Logger log;
 
 	@SuppressWarnings("unchecked")
@@ -28,19 +28,19 @@ public class GetcourseByContent {
 	@Produces(MediaType.TEXT_PLAIN)
 	public List<Course> getCourseByMaster(@QueryParam("contents") int contents) throws Exception {
 
-        EntityManager manager = ENTITY_MANAGER_FACTORY.createEntityManager();
-        EntityTransaction transaction = null;
-        List<Course> cont = new ArrayList<Course>();
-        transaction = manager.getTransaction();
-        transaction.begin();
-        Query q = manager.createQuery("SELECT s FROM Course s WHERE s.id.contents = "+contents,Course.class);
-        List<Course >content = q.getResultList();
-        transaction.commit();
-        manager.close();
-        for (Course entity : content) {
-        	cont.add(entity);
-        }
-        return cont;
+		EntityManager manager = ENTITY_MANAGER_FACTORY.createEntityManager();
+		EntityTransaction transaction = null;
+		List<Course> cont = new ArrayList<Course>();
+		transaction = manager.getTransaction();
+		transaction.begin();
+		Query q = manager.createQuery("SELECT s FROM Course s WHERE s.id.contents = " + contents, Course.class);
+		List<Course> content = q.getResultList();
+		transaction.commit();
+		manager.close();
+		for (Course entity : content) {
+			cont.add(entity);
+		}
+		return cont;
 	}
 
 }

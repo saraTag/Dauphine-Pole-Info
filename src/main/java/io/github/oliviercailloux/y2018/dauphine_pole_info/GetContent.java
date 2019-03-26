@@ -18,49 +18,50 @@ import javax.ws.rs.core.MediaType;
 
 @Path("GetContent")
 public class GetContent {
-	
+
 	private static final long serialVersionUID = 1L;
 	private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence
-            .createEntityManagerFactory("dauphine");
+			.createEntityManagerFactory("dauphine");
 	static Logger log;
-	
+
 	@GET
 	@Path("all")
 	@Produces(MediaType.TEXT_PLAIN)
-	public List<Content> getAllContents() throws Exception{
-		
-		 List<Content> contents = null;
-		 List<Content> cont = new ArrayList<Content>();
+	public List<Content> getAllContents() throws Exception {
 
-	     EntityManager manager = ENTITY_MANAGER_FACTORY.createEntityManager();
-	     EntityTransaction transaction = null;
-	     transaction = manager.getTransaction();
-	     transaction.begin();
-	     contents = manager.createQuery("SELECT s FROM Content s",Content.class).getResultList();
-	     transaction.commit();
-	     manager.close();
-	     for (Content entity : contents) {
-	        	cont.add(entity);
-	        }
-	     return cont;
-		
+		List<Content> contents = null;
+		List<Content> cont = new ArrayList<Content>();
+
+		EntityManager manager = ENTITY_MANAGER_FACTORY.createEntityManager();
+		EntityTransaction transaction = null;
+		transaction = manager.getTransaction();
+		transaction.begin();
+		contents = manager.createQuery("SELECT s FROM Content s", Content.class).getResultList();
+		transaction.commit();
+		manager.close();
+		for (Content entity : contents) {
+			cont.add(entity);
+		}
+		return cont;
+
 	}
+
 	@GET
 	@Path("one")
 	@Produces(MediaType.TEXT_PLAIN)
 	public Content getContent(@PathParam("id") int id) throws Exception {
 
-    	Content cont = null;
-        EntityManager manager = ENTITY_MANAGER_FACTORY.createEntityManager();
-        EntityTransaction transaction = null;
-        transaction = manager.getTransaction();
-        transaction.begin();
-        cont = manager.find(Content.class, id);
-        transaction.commit();
-        manager.close();
-        
+		Content cont = null;
+		EntityManager manager = ENTITY_MANAGER_FACTORY.createEntityManager();
+		EntityTransaction transaction = null;
+		transaction = manager.getTransaction();
+		transaction.begin();
+		cont = manager.find(Content.class, id);
+		transaction.commit();
+		manager.close();
+
 		return cont;
-	
+
 	}
 
 }

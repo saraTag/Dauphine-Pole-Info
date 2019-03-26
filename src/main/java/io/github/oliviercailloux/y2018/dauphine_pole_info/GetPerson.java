@@ -20,47 +20,44 @@ import javax.ws.rs.core.MediaType;
 @Path("GetPerson")
 public class GetPerson {
 
-
 	private static final long serialVersionUID = 1L;
 	private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence
-            .createEntityManagerFactory("dauphine");
+			.createEntityManagerFactory("dauphine");
 	static Logger log;
-	
+
 	@GET
 	@Path("all")
 	@Produces(MediaType.TEXT_PLAIN)
 	public List<Person> getAllPersons() throws Exception {
 		List<Person> persons = null;
 
-        EntityManager manager = ENTITY_MANAGER_FACTORY.createEntityManager();
-        EntityTransaction transaction = null;
-        List<Person> per = new ArrayList<Person>();
-        transaction = manager.getTransaction();
-        transaction.begin();
-        persons = manager.createQuery("SELECT s FROM Person s",Person.class).getResultList();
-        transaction.commit();
-        manager.close();
-        for (Person entity : persons) {
-        	per.add(entity);
-        }
-        return per;
-    }
-	
+		EntityManager manager = ENTITY_MANAGER_FACTORY.createEntityManager();
+		EntityTransaction transaction = null;
+		List<Person> per = new ArrayList<Person>();
+		transaction = manager.getTransaction();
+		transaction.begin();
+		persons = manager.createQuery("SELECT s FROM Person s", Person.class).getResultList();
+		transaction.commit();
+		manager.close();
+		for (Person entity : persons) {
+			per.add(entity);
+		}
+		return per;
+	}
 
 	@GET
 	@Path("one")
 	@Produces(MediaType.TEXT_PLAIN)
 	public Person getPerson(@QueryParam("id") int id) throws Exception {
 		Person pers = null;
-        EntityManager manager = ENTITY_MANAGER_FACTORY.createEntityManager();
-        EntityTransaction transaction = null;
-        transaction = manager.getTransaction();
-        transaction.begin();
-        pers = manager.find(Person.class, id);
-        transaction.commit();
-        manager.close();
+		EntityManager manager = ENTITY_MANAGER_FACTORY.createEntityManager();
+		EntityTransaction transaction = null;
+		transaction = manager.getTransaction();
+		transaction.begin();
+		pers = manager.find(Person.class, id);
+		transaction.commit();
+		manager.close();
 		return pers;
-	
+
 	}
-	}
-	
+}

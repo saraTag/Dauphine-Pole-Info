@@ -19,25 +19,24 @@ import javax.ws.rs.core.Response;
 @RequestScoped
 @Path("DeleteContent")
 public class DeleteContent {
-	
+
 	private static final long serialVersionUID = 1L;
 	private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence
-            .createEntityManagerFactory("dauphine");
+			.createEntityManagerFactory("dauphine");
 	static Logger log;
-	
+
 	@DELETE
 	@Produces(MediaType.TEXT_PLAIN)
 	public Response Delete(@PathParam("id") int id) throws Exception {
-		  EntityManager manager = ENTITY_MANAGER_FACTORY.createEntityManager();
-	      EntityTransaction transaction = null;
-	      transaction = manager.getTransaction();
-	      transaction.begin();
-	      Content cont = manager.find(Content.class, id);
-	      manager.remove(cont);
-	      transaction.commit();
-	      manager.close();
-	      return Response.ok("ok").build();
-	    }
-	
+		EntityManager manager = ENTITY_MANAGER_FACTORY.createEntityManager();
+		EntityTransaction transaction = null;
+		transaction = manager.getTransaction();
+		transaction.begin();
+		Content cont = manager.find(Content.class, id);
+		manager.remove(cont);
+		transaction.commit();
+		manager.close();
+		return Response.ok("ok").build();
 	}
 
+}

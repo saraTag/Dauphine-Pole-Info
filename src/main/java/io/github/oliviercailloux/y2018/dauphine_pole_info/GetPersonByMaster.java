@@ -21,10 +21,9 @@ import javax.ws.rs.core.MediaType;
 @Path("GetPersonByMaster")
 public class GetPersonByMaster {
 
-
 	private static final long serialVersionUID = 1L;
 	private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence
-            .createEntityManagerFactory("dauphine");
+			.createEntityManagerFactory("dauphine");
 	static Logger log;
 
 	@SuppressWarnings("unchecked")
@@ -32,18 +31,18 @@ public class GetPersonByMaster {
 	@Produces(MediaType.TEXT_PLAIN)
 	public List<Person> getPersonByMaster(@QueryParam("master") int master) throws Exception {
 
-        EntityManager manager = ENTITY_MANAGER_FACTORY.createEntityManager();
-        EntityTransaction transaction = null;
-        List<Person> per = new ArrayList<Person>();
-        transaction = manager.getTransaction();
-        transaction.begin();
-        Query q = manager.createQuery("SELECT s FROM Person s WHERE s.master = "+master,Person.class);
-        List<Person >persons = q.getResultList();
-        transaction.commit();
-        manager.close();
-        for (Person entity : persons) {
-        	per.add(entity);
-        }
-        return per;
+		EntityManager manager = ENTITY_MANAGER_FACTORY.createEntityManager();
+		EntityTransaction transaction = null;
+		List<Person> per = new ArrayList<Person>();
+		transaction = manager.getTransaction();
+		transaction.begin();
+		Query q = manager.createQuery("SELECT s FROM Person s WHERE s.master = " + master, Person.class);
+		List<Person> persons = q.getResultList();
+		transaction.commit();
+		manager.close();
+		for (Person entity : persons) {
+			per.add(entity);
+		}
+		return per;
 	}
 }
