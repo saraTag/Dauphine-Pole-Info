@@ -1,8 +1,12 @@
 package io.github.oliviercailloux.y2018.dauphine_pole_info;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.util.Optional;
 
 import javax.json.bind.Jsonb;
+import javax.json.bind.JsonbException;
 import javax.json.bind.annotation.JsonbProperty;
 import javax.json.bind.annotation.JsonbPropertyOrder;
 import javax.persistence.Column;
@@ -10,6 +14,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -18,6 +23,7 @@ import com.google.common.base.Strings;
 @Entity
 @XmlRootElement
 @JsonbPropertyOrder({ "id", "name","etcs","description","training","hourlyVolume","projectVolume","objectives","contents","biblio"})
+@Table(name = "Contenu")
 public class Content {
 
 	@Id
@@ -32,16 +38,16 @@ public class Content {
 	@Column(name = "description")
 	private Optional<String> description;
 
-	@Column(name = "training")
+	@Column(name = "apprentissage")
 	private Optional<String> training;
 
-	@Column(name = "hourlyVolume")
+	@Column(name = "volume_horaire")
 	private int hourlyVolume;
 
-	@Column(name = "etcs")
+	@Column(name = "ects")
 	private float etcs;
 
-	@Column(name = "projectVolume")
+	@Column(name = "volume_projet")
 	private int projectVolume;
 
 	@Column(name = "objectives")
@@ -53,6 +59,7 @@ public class Content {
 	@Column(name = "biblio")
 	private Optional<String> biblio;
 
+
 	private static Jsonb jsonb = JsonUtils.getInstance();
 
 	public Content(int id, String name, int hourly_volume, float etcs) {
@@ -62,16 +69,20 @@ public class Content {
 		this.hourlyVolume = hourly_volume;
 		this.etcs = etcs;
 	}
+	
+
+	public Content(String name) {
+		super();
+		this.name = name;
+	}
+
 
 	public Content() {
 		super();
 		this.name = "";
 	}
 	
-	public Content(String name) {
-		super();
-		this.name = name;
-	}
+
 
 	@XmlAttribute(name = "id")
 	public int getId() {
@@ -186,7 +197,7 @@ public class Content {
 	/**
 	 * @return Contenu not null
 	 */
-	public String contenuToJson() {
+	public String toJson() {
 		return jsonb.toJson(this);
 	}
 
@@ -195,7 +206,7 @@ public class Content {
 	 *            : String
 	 * @return Object : Contenu not null
 	 */
-	public static Content jsonToContenu(String jsonbContenu) {
+	public static Content fromJson(String jsonbContenu) {
 		return jsonb.fromJson(Strings.nullToEmpty(jsonbContenu), Content.class);
 	}
 }

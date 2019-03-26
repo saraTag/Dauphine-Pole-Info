@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+version="2.0">
+	<persistence-unit name="dauphine"
+		transaction-type="JTA">
+		<class>io.github.oliviercailloux.y2018.dauphine_pole_info.Person</class>
+		<class>io.github.oliviercailloux.y2018.dauphine_pole_info.Course</class>
+		<class>io.github.oliviercailloux.y2018.dauphine_pole_info.Content</class>
+		<class>io.github.oliviercailloux.y2018.dauphine_pole_info.Master</class>
+		<class>io.github.oliviercailloux.y2018.dauphine_pole_info.RawPreference</class>
+		<class>io.github.oliviercailloux.y2018.dauphine_pole_info.Role</class>
+		<properties>
+			<property
+				name="javax.persistence.schema-generation.database.action"
+				value="drop-and-create" />
+			<property name="eclipselink.logging.level" value="FINE" />
+			<property name="eclipselink.logging.logger"
+				value="JavaLogger" />
+			<property name="eclipselink.logging.level.sql" value="FINE" />
+			<property name="eclipselink.logging.parameters" value="true" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="true" />
+		</properties>
+	</persistence-unit>
+</persistence>

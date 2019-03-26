@@ -30,7 +30,8 @@ public class Master {
 	@JsonbProperty("description")
 	private Optional<String> description;
 
-	private static Jsonb jsonb = JsonUtils.getInstance();
+
+	private static Jsonb jsonb = JsonUtilFomat.getInstance();
 
 	public Master() {
 		super();

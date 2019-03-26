@@ -1,6 +1,5 @@
 package io.github.oliviercailloux.y2018.dauphine_pole_info;
 
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -10,7 +9,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.transaction.TransactionalException;
-import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -18,39 +17,30 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-
-
 @RequestScoped
-@Path("AddContent")
-public class AddContent {
-
+@Path("UpdateContent")
+public class UpdateContent {
+	
 	private static final long serialVersionUID = 1L;
 	private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence
             .createEntityManagerFactory("dauphine");
+	
 	static Logger log;
 	
-	@POST
+	@PUT
 	@Produces(MediaType.TEXT_PLAIN)
-	public Response add(@QueryParam("name") String name) throws Exception{
-		
-		Content cont =new Content(name);
-		CreateContent(cont);
-		return Response.ok("ok").build();
-	}
-	
-	void CreateContent(Content cont) throws Exception{
-        EntityManager manager = ENTITY_MANAGER_FACTORY.createEntityManager();
+	public Response Update(@PathParam("id") int id,@QueryParam("name") String name) throws Exception{
+		EntityManager manager = ENTITY_MANAGER_FACTORY.createEntityManager();
         EntityTransaction transaction = null;
         transaction = manager.getTransaction();
         transaction.begin();
-        cont.setId(cont.getId());
-        cont.setName(cont.getName());
-        cont.setHourlyVolume(cont.getHourlyVolume());
-        cont.setEtcs(cont.getEtcs());
-        cont.setProjectVolume(cont.getProjectVolume());
+        Content cont = manager.find(Content.class, id);
+        cont.setName(name);
         manager.persist(cont);
-        transaction.commit();    
+        transaction.commit();
         manager.close();
-        
+		return Response.ok("ok").build();
     }
+	
 }
+

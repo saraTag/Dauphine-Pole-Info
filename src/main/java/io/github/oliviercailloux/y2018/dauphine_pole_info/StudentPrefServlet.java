@@ -1,93 +1,110 @@
 package io.github.oliviercailloux.y2018.dauphine_pole_info;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
-import java.util.Locale;
+import java.util.Set;
+import java.util.logging.Logger;
 
-import javax.inject.Inject;
+import javax.enterprise.context.RequestScoped;
+import javax.json.JsonObject;
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
 import javax.persistence.EntityManager;
-
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
-import javax.ws.rs.PathParam;
+import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
-/**
- * Servlet implementation class PreferenceServlet
- */
-@WebServlet("/studentPreference")
-public class StudentPrefServlet extends HttpServlet {
+/*curl -d 1 '{"person":{"id":1,"firstname":"Tuti","lastname":"Dudi","year_master":0},"level":100}' -H "Content-Type: application/json" -X POST http://localhost:8080/dauphine-pole-info/studentPreference/
+*/
+@RequestScoped
+@Path("/studentPreference")
+public class StudentPrefServlet{
 	
-	
+	@PersistenceContext
+	private EntityManager entityManager;
 
-	@Inject
-	private DatabaseManager DBM;
+	static Logger log;
 
+	@GET
+	@Transactional
+	@Produces("text/plain")
 
-	
-	protected void  doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String idStudent = req.getParameter("id");
-		
-		resp.setCharacterEncoding(StandardCharsets.UTF_8.name());
-		resp.setContentType("application/json");
-		resp.setLocale(Locale.ENGLISH);
-		PrintWriter out = resp.getWriter();
-		List<RawPreference> preferences = DBM.getPreferencesByStudentId(Integer.parseInt(idStudent));
+	public Response getPref(String idStudent) throws ServletException, IOException {
+		// getting the Student
+		TypedQuery<Person> queryPerson = entityManager.createQuery("SELECT i FROM RawPreference i i.id = :idStudent",
+				Person.class);
+		Person student = queryPerson.setParameter("idStudent", idStudent).getSingleResult();
+
+		TypedQuery<RawPreference> queryPreferences = entityManager
+				.createQuery("SELECT i FROM RawPreference i i.Person = :student", RawPreference.class);
+
+		List<RawPreference> allIpreferences = queryPreferences.setParameter("Person", student).getResultList();
+
+		Set<RawPreference> setPreferences = null;
+
+		for (RawPreference pref : allIpreferences) {
+			setPreferences.add(pref);
+		}
+		StudentPreference studPref = new StudentPreference(student, setPreferences);
+
 		Jsonb jsonb = JsonbBuilder.create();
-		String result = jsonb.toJson(preferences);
-		Response.status(Response.Status.OK).entity(result).build();
-		out.print(result);
+		String result = jsonb.toJson(studPref);
+		log.info(result);
+		return Response.status(Response.Status.OK).entity(result).build();
 
 	}
 	
 	@GET
-	@Consumes("text/plain")
 	@Transactional
-    public Response getPrefByCourse(String idCourse) throws IOException {
-		
-		List<RawPreference> preferences = DBM.getPreferencesByCourseId(Integer.parseInt(idCourse));
-		Jsonb jsonb = JsonbBuilder.create();
-		String result = jsonb.toJson(preferences);
+	@Produces("text/plain")
+	public Response getPrefByCourse(String idCourse) throws ServletException, IOException {
+		// getting the Student
+		TypedQuery<Course> queryCourse = entityManager.createQuery("SELECT i FROM Course i i.id = :idCourse",
+				Course.class);
+		Course cours = queryCourse.setParameter("idCourse", idCourse).getSingleResult();
+
+		Content content = cours.getContents();
+
+		TypedQuery<RawPreference> queryPreferences = entityManager
+				.createQuery("SELECT i FROM RawPreference i i.Content = :content", RawPreference.class);
+
+		List<RawPreference> allIpreferences = queryPreferences.setParameter("content", content).getResultList();
+
+		String result = null;
+		for (RawPreference pref : allIpreferences) {
+			result += pref.getPerson().toJson();
+		}
+
+		log.info(result);
 		return Response.status(Response.Status.OK).entity(result).build();
-    }
-	
-	@POST
-	@Consumes("text/plain")
-	@Transactional
-	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		int idPerson = Integer.parseInt(req.getParameter("idPerson"));
-		int idMaster = Integer.parseInt(req.getParameter("idMaster"));
-		int idContent = Integer.parseInt(req.getParameter("idContent"));
-		int level = Integer.parseInt(req.getParameter("level"));
 
-		resp.setCharacterEncoding(StandardCharsets.UTF_8.name());
-		resp.setContentType("application/json");
-		resp.setLocale(Locale.ENGLISH);
-
-		RawPreference pref = new RawPreference(level);
-		Content content = DBM.getContentsById().get(idContent);
-		pref.setContent(content);
-		Master master = DBM.getMastersById().get(idMaster);
-		pref.setMaster(master);
-		Person person = DBM.getPersonsById().get(idPerson);
-		pref.setPerson(person);
-		DBM.setPreference(idPerson, pref);
-		
 	}
+
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Transactional
+	public Response setPref(String idStudent, JsonObject pref) throws IOException {
+		
+		RawPreference la_preference = RawPreference.jsonToRawPreference(pref.toString());
+		
+		TypedQuery<Person> queryPerson = entityManager.createQuery("SELECT i FROM RawPreference i i.id = :idStudent",
+				Person.class);
+		
+		Person student = queryPerson.setParameter("idStudent", idStudent).getSingleResult();
+
+		la_preference.setPerson(student);
+
+		
+		entityManager.persist(la_preference);
+
+		return Response.status(Response.Status.OK).build();
+	}
+
 }

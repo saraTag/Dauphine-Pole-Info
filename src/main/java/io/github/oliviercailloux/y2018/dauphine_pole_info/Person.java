@@ -1,14 +1,23 @@
 package io.github.oliviercailloux.y2018.dauphine_pole_info;
 
+
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
+import javax.json.bind.JsonbException;
 import javax.json.bind.annotation.JsonbProperty;
 import javax.json.bind.annotation.JsonbPropertyOrder;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -17,6 +26,7 @@ import com.google.common.base.Strings;
 @Entity
 @JsonbPropertyOrder({ "id", "firstname", "lastname", "email", "phone","fax","homePage","cv","note","role","master","yearMaster","address","mobile","temporary" })
 @XmlRootElement
+@Table(name = "Personne")
 public class Person {
 
 	@Id
@@ -25,33 +35,43 @@ public class Person {
 	private int id;
 	
 	@JsonbProperty("firstname")
+	@Column(name = "prenom", unique = false)
 	private String firstname;
 	
 	@JsonbProperty("lastname")
+	@Column(name = "nom", unique = false)
 	private String lastname;
 	
 	@JsonbProperty("email")
+	@Column(name = "email", unique = false)
 	private String email;
 
 	@JsonbProperty("phone")
+	@Column(name = "telephone", unique = false)
 	private String phone;
 
 	@JsonbProperty("fax")
+	@Column(name = "fax", unique = false)
 	private String fax;
 
 	@JsonbProperty("homePage")
+	@Column(name = "home_page", unique = false)
 	private String homePage;
 
 	@JsonbProperty("cv")
+	@Column(name = "cv", unique = false)
 	private String cv;
 
 	@JsonbProperty("note")
+	@Column(name = "notes", unique = false)
 	private String note; // comment renommage !!!
 
 	@JsonbProperty("password")
+	@Column(name = "password", unique = false)
 	private String password;
 
 	@JsonbProperty("role")
+	@Column(name = "roles", unique = false)
 	private String role;
 
 	@JsonbProperty("master")
@@ -62,15 +82,18 @@ public class Person {
 	private int yearMaster;
 
 	@JsonbProperty("address")
+	@Column(name = "adresse", unique = false)
 	private String address;
 
 	@JsonbProperty("mobile")
+	@Column(name = "mobile", unique = false)
 	private String mobile;
 
 	@JsonbProperty("temporary")
+	@Column(name = "vacataire", unique = false)
 	private String temporary;
 
-	private static Jsonb jsonb = JsonUtils.getInstance();
+	private static Jsonb jsonb = JsonUtilFomat.getInstance();
 
 	public Person() {
 		super();
@@ -94,12 +117,23 @@ public class Person {
 		this.firstname = Strings.nullToEmpty(firstname);
 		this.lastname = Strings.nullToEmpty(lastname);
 	}
+	
+
+	public Person(String firstname, String lastname, String email, String phone, String fax) {
+		super();
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.email = email;
+		this.phone = phone;
+		this.fax = fax;
+	}
+
 
 	public int getId() {
 		return id;
 	}
 
-	public void setIde(int idPerson) {
+	public void setId(int idPerson) {
 		this.id = idPerson;
 	}
 
@@ -273,7 +307,7 @@ public class Person {
 	 * 
 	 * @return String not null
 	 */
-	public String getVacataire() {
+	public String getTemporary() {
 		return temporary;
 	}
 

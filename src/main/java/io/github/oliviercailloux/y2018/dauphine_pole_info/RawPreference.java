@@ -6,6 +6,7 @@ import javax.json.bind.Jsonb;
 import javax.json.bind.annotation.JsonbProperty;
 import javax.json.bind.annotation.JsonbPropertyOrder;
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAttribute;
 
 import com.google.common.base.Strings;
 
@@ -21,8 +22,8 @@ import com.google.common.base.Strings;
 public class RawPreference {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@JsonbProperty("id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@XmlAttribute @JsonbProperty("id")
 	private int id;
 	/**
 	 * Not <code>null</code>.
@@ -57,6 +58,14 @@ public class RawPreference {
 	 */
 	public RawPreference(int level) {
 		this.level = level;
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 	/**

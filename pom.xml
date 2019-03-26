@@ -96,13 +96,37 @@
 			<artifactId>jaxb-impl</artifactId>
 			<version>2.3.0</version>
 		</dependency>
-
+		
+		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
 		<dependency>
-			<groupId>org.hibernate.javax.persistence</groupId>
-			<artifactId>hibernate-jpa-2.0-api</artifactId>
-			<version>1.0.1.Final</version>
+   		 <groupId>org.slf4j</groupId>
+   		 <artifactId>slf4j-api</artifactId>
+   		 <version>1.7.25</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.json</groupId>
+			<artifactId>javax.json-api</artifactId>
+			<version>1.1</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.glassfish</groupId>
+			<artifactId>javax.json</artifactId>
+			<version>1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>5.4.0</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>5.4.0</version>
+			<scope>test</scope>
+		</dependency>
+		
 	</dependencies>
 	<build>
 		<finalName>${project.artifactId}</finalName>
