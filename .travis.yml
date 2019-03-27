@@ -26,15 +26,6 @@ deploy:
   organization: cc_ouaaz@esi.dz
   region: eu-gb
   space: dev
-  
-#deploy:
-#  provider: bluemixcloudfoundry
-#  skip_cleanup: true
-#  username: cboudville@free.fr
-#  password: $BLUEMIX_PASSWORD
-#  organization: cboudville@free.fr
-#  space: dev
-#  region: eu-gb
 
 branches:
   only:
