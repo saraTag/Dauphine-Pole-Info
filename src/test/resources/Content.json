@@ -2,7 +2,7 @@
 {
     "id": 1,
     "name": "name",
-    "hourlyVolume": 356,
+    "volume_horaire": 356,
     "etcs": 3.0,
-    "projectVolume": 4
+    "volume_Project": 4
 }

@@ -1,7 +1,5 @@
 package io.github.oliviercailloux.y2018.dauphine_pole_info;
 
-import java.util.Optional;
-
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
 import javax.json.bind.annotation.JsonbPropertyOrder;
@@ -33,7 +31,7 @@ public class CourseShort {
 	private int idTeacher;
 
 	private static Jsonb jsonb = JsonbBuilder.create();
-
+	
 	public CourseShort() {
 		super();
 		this.periode = "";
@@ -56,8 +54,8 @@ public class CourseShort {
 		this.periode = periode;
 	}
 
-	public Optional<Boolean> getCompulsory() {
-		return Optional.ofNullable(compulsory);
+	public Boolean getCompulsory() {
+		return compulsory;
 	}
 
 	public void setCompulsory(Boolean compulsory) {

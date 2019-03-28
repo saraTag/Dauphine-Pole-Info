@@ -58,8 +58,8 @@ public class Role {
 	 * 
 	 * @return not null
 	 */
-	public Optional<String> getEntitled() {
-		return Optional.ofNullable(entitled);
+	public String getEntitled() {
+		return entitled;
 	}
 
 	public void setEntitled(String entitled) {

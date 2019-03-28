@@ -69,8 +69,8 @@ public class Master {
 	 * @return not null.
 	 */
 	@XmlAttribute(name = "description")
-	public Optional<String> getDescription() {
-		return Optional.ofNullable(this.description);
+	public String getDescription() {
+		return this.description;
 	}
 
 	public void setDescription(String description) {

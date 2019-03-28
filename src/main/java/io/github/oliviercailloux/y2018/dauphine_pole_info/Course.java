@@ -54,7 +54,7 @@ public class Course {
 	 * description correspond to note in db.
 	 */
 	private String description;
-
+	
 	private static Jsonb jsonb = JsonUtils.getInstance();
 	@OneToOne
 	private CourseShort courseShort;
@@ -120,12 +120,12 @@ public class Course {
 		periode = Strings.nullToEmpty(periode);
 	}
 
-	public Optional<Boolean> getCompulsory() {
-		return Optional.ofNullable(compulsory);
+	public Boolean getCompulsory() {
+		return compulsory;
 	}
 
 	public void setCompulsory(boolean compulsory) {
-		this.compulsory = Boolean.valueOf(compulsory);
+		this.compulsory = compulsory;
 	}
 
 	/**

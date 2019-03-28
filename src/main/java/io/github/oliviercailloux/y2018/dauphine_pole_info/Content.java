@@ -1,7 +1,5 @@
 package io.github.oliviercailloux.y2018.dauphine_pole_info;
 
-
-import java.util.Optional;
 import javax.json.bind.Jsonb;
 import javax.json.bind.annotation.JsonbProperty;
 import javax.json.bind.annotation.JsonbPropertyOrder;
@@ -64,7 +62,7 @@ public class Content {
 		this.hourlyVolume = hourly_volume;
 		this.etcs = etcs;
 	}
-	
+
 
 	public Content(String name) {
 		super();
@@ -102,8 +100,8 @@ public class Content {
 	 * @return not null.
 	 */
 	@XmlAttribute(name = "description")
-	public Optional<String> getDescription() {
-		return Optional.ofNullable(description);
+	public String getDescription() {
+		return description;
 	}
 
 	public void setDescription(String description) {
@@ -114,8 +112,8 @@ public class Content {
 	 * @return not null.
 	 */
 	@XmlAttribute(name = "training")
-	public Optional<String> getTraining() {
-		return Optional.ofNullable(training);
+	public String getTraining() {
+		return training;
 	}
 
 	public void setTraining(String training) {
@@ -153,8 +151,8 @@ public class Content {
 	 * @return not null.
 	 */
 	@XmlAttribute(name = "objectives")
-	public Optional<String> getObjectives() {
-		return Optional.ofNullable(objectives);
+	public String getObjectives() {
+		return objectives;
 	}
 
 	public void setObjectives(String objectives) {
@@ -165,8 +163,8 @@ public class Content {
 	 * @return not null.
 	 */
 	@XmlAttribute(name = "contents")
-	public Optional<String> getContents() {
-		return Optional.ofNullable(contents);
+	public String getContents() {
+		return contents;
 	}
 
 	@XmlAttribute(name = "contents")
@@ -175,8 +173,8 @@ public class Content {
 	}
 
 	@XmlAttribute(name = "biblio")
-	public Optional<String> getBiblio() {
-		return Optional.ofNullable(biblio);
+	public String getBiblio() {
+		return biblio;
 	}
 
 	public void setBiblio(String biblio) {
