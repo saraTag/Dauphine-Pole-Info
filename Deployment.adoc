@@ -6,7 +6,7 @@ Remarque : Pour notre projet , .
 on a opté pour le service https://console.bluemix.net/catalog/services/db2[DB2] qui est un SGBD Sql.
  
  Elements nécessaires pour l'ensemble de la démarche : 
- - Compte https://www.ibm.com/cloud/[IBM Cloud] actifs , si vous en posséder pas , vous pouvez https://cloud.ibm.com/registration[en créer un].
+ - Compte https://www.ibm.com/cloud/[IBM Cloud] actif , si vous en posséder pas , vous pouvez https://cloud.ibm.com/registration[en créer un].
 
 Déploiment de l'application PI3 sur IBM Cloud 
 Tout d'abord , on a procédé au déploiement de [l'ancienne application] sur IBM Cloud , pour se faire , on a effectué les points suivants :
