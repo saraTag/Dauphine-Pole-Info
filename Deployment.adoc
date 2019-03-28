@@ -6,7 +6,8 @@ Remarque : Pour notre projet , .
 on a opté pour le service https://console.bluemix.net/catalog/services/db2[DB2] qui est un SGBD Sql.
  
  Elements nécessaires pour l'ensemble de la démarche : 
- - Compte https://www.ibm.com/cloud/[IBM Cloud] actif , si vous en posséder pas , vous pouvez https://cloud.ibm.com/registration[en créer un].
+ 
+ - Compte https://www.ibm.com/cloud[IBM Cloud] actif , si vous en posséder pas , vous pouvez https://cloud.ibm.com/registration[en créer un].
 - IBM Clound Foundry ou CLI : https://github.com/cloudfoundry/cli
 
 
