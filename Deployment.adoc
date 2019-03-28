@@ -14,11 +14,13 @@ Déploiment de l'application PI3 sur IBM Cloud
 
 
 Tout d'abord , on a procédé au déploiement de [l'ancienne application] sur IBM Cloud , pour se faire , on a effectué les points suivants :
-1. cloner le code sur https://github.com/oliviercailloux/poleinfo3.
-2. se connecter à IBM Cloud en utilisant la ligne de commande en exécutant les commandes suivantes : 
- - ibmcloud login : permet de se connecter au compte IBM Cloud en introduisant les identifiants du compte.
- - ibmcloud target --cf : permet de spécifier le groupe de ressource liées aux comptes ( organisation , espace ...)
- - ibmcloud app push  : permet de pusher l'application depuis la machine locale sur IBM Cloud
+
+ 1. cloner le code sur https://github.com/oliviercailloux/poleinfo3.
+ 2. se connecter à IBM Cloud en utilisant la ligne de commande en exécutant les commandes suivantes : 
+     - ibmcloud login : permet de se connecter au compte IBM Cloud en introduisant les identifiants du compte.
+     - ibmcloud target --cf : permet de spécifier le groupe de ressource liées aux comptes ( organisation , espace ...)
+     - ibmcloud app push  : permet de pusher l'application depuis la machine locale sur IBM Cloud
+
 de méme pour l'application JEE qu'on a developpée , on a effectué les étapes précédentes 1 et 2 , pour la déployer sur IBM Cloud.
 
 Uen fois les 2 applications sur le Cloud d'IBM , on a instancié un service de bases de données , pour cela nous nous sommes dirigés vers le https://cloud.ibm.com/catalog[catalog] et avons décidé de créer un service de bases de données sql , qui était https://cloud.ibm.com/catalog/services/db2?bss_account=e5949995d2554cfab9685300bb522d15[db2].
