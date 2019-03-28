@@ -1,23 +1,23 @@
 <course>
 
 	<description>
-        	<name> </name>
+        	<name>conception</name>
 
 		<compulsory> </compulsory>
 
 		<contents> 
-			<name> </name>
-			<description> </description>
+			<name>jpa</name>
+			<description>how to implement servlets</description>
 		</contents>
 
 		<master> 
-        		<id> </id>
-			<name> </name>
-        		<description> </description>
+        		<id>1</id>
+			<name>SITN</name>
+        		<description>second year</description>
 		</master>
 
 		<teacher>
-			<name> </name>
+			<name>olivier cailloux</name>
 
 		</teacher>
 

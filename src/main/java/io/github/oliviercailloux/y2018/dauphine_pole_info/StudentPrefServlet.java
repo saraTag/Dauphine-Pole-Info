@@ -10,6 +10,8 @@ import javax.json.JsonObject;
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.servlet.ServletException;
@@ -18,25 +20,27 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-/*curl -d 1 '{"person":{"id":1,"firstname":"Tuti","lastname":"Dudi","year_master":0},"level":100}' -H "Content-Type: application/json" -X POST http://localhost:8080/dauphine-pole-info/studentPreference/
-*/
+
+
 @RequestScoped
-@Path("/studentPreference")
+@Path("studentPreference")
 public class StudentPrefServlet{
 	
 	@PersistenceContext
 	private EntityManager entityManager;
+	
 
-	static Logger log;
+	static Logger log = Logger.getLogger(StudentPrefServlet.class.getCanonicalName());;
 
 	@GET
 	@Transactional
-	@Produces("text/plain")
-
-	public Response getPref(String idStudent) throws ServletException, IOException {
+	@Produces(MediaType.TEXT_PLAIN)
+	@Path("getPref")
+	public Response getPref(@PathParam("idStudent") String idStudent) throws ServletException, IOException {
 		// getting the Student
 		TypedQuery<Person> queryPerson = entityManager.createQuery("SELECT i FROM RawPreference i i.id = :idStudent",
 				Person.class);
@@ -63,12 +67,11 @@ public class StudentPrefServlet{
 	
 	@GET
 	@Transactional
-	@Produces("text/plain")
-	public Response getPrefByCourse(String idCourse) throws ServletException, IOException {
-		// getting the Student
-		TypedQuery<Course> queryCourse = entityManager.createQuery("SELECT i FROM Course i i.id = :idCourse",
-				Course.class);
-		Course cours = queryCourse.setParameter("idCourse", idCourse).getSingleResult();
+	@Produces(MediaType.TEXT_PLAIN)
+	@Path("getPrefByCourse")
+	public Response getPrefByCourse(@PathParam("idCourse") String idCourse) throws ServletException, IOException {
+		
+		Course cours = CourseService.getCourseById(idCourse);
 
 		Content content = cours.getContents();
 
@@ -90,21 +93,22 @@ public class StudentPrefServlet{
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Transactional
-	public Response setPref(String idStudent, JsonObject pref) throws IOException {
+	@Path("setPref")
+	public void setPref(@PathParam("idStudent") String idStudent,@PathParam("pref") JsonObject pref) throws IOException {
 		
-		RawPreference la_preference = RawPreference.jsonToRawPreference(pref.toString());
+		RawPreference thePreference = RawPreference.jsonToRawPreference(pref.toString());
 		
 		TypedQuery<Person> queryPerson = entityManager.createQuery("SELECT i FROM RawPreference i i.id = :idStudent",
 				Person.class);
 		
 		Person student = queryPerson.setParameter("idStudent", idStudent).getSingleResult();
 
-		la_preference.setPerson(student);
+		thePreference.setPerson(student);
 
 		
-		entityManager.persist(la_preference);
+		entityManager.persist(thePreference);
 
-		return Response.status(Response.Status.OK).build();
+		Response.status(Response.Status.OK).build();
 	}
 
 }

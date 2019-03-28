@@ -11,8 +11,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import com.google.common.base.Strings;
 
 @JsonbPropertyOrder({
-	"id",
-    "person",
+	"person",
     "master",
     "content",
     "level"
@@ -22,9 +21,8 @@ import com.google.common.base.Strings;
 public class RawPreference {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@XmlAttribute @JsonbProperty("id")
-	private int id;
+    @GeneratedValue
+    private int id;
 	/**
 	 * Not <code>null</code>.
 	 */
@@ -59,15 +57,7 @@ public class RawPreference {
 	public RawPreference(int level) {
 		this.level = level;
 	}
-	
-	public int getId() {
-		return id;
-	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
-	
 	/**
 	 * @return not <code>null</code>.
 	 * */
