@@ -7,9 +7,21 @@ on a opté pour le service https://console.bluemix.net/catalog/services/db2[DB2]
  
  Elements nécessaires pour l'ensemble de la démarche : 
  - Compte https://www.ibm.com/cloud/[IBM Cloud] actif , si vous en posséder pas , vous pouvez https://cloud.ibm.com/registration[en créer un].
+- IBM Clound Foundry ou CLI : https://github.com/cloudfoundry/cli
+
 
 Déploiment de l'application PI3 sur IBM Cloud 
-Tout d'abord , on a procédé au déploiement de [l'ancienne application] sur IBM Cloud , pour se faire , on a effectué les points suivants :
-1. récupérer le code sur .
-2. 
 
+
+Tout d'abord , on a procédé au déploiement de [l'ancienne application] sur IBM Cloud , pour se faire , on a effectué les points suivants :
+1. cloner le code sur https://github.com/oliviercailloux/poleinfo3.
+2. se connecter à IBM Cloud en utilisant la ligne de commande en exécutant les commandes suivantes : 
+ - ibmcloud login : permet de se connecter au compte IBM Cloud en introduisant les identifiants du compte.
+ - ibmcloud target --cf : permet de spécifier le groupe de ressource liées aux comptes ( organisation , espace ...)
+ - ibmcloud app push  : permet de pusher l'application depuis la machine locale sur IBM Cloud
+de méme pour l'application JEE qu'on a developpée , on a effectué les étapes précédentes 1 et 2 , pour la déployer sur IBM Cloud.
+
+Uen fois les 2 applications sur le Cloud d'IBM , on a instancié un service de bases de données , pour cela nous nous sommes dirigés vers le https://cloud.ibm.com/catalog[catalog] et avons décidé de créer un service de bases de données sql , qui était https://cloud.ibm.com/catalog/services/db2?bss_account=e5949995d2554cfab9685300bb522d15[db2].
+
+Etant donné que le service db2 ne supporte pas le langage sql natif , mais plutot un sql propre à db2 , assez proche du sql connu , nous étions dans l'obligation de transcrire le fichier schema.sql afin de créer une base de données équivalent sur le Cloud IBM.
+Le nouveau fichier contenant le schema au sens de db2 a été ajouté au projet sous le nom de schemaDB2.sql
