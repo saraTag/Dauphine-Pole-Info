@@ -1,7 +1,7 @@
 = Démarche déploiment 
 :sectanchors:
 
-Dans ce document , est expliquée la démarche de déploiment du projet (https://github.com/oliviercailloux/poleinfo3[Ancienne application Pole Info 3 (php)] et https://github.com/saraTag/Dauphine-Pole-Info[Nouvelle application (JEE)] )sur IBM Cloud , la liason avec un service de gestion de bases de données ainsi que  l'établissement de la cumminacation entre les 2 applications et le SGBD.
+Dans ce document , est expliquée la démarche de déploiment du projet (https://github.com/oliviercailloux/poleinfo3[Ancienne application Pole Info 3 (php)] et https://github.com/saraTag/Dauphine-Pole-Info[Nouvelle application Daupine Pole Info (JEE)] )sur IBM Cloud , la liason avec un service de gestion de bases de données ainsi que  l'établissement de la cumminacation entre les 2 applications et le SGBD.
 Remarque : Pour notre projet , .
 on a opté pour le service https://console.bluemix.net/catalog/services/db2[DB2] qui est un SGBD Sql.
  
@@ -11,7 +11,7 @@ on a opté pour le service https://console.bluemix.net/catalog/services/db2[DB2]
 - IBM Clound Foundry ou CLI : https://github.com/cloudfoundry/cli
 
 
-Déploiment de l'application PI3 sur IBM Cloud 
+Déploiment de l'application Pole Info 3 sur IBM Cloud 
 
 
 Tout d'abord , on a procédé au déploiement de https://github.com/oliviercailloux/poleinfo3[l'ancienne application Pole Info 3] sur IBM Cloud , pour se faire , on a effectué les points suivants :
@@ -22,9 +22,59 @@ Tout d'abord , on a procédé au déploiement de https://github.com/oliviercaill
      - ibmcloud target --cf : permet de spécifier le groupe de ressource liées aux comptes ( organisation , espace ...)
      - ibmcloud app push  : permet de pusher l'application depuis la machine locale sur IBM Cloud
 
-de méme pour l'application JEE qu'on a developpée , on a effectué les étapes précédentes 1 et 2 , pour la déployer sur IBM Cloud.
+de méme pour https://github.com/saraTag/Dauphine-Pole-Info[l'application Dauphine Pole Info] qu'on a developpée en JEE, on a effectué les étapes précédentes 1 et 2 , pour la déployer sur IBM Cloud.
 
 Uen fois les 2 applications sur le Cloud d'IBM , on a instancié un service de bases de données , pour cela nous nous sommes dirigés vers le https://cloud.ibm.com/catalog[catalog] et avons décidé de créer un service de bases de données sql , qui était https://cloud.ibm.com/catalog/services/db2?bss_account=e5949995d2554cfab9685300bb522d15[db2].
 
 Etant donné que le service db2 ne supporte pas le langage sql natif , mais plutot un sql propre à db2 , assez proche du sql connu , nous étions dans l'obligation de transcrire le fichier schema.sql afin de créer une base de données équivalent sur le Cloud IBM.
 Le nouveau fichier contenant le schema au sens de db2 a été ajouté au projet sous le nom de https://github.com/saraTag/Dauphine-Pole-Info/blob/deployment/schemaDB2.txt[schemaDB2.sql]
+
+Notons que pour l'automatisation de la liason entre les applications déployées et le service db2 , on procédé à l'ajout d'une portion de code permettant de spécifier les paramétres de connexions (privés) de la base de données déployé.
+
+Pour l'application Pole Info 3 écrite en php , le code suivant a été ajouté : 
+
+
+<?php
+
+$database = "BLUDB";        # Get these database details from
+$hostname = "<Host-name>";  # the web console
+$user     = "<User-ID >";   #
+$password = "<Password>";   #
+$port     = 50000;          #
+$ssl_port = 50001;          #
+
+# Build the connection string
+#
+$driver  = "DRIVER={IBM DB2 ODBC DRIVER};";
+$dsn     = "DATABASE=$database; " .
+           "HOSTNAME=$hostname;" .
+           "PORT=$port; " .
+           "PROTOCOL=TCPIP; " .
+           "UID=$user;" .
+           "PWD=$password;";
+$ssl_dsn = "DATABASE=$database; " .
+           "HOSTNAME=$hostname;" .
+           "PORT=$ssl_port; " .
+           "PROTOCOL=TCPIP; " .
+           "UID=$user;" .
+           "PWD=$password;" .
+           "SECURITY=SSL;";
+$conn_string = $driver . $dsn;     # Non-SSL
+$conn_string = $driver . $ssl_dsn; # SSL
+
+# Connect
+#
+$conn = odbc_connect( $conn_string, "", "" );
+if( $conn )
+{
+    echo "Connection succeeded.";
+
+    # Disconnect
+    #
+    odbc_close( $conn );
+}
+else
+{
+    echo "Connection failed.";
+}
+?>
