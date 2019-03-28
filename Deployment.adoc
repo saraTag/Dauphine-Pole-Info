@@ -1,9 +1,15 @@
 = Démarche déploiment 
 :sectanchors:
 
-Dans ce document , est expliquée la démarche de déploiment du projet (https://github.com/oliviercailloux/poleinfo3[Ancienne application PI3 (php)] et https://github.com/saraTag/Dauphine-Pole-Info[Nouvelle application (JEE)] )sur IBM Cloud , ainsi que la liason avec un service de gestion de bases de données Pour notre projet , et l'établissement de la cumminacation entre les 2 applications et le SGBD.
-on a opté pour le service https://console.bluemix.net/catalog/services/db2[DB2] qui est un SGBD Sql , 
+Dans ce document , est expliquée la démarche de déploiment du projet (https://github.com/oliviercailloux/poleinfo3[Ancienne application PI3 (php)] et https://github.com/saraTag/Dauphine-Pole-Info[Nouvelle application (JEE)] )sur IBM Cloud , la liason avec un service de gestion de bases de données ainsi que  l'établissement de la cumminacation entre les 2 applications et le SGBD.
+Remarque : Pour notre projet , .
+on a opté pour le service https://console.bluemix.net/catalog/services/db2[DB2] qui est un SGBD Sql.
+ 
+ Elements nécessaires pour l'ensemble de la démarche : 
+ - Compte https://www.ibm.com/cloud/[IBM Cloud] actifs , si vous en posséder pas , vous pouvez https://cloud.ibm.com/registration[en créer un].
 
 Déploiment de l'application PI3 sur IBM Cloud 
-Tout d'abord , il faut 
+Tout d'abord , on a procédé au déploiement de [l'ancienne application] sur IBM Cloud , pour se faire , on a effectué les points suivants :
+1. récupérer le code sur .
+2. 
 
