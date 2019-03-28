@@ -26,20 +26,20 @@ public class Role {
 
 	private String code;
 
-	private Optional<String> entitled;
+	private String entitled;
 
 	private static Jsonb jsonb = JsonbBuilder.create();
 
 	public Role() {
 		super();
 		this.code = "";
-		this.entitled = Optional.empty();
+		this.entitled = null;
 	}
 
 	public Role(String code, String entitled) {
 		super();
 		this.code = Strings.nullToEmpty(code);
-		this.entitled = Optional.of(entitled);
+		this.entitled = entitled;
 	}
 
 	/**
@@ -59,11 +59,11 @@ public class Role {
 	 * @return not null
 	 */
 	public Optional<String> getEntitled() {
-		return entitled;
+		return Optional.ofNullable(entitled);
 	}
 
 	public void setEntitled(String entitled) {
-		this.entitled = Optional.of(entitled);
+		this.entitled = entitled;
 	}
 
 	/**

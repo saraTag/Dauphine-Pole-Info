@@ -28,7 +28,7 @@ public class Master {
 	private String name;
 
 	@JsonbProperty("description")
-	private Optional<String> description;
+	private String description;
 
 	private static Jsonb jsonb = JsonUtilFomat.getInstance();
 
@@ -42,7 +42,7 @@ public class Master {
 		super();
 		this.id = id;
 		this.name = Strings.nullToEmpty(nom);
-		this.description = Optional.of(description);
+		this.description = description;
 	}
 
 	public int getId() {
@@ -70,11 +70,11 @@ public class Master {
 	 */
 	@XmlAttribute(name = "description")
 	public Optional<String> getDescription() {
-		return description;
+		return Optional.ofNullable(this.description);
 	}
 
 	public void setDescription(String description) {
-		this.description = Optional.of(description);
+		this.description = description;
 	}
 
 	/**

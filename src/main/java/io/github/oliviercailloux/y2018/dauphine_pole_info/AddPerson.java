@@ -40,7 +40,7 @@ public class AddPerson {
         EntityTransaction transaction = null;
         transaction = manager.getTransaction();
         transaction.begin();
-        per.setId(per.getId());
+        //per.setId(per.getId());
         per.setFirstname(per.getFirstname());
         per.setLastname(per.getLastname());
         per.setEmail(per.getEmail());

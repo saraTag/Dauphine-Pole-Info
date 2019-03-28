@@ -2,13 +2,7 @@ package io.github.oliviercailloux.y2018.dauphine_pole_info;
 
 
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-
 import javax.json.bind.Jsonb;
-import javax.json.bind.JsonbBuilder;
-import javax.json.bind.JsonbException;
 import javax.json.bind.annotation.JsonbProperty;
 import javax.json.bind.annotation.JsonbPropertyOrder;
 import javax.persistence.Column;
@@ -16,7 +10,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -74,10 +67,6 @@ public class Person {
 	@Column(name = "roles", unique = false)
 	private String role;
 
-	@JsonbProperty("master")
-	@OneToOne
-	private Master master;
-	
 	@JsonbProperty("yearMaster")
 	private int yearMaster;
 
@@ -255,17 +244,6 @@ public class Person {
 
 	public void setRole(String role) {
 		this.role = Strings.nullToEmpty(role);
-	}
-
-	/**
-	 * @return not <code>null</code>.
-	 * */
-	public Master getMaster() {
-		return master;
-	}
-
-	public void setMaster(Master idMaster) {
-		this.master = idMaster;
 	}
 
 	/**

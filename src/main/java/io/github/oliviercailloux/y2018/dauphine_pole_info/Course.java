@@ -1,5 +1,6 @@
 package io.github.oliviercailloux.y2018.dauphine_pole_info;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.json.bind.Jsonb;
@@ -11,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -37,16 +39,16 @@ public class Course {
 	@OneToMany
 	@JoinColumn(name = "idContents")
 	@XmlElement
-	private Content contents;
+	private List <Content> contents;
 
 	@OneToMany
 	@JoinColumn(name = "idTeacher")
 	@XmlElement
-	private Person teacher;
+	private List <Person> teacher;
 
 	private String periode;
 
-	private Optional<Boolean> compulsory;
+	private Boolean compulsory;
 
 	/**
 	 * description correspond to note in db.
@@ -54,13 +56,13 @@ public class Course {
 	private String description;
 
 	private static Jsonb jsonb = JsonUtils.getInstance();
-
+	@OneToOne
 	private CourseShort courseShort;
 
 	public Course() {
 		super();
 		this.periode = "";
-		this.compulsory = Optional.empty();
+		this.compulsory = null;
 		this.description = "";
 		this.courseShort = new CourseShort();
 	}
@@ -73,7 +75,7 @@ public class Course {
 	public Course(String periode, boolean compulsory, String description) {
 		super();
 		this.periode = Strings.nullToEmpty(periode);
-		this.compulsory = Optional.of(compulsory);
+		this.compulsory =  Boolean.valueOf(compulsory);
 		this.description = Strings.nullToEmpty(description);
 		this.courseShort = new CourseShort(periode, compulsory, description);
 	}
@@ -87,7 +89,7 @@ public class Course {
 		super();
 		this.id = id;
 		this.periode = Strings.nullToEmpty(periode);
-		this.compulsory = Optional.of(compulsory);
+		this.compulsory =  Boolean.valueOf(compulsory);
 		this.description = Strings.nullToEmpty(description);
 	}
 
@@ -99,11 +101,11 @@ public class Course {
 		return id;
 	}
 
-	public Content getContents() {
+	public List<Content> getContents() {
 		return contents;
 	}
 
-	public Person getTeacher() {
+	public List<Person> getTeacher() {
 		return teacher;
 	}
 
@@ -119,11 +121,11 @@ public class Course {
 	}
 
 	public Optional<Boolean> getCompulsory() {
-		return compulsory;
+		return Optional.ofNullable(compulsory);
 	}
 
 	public void setCompulsory(boolean compulsory) {
-		this.compulsory = Optional.of(compulsory);
+		this.compulsory = Boolean.valueOf(compulsory);
 	}
 
 	/**

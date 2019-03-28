@@ -14,9 +14,11 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
-@Path("GetPerson")
+@Path("getPerson")
 public class GetPerson {
 
 
@@ -45,20 +47,24 @@ public class GetPerson {
         return per;
     }
 	
-
 	@GET
 	@Path("one")
 	@Produces(MediaType.TEXT_PLAIN)
-	public Person getPerson(@PathParam("id") int id) throws Exception {
-		Person pers = null;
-        EntityManager manager = ENTITY_MANAGER_FACTORY.createEntityManager();
-        EntityTransaction transaction = null;
-        transaction = manager.getTransaction();
+	public Response getPerson(@QueryParam("id") int id) throws Exception {
+	
+		EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("dauphine");
+		EntityManager em = emFactory.createEntityManager();
+		EntityTransaction transaction = null;
+        transaction = em.getTransaction();
         transaction.begin();
-        pers = manager.find(Person.class, id);
+        Person pers = em.find(Person.class, id);
         transaction.commit();
-        manager.close();
-		return pers;
+        em.close();
+        String result = pers.toJson();
+        return Response.status(Response.Status.OK)
+        		       .entity(result)
+		        	   .type("application/json")
+		        	   .build();
 	
 	}
 	}
