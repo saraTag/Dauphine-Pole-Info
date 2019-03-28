@@ -1,0 +1,2 @@
+Dans ce document , est expliquée la démarche de déploiment du projet sur IBM Cloud , ainsi que la liason avec un service de gestion de bases de données Pour notre projet , on a opté pour le service DB2 qui est un SGBD Sql ,
+
