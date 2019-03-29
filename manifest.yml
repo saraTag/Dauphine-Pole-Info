@@ -1,5 +1,6 @@
 applications:
- - name: Dauphine-Pole-Info
+ - name: Dauphine-Pole-Info-2019
    path: target/Dauphine-Pole-Info.war
    instances: 1
-
+   memory : 256M
+   random-routes : true
