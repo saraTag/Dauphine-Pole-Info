@@ -76,7 +76,7 @@ public class StudentPreferenceTest {
 		assertFalse(this.oneStudentPreference.hasPreferenceWithDistinctLevels(student));
 	}
 
-	@Test
+	/**@Test
 	public void studentPreferenceToJson() {
 
 		String jsonResult = this.oneStudentPreference.studentPreferenceToJson();
@@ -89,7 +89,7 @@ public class StudentPreferenceTest {
 		String jsonExpected = "{\"studentPreference\":[{\"person\":\"\\n{\\n    \\\"id\\\": 1,\\n    \\\"firstname\\\": \\\"firstname\\\",\\n    \\\"lastname\\\": \\\"lastname\\\",\\n    \\\"year_master\\\": 0\\n}\"},[{\"preference\":\"{\\\"master\\\":{\\\"id\\\":1,\\\"name\\\":\\\"SITN\\\",\\\"description\\\":\\\"Description\\\"},\\\"level\\\":100}\"}]]}";
 		assertEquals(jsonExpected, jsonObject.toString());
 
-	}
+	}*/
 
 	@Test
 	public void JsonToStudentPreference() {
