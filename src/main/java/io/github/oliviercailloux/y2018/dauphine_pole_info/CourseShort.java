@@ -1,19 +1,26 @@
 package io.github.oliviercailloux.y2018.dauphine_pole_info;
 
-import java.util.Optional;
-
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
 import javax.json.bind.annotation.JsonbPropertyOrder;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.xml.bind.annotation.XmlAttribute;
 
 import com.google.common.base.Strings;
 
+@Entity
 @JsonbPropertyOrder({ "id", "description", "compulsory", "periode", "idMaster", "idTeacher", "idContents" })
 public class CourseShort {
-
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@XmlAttribute
+	private int id;
 	private String periode;
 
-	private Optional<Boolean> compulsory;
+	private Boolean compulsory;
 
 	private String description;
 
@@ -24,18 +31,18 @@ public class CourseShort {
 	private int idTeacher;
 
 	private static Jsonb jsonb = JsonbBuilder.create();
-
+	
 	public CourseShort() {
 		super();
 		this.periode = "";
-		this.compulsory = Optional.empty();
+		this.compulsory = null;
 		this.description = "";
 	}
 
 	public CourseShort(String periode, boolean compulsory, String description) {
 		super();
 		this.periode = Strings.nullToEmpty(periode);
-		this.compulsory = Optional.of(compulsory);
+		this.compulsory = Boolean.valueOf(compulsory);
 		this.description = Strings.nullToEmpty(description);
 	}
 
@@ -47,11 +54,11 @@ public class CourseShort {
 		this.periode = periode;
 	}
 
-	public Optional<Boolean> getCompulsory() {
+	public Boolean getCompulsory() {
 		return compulsory;
 	}
 
-	public void setCompulsory(Optional<Boolean> compulsory) {
+	public void setCompulsory(Boolean compulsory) {
 		this.compulsory = compulsory;
 	}
 

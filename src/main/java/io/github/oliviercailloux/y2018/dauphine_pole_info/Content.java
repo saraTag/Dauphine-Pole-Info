@@ -1,12 +1,6 @@
 package io.github.oliviercailloux.y2018.dauphine_pole_info;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.util.Optional;
-
 import javax.json.bind.Jsonb;
-import javax.json.bind.JsonbException;
 import javax.json.bind.annotation.JsonbProperty;
 import javax.json.bind.annotation.JsonbPropertyOrder;
 import javax.persistence.Column;
@@ -35,29 +29,29 @@ public class Content {
 	@Column(name = "name") @JsonbProperty("name")
 	private String name;
 
-	@Column(name = "description")
-	private Optional<String> description;
+	@Column(name = "description")@JsonbProperty("description")
+	private String description;
 
-	@Column(name = "apprentissage")
-	private Optional<String> training;
+	@Column(name = "apprentissage")@JsonbProperty("apprentissage")
+	private String training;
 
-	@Column(name = "volume_horaire")
+	@Column(name = "volume_horaire")@JsonbProperty("volume_horaire")
 	private int hourlyVolume;
 
-	@Column(name = "ects")
+	@Column(name = "ects")@JsonbProperty("etcs")
 	private float etcs;
 
-	@Column(name = "volume_projet")
+	@Column(name = "volume_projet")@JsonbProperty("volume_Project")
 	private int projectVolume;
 
-	@Column(name = "objectives")
-	private Optional<String> objectives;
+	@Column(name = "objectives")@JsonbProperty("objectives")
+	private String objectives;
 
-	@Column(name = "contents")
-	private Optional<String> contents;
+	@Column(name = "contents")@JsonbProperty("contents")
+	private String contents;
 
-	@Column(name = "biblio")
-	private Optional<String> biblio;
+	@Column(name = "biblio")@JsonbProperty("biblio")
+	private String biblio;
 
 	private static Jsonb jsonb = JsonUtilFomat.getInstance();
 
@@ -68,7 +62,7 @@ public class Content {
 		this.hourlyVolume = hourly_volume;
 		this.etcs = etcs;
 	}
-	
+
 
 	public Content(String name) {
 		super();
@@ -106,24 +100,24 @@ public class Content {
 	 * @return not null.
 	 */
 	@XmlAttribute(name = "description")
-	public Optional<String> getDescription() {
+	public String getDescription() {
 		return description;
 	}
 
 	public void setDescription(String description) {
-		this.description = Optional.of(description);
+		this.description = description;
 	}
 
 	/**
 	 * @return not null.
 	 */
 	@XmlAttribute(name = "training")
-	public Optional<String> getTraining() {
+	public String getTraining() {
 		return training;
 	}
 
 	public void setTraining(String training) {
-		this.training = Optional.of(training);
+		this.training = training;
 	}
 
 	@XmlAttribute(name = "hourlyVolume")
@@ -157,34 +151,34 @@ public class Content {
 	 * @return not null.
 	 */
 	@XmlAttribute(name = "objectives")
-	public Optional<String> getObjectives() {
+	public String getObjectives() {
 		return objectives;
 	}
 
 	public void setObjectives(String objectives) {
-		this.objectives = Optional.of(objectives);
+		this.objectives = objectives;
 	}
 
 	/**
 	 * @return not null.
 	 */
 	@XmlAttribute(name = "contents")
-	public Optional<String> getContents() {
+	public String getContents() {
 		return contents;
 	}
 
 	@XmlAttribute(name = "contents")
 	public void setContents(String contents) {
-		this.contents = Optional.of(contents);
+		this.contents = contents;
 	}
 
 	@XmlAttribute(name = "biblio")
-	public Optional<String> getBiblio() {
+	public String getBiblio() {
 		return biblio;
 	}
 
 	public void setBiblio(String biblio) {
-		this.biblio = Optional.of(biblio);
+		this.biblio = biblio;
 	}
 
 	public static void setJsonb(Jsonb jsonb) {

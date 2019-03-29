@@ -8,9 +8,13 @@ import javax.json.bind.Jsonb;
 import javax.json.bind.annotation.JsonbProperty;
 import javax.json.bind.annotation.JsonbPropertyOrder;
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import com.google.common.base.Strings;
 
+
+@Entity
 @JsonbPropertyOrder({
     "person",
     "master",
@@ -18,22 +22,30 @@ import com.google.common.base.Strings;
     "level"
 })
 
-@Entity
 public class RawPreference {
 	/**
 	 * Not <code>null</code>.
 	 */
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@XmlAttribute
+	private int id;
+	
 	@JsonbProperty("master")
+	@OneToOne
 	private Master master;
 	/**
 	 * Not <code>null</code>.
 	 */
 	@JsonbProperty("content")
+	@OneToOne
 	private Content content;
 	/**
 	 * Not <code>null</code>.
 	 */
 	@JsonbProperty("person")
+	@OneToOne
 	private Person person;
 	/**
 	 * Not <code>null</code>.
