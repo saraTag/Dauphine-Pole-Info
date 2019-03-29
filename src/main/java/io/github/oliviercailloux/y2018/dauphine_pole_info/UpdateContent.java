@@ -25,11 +25,10 @@ public class UpdateContent {
 	private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence
             .createEntityManagerFactory("dauphine");
 	
-	static Logger log;
 	
 	@PUT
 	@Produces(MediaType.TEXT_PLAIN)
-	public Response Update(@PathParam("id") int id,@QueryParam("name") String name) throws Exception{
+	public void Update(@QueryParam("id") int id,@QueryParam("name") String name) throws NullPointerException{
 		EntityManager manager = ENTITY_MANAGER_FACTORY.createEntityManager();
         EntityTransaction transaction = null;
         transaction = manager.getTransaction();
@@ -39,7 +38,7 @@ public class UpdateContent {
         manager.persist(cont);
         transaction.commit();
         manager.close();
-		return Response.ok("ok").build();
+		
     }
 	
 }

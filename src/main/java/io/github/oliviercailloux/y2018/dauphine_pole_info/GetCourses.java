@@ -21,12 +21,11 @@ public class GetCourses {
 	private static final long serialVersionUID = 1L;
 	private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence
 			.createEntityManagerFactory("dauphine");
-	static Logger log;
 
 	@SuppressWarnings("unchecked")
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
-	public List<Course> getCourse() throws Exception {
+	public List<Course> getCourse() throws NullPointerException {
 
 		EntityManager manager = ENTITY_MANAGER_FACTORY.createEntityManager();
 		EntityTransaction transaction = null;

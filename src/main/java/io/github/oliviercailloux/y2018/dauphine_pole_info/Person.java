@@ -81,6 +81,7 @@ public class Person {
 	private Master master;
 
 	@JsonbProperty("yearMaster")
+	@Column(name = "annee_master", unique = false)
 	private int yearMaster;
 
 	@JsonbProperty("address")

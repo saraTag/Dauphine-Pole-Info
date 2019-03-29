@@ -23,12 +23,11 @@ public class GetPerson {
 	private static final long serialVersionUID = 1L;
 	private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence
 			.createEntityManagerFactory("dauphine");
-	static Logger log;
 
 	@GET
 	@Path("all")
 	@Produces(MediaType.TEXT_PLAIN)
-	public List<Person> getAllPersons() throws Exception {
+	public List<Person> getAllPersons() throws NullPointerException {
 		List<Person> persons = null;
 
 		EntityManager manager = ENTITY_MANAGER_FACTORY.createEntityManager();
@@ -48,7 +47,7 @@ public class GetPerson {
 	@GET
 	@Path("one")
 	@Produces(MediaType.TEXT_PLAIN)
-	public Person getPerson(@QueryParam("id") int id) throws Exception {
+	public Person getPerson(@QueryParam("id") int id) throws NullPointerException {
 		Person pers = null;
 		EntityManager manager = ENTITY_MANAGER_FACTORY.createEntityManager();
 		EntityTransaction transaction = null;

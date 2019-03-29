@@ -29,12 +29,11 @@ public class DeletePersonByMaster {
 	private static final long serialVersionUID = 1L;
 	private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence
 			.createEntityManagerFactory("dauphine");
-	static Logger log;
 
 	@Transactional
 	@DELETE
 	@Produces(MediaType.TEXT_PLAIN)
-	public Response Delete(@QueryParam("master") int master) throws Exception {
+	public void delete(@QueryParam("master") int master) throws NullPointerException {
 
 		EntityManager manager = ENTITY_MANAGER_FACTORY.createEntityManager();
 		EntityTransaction transaction = null;
@@ -44,6 +43,6 @@ public class DeletePersonByMaster {
 		int q = manager.createQuery("DELETE  FROM Person s WHERE s.master = " + master).executeUpdate();
 		transaction.commit();
 		manager.close();
-		return Response.ok("ok").build();
+	
 	}
 }

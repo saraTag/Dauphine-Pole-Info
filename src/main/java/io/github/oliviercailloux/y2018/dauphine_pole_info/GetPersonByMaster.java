@@ -24,12 +24,11 @@ public class GetPersonByMaster {
 	private static final long serialVersionUID = 1L;
 	private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence
 			.createEntityManagerFactory("dauphine");
-	static Logger log;
 
 	@SuppressWarnings("unchecked")
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
-	public List<Person> getPersonByMaster(@QueryParam("master") int master) throws Exception {
+	public List<Person> getPersonByMaster(@QueryParam("master") int master) throws NullPointerException {
 
 		EntityManager manager = ENTITY_MANAGER_FACTORY.createEntityManager();
 		EntityTransaction transaction = null;

@@ -23,20 +23,22 @@ public class AddPerson {
 	private static final long serialVersionUID = 1L;
 	private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence
 			.createEntityManagerFactory("dauphine");
-	static Logger log;
 
 	@POST
 	@Produces(MediaType.TEXT_PLAIN)
-	public Response add(@QueryParam("firstname") String fname, @QueryParam("lastname") String lname,
-			@QueryParam("email") String email, @QueryParam("phone") String phone, @QueryParam("fax") String fax)
-			throws Exception {
-
+	public void add(@QueryParam("firstname") String fname, @QueryParam("lastname") String lname,
+			@QueryParam("email") String email, @QueryParam("phone") String phone, @QueryParam("fax") String fax, @QueryParam("master") int master)
+			throws NullPointerException {
+		
+		Master mast = new Master();
+		mast.setId(master);
 		Person per = new Person(fname, lname, email, phone, fax);
-		CreatePerson(per);
-		return Response.ok("ok").build();
+		per.setMaster(mast);
+		createPerson(per);
+		
 	}
 
-	void CreatePerson(Person per) throws Exception {
+	void createPerson(Person per) throws NullPointerException {
 
 		EntityManager manager = ENTITY_MANAGER_FACTORY.createEntityManager();
 		EntityTransaction transaction = null;
@@ -53,6 +55,7 @@ public class AddPerson {
 		per.setNote(per.getNote());
 		per.setPassword(per.getPassword());
 		per.setRole(per.getRole());
+		per.setMaster(per.getMaster());
 		per.setAddress(per.getAddress());
 		per.setMobile(per.getMobile());
 		per.setTemporary(per.getTemporary());

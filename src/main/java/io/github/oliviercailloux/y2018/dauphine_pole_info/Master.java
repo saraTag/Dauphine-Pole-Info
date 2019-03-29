@@ -5,6 +5,7 @@ import java.util.Optional;
 import javax.json.bind.Jsonb;
 import javax.json.bind.annotation.JsonbProperty;
 import javax.json.bind.annotation.JsonbPropertyOrder;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,10 +27,11 @@ public class Master {
 	private int id;
 
 	@JsonbProperty("name")
+	@Column(name = "nom")
 	private String name;
 
 	@JsonbProperty("description")
-	private Optional<String> description;
+	private String description;
 
 	private static Jsonb jsonb = JsonUtilFomat.getInstance();
 
@@ -43,7 +45,7 @@ public class Master {
 		super();
 		this.id = id;
 		this.name = Strings.nullToEmpty(nom);
-		this.description = Optional.of(description);
+		this.description = description;
 	}
 
 	public int getId() {
@@ -71,11 +73,11 @@ public class Master {
 	 */
 	@XmlAttribute(name = "description")
 	public Optional<String> getDescription() {
-		return description;
+		return Optional.of(description);
 	}
 
 	public void setDescription(String description) {
-		this.description = Optional.of(description);
+		this.description = description;
 	}
 
 	/**

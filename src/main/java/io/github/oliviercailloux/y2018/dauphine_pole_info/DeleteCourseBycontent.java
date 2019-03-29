@@ -22,12 +22,11 @@ public class DeleteCourseBycontent {
 	private static final long serialVersionUID = 1L;
 	private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence
 			.createEntityManagerFactory("dauphine");
-	static Logger log;
 
 	@Transactional
 	@DELETE
 	@Produces(MediaType.TEXT_PLAIN)
-	public Response Delete(@QueryParam("contents") int contents) throws Exception {
+	public void Delete(@QueryParam("contents") int contents) throws Exception {
 
 		EntityManager manager = ENTITY_MANAGER_FACTORY.createEntityManager();
 		EntityTransaction transaction = null;
@@ -36,7 +35,6 @@ public class DeleteCourseBycontent {
 		int q = manager.createQuery("DELETE  FROM Course s WHERE s.id.contents = " + contents).executeUpdate();
 		transaction.commit();
 		manager.close();
-		return Response.ok("ok").build();
 	}
 
 }

@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -25,6 +26,7 @@ import com.google.common.base.Strings;
 @Entity
 @JsonbPropertyOrder({ "id", "description", "compulsory", "periode", "master", "teacher", "contents" })
 @XmlRootElement
+@Table(name = "Cours")
 public class Course {
 
 	/**
@@ -89,6 +91,11 @@ public class Course {
 
 	public Person getTeacher() {
 		return teacher;
+	}
+	
+
+	public void setTeacher(Person teacher) {
+		this.teacher = teacher;
 	}
 
 	/**

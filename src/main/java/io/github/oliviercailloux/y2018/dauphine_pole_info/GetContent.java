@@ -14,6 +14,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 @Path("GetContent")
@@ -22,12 +23,11 @@ public class GetContent {
 	private static final long serialVersionUID = 1L;
 	private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence
 			.createEntityManagerFactory("dauphine");
-	static Logger log;
 
 	@GET
 	@Path("all")
 	@Produces(MediaType.TEXT_PLAIN)
-	public List<Content> getAllContents() throws Exception {
+	public List<Content> getAllContents() throws NullPointerException {
 
 		List<Content> contents = null;
 		List<Content> cont = new ArrayList<Content>();
@@ -49,7 +49,7 @@ public class GetContent {
 	@GET
 	@Path("one")
 	@Produces(MediaType.TEXT_PLAIN)
-	public Content getContent(@PathParam("id") int id) throws Exception {
+	public Content getContent(@QueryParam("id") int id) throws NullPointerException {
 
 		Content cont = null;
 		EntityManager manager = ENTITY_MANAGER_FACTORY.createEntityManager();
