@@ -39,7 +39,6 @@ public class DeletePersonByMaster {
 	@DELETE
 	public void delete(@QueryParam("master") int master) {
 
-		List<Person> per = new ArrayList<Person>();
 		int q = manager.createQuery("DELETE  FROM Person s WHERE s.master = " + master).executeUpdate();
 	
 	}
