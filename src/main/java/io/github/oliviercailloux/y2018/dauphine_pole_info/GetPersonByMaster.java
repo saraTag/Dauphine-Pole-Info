@@ -5,12 +5,19 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.annotation.Resource;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceUnit;
 import javax.persistence.Query;
+import javax.transaction.NotSupportedException;
+import javax.transaction.SystemException;
 import javax.transaction.TransactionalException;
+import javax.transaction.UserTransaction;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -19,26 +26,19 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 @Path("GetPersonByMaster")
+@Stateless
 public class GetPersonByMaster {
 
-	private static final long serialVersionUID = 1L;
-	private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence
-			.createEntityManagerFactory("dauphine");
+	@PersistenceContext(unitName = "dauphine")
+    private EntityManager manager;
 
-	@SuppressWarnings("unchecked")
+
 	@GET
-	@Produces(MediaType.TEXT_PLAIN)
-	public List<Person> getPersonByMaster(@QueryParam("master") int master) throws NullPointerException {
+	public List<Person> getPersonByMaster(@QueryParam("master") int master)  {
 
-		EntityManager manager = ENTITY_MANAGER_FACTORY.createEntityManager();
-		EntityTransaction transaction = null;
 		List<Person> per = new ArrayList<Person>();
-		transaction = manager.getTransaction();
-		transaction.begin();
 		Query q = manager.createQuery("SELECT s FROM Person s WHERE s.master = " + master, Person.class);
 		List<Person> persons = q.getResultList();
-		transaction.commit();
-		manager.close();
 		for (Person entity : persons) {
 			per.add(entity);
 		}

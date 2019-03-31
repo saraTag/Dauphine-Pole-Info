@@ -18,6 +18,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import com.google.common.base.Strings;
@@ -25,13 +26,11 @@ import com.google.common.base.Strings;
 @Entity
 @JsonbPropertyOrder({ "id", "firstname", "lastname", "email", "phone", "fax", "homePage", "cv", "note", "role",
 		"master", "yearMaster", "address", "mobile", "temporary" })
-@XmlRootElement
 @Table(name = "Personne")
 public class Person {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@XmlAttribute
 	@JsonbProperty("id")
 	private int id;
 

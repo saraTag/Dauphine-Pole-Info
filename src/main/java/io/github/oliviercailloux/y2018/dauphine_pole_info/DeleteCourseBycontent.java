@@ -4,11 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javax.annotation.Resource;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceUnit;
+import javax.transaction.SystemException;
 import javax.transaction.Transactional;
+import javax.transaction.UserTransaction;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -17,24 +23,16 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @Path("DeleteCourseByContent")
+@Stateless
 public class DeleteCourseBycontent {
 
-	private static final long serialVersionUID = 1L;
-	private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence
-			.createEntityManagerFactory("dauphine");
+	@PersistenceContext(unitName = "dauphine")
+    private EntityManager manager;
 
 	@Transactional
 	@DELETE
-	@Produces(MediaType.TEXT_PLAIN)
-	public void Delete(@QueryParam("contents") int contents) throws Exception {
-
-		EntityManager manager = ENTITY_MANAGER_FACTORY.createEntityManager();
-		EntityTransaction transaction = null;
-		transaction = manager.getTransaction();
-		transaction.begin();
+	public void Delete(@QueryParam("contents") int contents) throws Throwable, SystemException {
 		int q = manager.createQuery("DELETE  FROM Course s WHERE s.id.contents = " + contents).executeUpdate();
-		transaction.commit();
-		manager.close();
 	}
 
 }

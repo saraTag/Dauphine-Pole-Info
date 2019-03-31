@@ -4,12 +4,18 @@ import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.annotation.Resource;
+import javax.ejb.Stateless;
 import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceUnit;
+import javax.transaction.SystemException;
 import javax.transaction.TransactionalException;
+import javax.transaction.UserTransaction;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -18,28 +24,23 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-@RequestScoped
 @Path("AddContent")
+@Stateless
 public class AddContent {
 
-	private static final long serialVersionUID = 1L;
-	private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence
-			.createEntityManagerFactory("dauphine");
+	@PersistenceContext(unitName = "dauphine")
+    private EntityManager manager;
 
 	@POST
 	@Produces(MediaType.TEXT_PLAIN)
-	public void add(@QueryParam("name") String name) throws NullPointerException {
+	public void add(@QueryParam("name") String name){
 
 		Content cont = new Content();
 		cont.setName(name);
 		createContent(cont);
 	}
 
-	void createContent(Content cont) throws NullPointerException {
-		EntityManager manager = ENTITY_MANAGER_FACTORY.createEntityManager();
-		EntityTransaction transaction = null;
-		transaction = manager.getTransaction();
-		transaction.begin();
+	void createContent(Content cont){
 		cont.setId(cont.getId());
 		cont.setName(cont.getName());
 		cont.setTraining((cont.getTraining()).toString());
@@ -47,8 +48,6 @@ public class AddContent {
 		cont.setEtcs(cont.getEtcs());
 		cont.setProjectVolume(cont.getProjectVolume());
 		manager.persist(cont);
-		transaction.commit();
-		manager.close();
 
 	}
 }

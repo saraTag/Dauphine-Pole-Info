@@ -17,12 +17,10 @@ import com.google.common.base.Strings;
 
 @Entity
 @JsonbPropertyOrder({ "id", "name", "description" })
-@XmlRootElement
 public class Master {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@XmlAttribute
 	@JsonbProperty("id")
 	private int id;
 
@@ -59,7 +57,6 @@ public class Master {
 	/**
 	 * @return not null.
 	 */
-	@XmlAttribute(name = "name")
 	public String getName() {
 		return name;
 	}
@@ -71,7 +68,6 @@ public class Master {
 	/**
 	 * @return not null.
 	 */
-	@XmlAttribute(name = "description")
 	public Optional<String> getDescription() {
 		return Optional.of(description);
 	}
