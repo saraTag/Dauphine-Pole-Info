@@ -68,8 +68,8 @@ public class Master {
 	/**
 	 * @return not null.
 	 */
-	public Optional<String> getDescription() {
-		return Optional.of(description);
+	public String getDescription() {
+		return description;
 	}
 
 	public void setDescription(String description) {
