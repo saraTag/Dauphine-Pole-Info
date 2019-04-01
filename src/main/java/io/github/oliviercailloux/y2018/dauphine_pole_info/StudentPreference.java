@@ -85,7 +85,7 @@ public class StudentPreference {
 	 * @return not <code>null</code>.
 	 */
 	
-	/** public String studentPreferenceToJson() {
+	 public String studentPreferenceToJson() {
 		JsonArrayBuilder jarr = Json.createArrayBuilder();
 
 		for (Person person : this.studPref.keySet()) {
@@ -111,7 +111,7 @@ public class StudentPreference {
 		writerFactory.createWriter(stringWriter).write(jsonObj);
 
 		return stringWriter.toString();
-	 }*/
+	 }
 
 	public static StudentPreference jsonToStudentPreference(String jsonPreference) {
 		return jsonb.fromJson(Strings.nullToEmpty(jsonPreference), StudentPreference.class);
