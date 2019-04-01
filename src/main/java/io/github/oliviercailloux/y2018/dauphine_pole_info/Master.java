@@ -68,8 +68,8 @@ public class Master {
 	/**
 	 * @return not null.
 	 */
-	public Optional getDescription() {
-		return Optional.ofNullable(description);
+	public String getDescription() {
+		return description;
 	}
 
 	public void setDescription(String description) {
