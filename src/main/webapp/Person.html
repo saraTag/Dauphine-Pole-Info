@@ -159,19 +159,36 @@
 	
 	function httpGet(theUrl)
 	{
-	    var xmlHttp = new XMLHttpRequest();
-	    xmlHttp.open( "GET", theUrl, false );
-	    xmlHttp.send( null );
-	    return xmlHttp.responseText;
+		   var xmlHttp = new XMLHttpRequest();
+		    xmlHttp.open( "GET", theUrl, false );
+		    xmlHttp.send( null );
+		    if (xmlhttp.status === 200) {
+		        var result = xmlhttp.responseText;
+		        return result;
+		    } else {
+		        var result = "Error" + " Status " + xmlhttp.status;
+		        alert(result);
+		        return result;
+		    }
+
 	}
 	
 	function httpPost(theUrl,data)
 	{
-	    var xmlHttp = new XMLHttpRequest();
-	    xmlHttp.open( "POST", theUrl, false );
-	    xmlHttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-	    xmlHttp.send(data);
-	    return xmlHttp.responseText;
+		 var xmlHttp = new XMLHttpRequest();
+		    xmlHttp.open( "POST", theUrl, false );
+		    xmlHttp.setRequestHeader('Content-type','application/json');
+		    xmlHttp.send(data);
+		    xmlhttp.send(JSON.stringify({id: data[0], firstname: data[1], lastname: data[2]}));
+		    if (xmlhttp.status === 200) {
+		    	alert("Modification validée");
+		        var result = xmlhttp.responseText;
+		        return result;
+		    } else {
+		        var result = "Error" + " Status " + xmlhttp.status;
+		        alert(result);
+		        return result;
+		    }
 	}
 	
 	const buttonDetail = document.getElementById('id_details');
@@ -202,9 +219,11 @@
     const button = document.getElementById('id_modif');
     button.addEventListener('click',function(){
     	
-	    var data = "id="+document.getElementById('id_id').value+"&firstname="+ document.getElementById('id_firstname').value+"&lastname="+document.getElementById('id_lastname').value;
+	    var data = [];
+	    data.push(document.getElementById('id_id').value);
+	    data.push(document.getElementById('id_firstname').value);
+	    data.push(document.getElementById('id_lastname').value);
 	    var res = httpPost("http://localhost:8080/dauphine-pole-info/v1/updatePerson",data);	
-	    alert(" modification validée")
 	    
     });
     
