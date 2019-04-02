@@ -94,8 +94,7 @@ Servlet permettant de récupérer, effacer, ajouter des liens entre master, cour
 *Sprint 3:*
 
 * TAGZIRIA Sara : (1 Point)
-Implémenter un client qui permet, avec un GUI rudimentaire ou en ligne de commande d'affecter un enseignat à un cours
-(utiliser linkServlets). 
+Implémenter un client qui permet, avec un GUI rudimentaire ou en ligne de commande de supprimer un Contenu et une Person.
 
 * Ouaaz Chahine :(1 Point)
 Automatisation du déploiement de l'encienne application PI3, la communication entre les deux applications.
