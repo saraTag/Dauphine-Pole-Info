@@ -28,34 +28,26 @@ import javax.ws.rs.core.Response;
 @Stateless
 public class AddCourse {
 
-	@PersistenceContext(unitName = "dauphine")
+	@PersistenceContext()
 	private EntityManager manager;
 
 	@POST
-	public void add(@QueryParam("master") int master, @QueryParam("content") int content,
-			@QueryParam("enseignat") int enseigant, @QueryParam("notes") String notes) {
+	public void add(@QueryParam("idMaster") int idMaster, @QueryParam("idContent") int idContent,
+			@QueryParam("idTeacher") int idTeacher, @QueryParam("notes") String notes) {
 
 		Master mast = new Master();
 		Content cont = new Content();
 		CourseId coursid = new CourseId(mast, cont);
 		Person enseignant = new Person();
-		mast.setId(master);
-		cont.setId(content);
-		enseignant.setId(enseigant);
+		mast.setId(idMaster);
+		cont.setId(idContent);
+		enseignant.setId(idTeacher);
 
 		Course cour = new Course();
 		cour.setId(coursid);
 		cour.setTeacher(enseignant);
 		cour.setDescription(notes);
-		createCours(cour);
-
-	}
-
-	void createCours(Course cours) {
-		cours.setId(cours.getId());
-		cours.setTeacher(cours.getTeacher());
-		cours.setDescription(cours.getDescription());
-		manager.persist(cours);
+		manager.persist(cour);
 
 	}
 

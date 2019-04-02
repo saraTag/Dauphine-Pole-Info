@@ -1,0 +1,37 @@
+= Démarche déploiment 
+:sectanchors:
+
+Dans ce document , est expliquée la démarche de déploiment du projet (https://github.com/oliviercailloux/poleinfo3[Ancienne application Pole Info 3 (php)] et https://github.com/saraTag/Dauphine-Pole-Info[Nouvelle application Daupine Pole Info (JEE)] sur IBM Cloud , la liason avec un service de gestion de bases de données ainsi que  l'établissement de la cumminacation entre les 2 applications et le SGBD.
+Remarque : Pour notre projet , .
+on a opté pour le service https://console.bluemix.net/catalog/services/db2[DB2] qui est un SGBD Sql.
+ 
+ Elements nécessaires pour l'ensemble de la démarche : 
+ 
+ - Compte https://www.ibm.com/cloud[IBM Cloud] actif , si vous en posséder pas , vous pouvez https://cloud.ibm.com/registration[en créer un].
+- IBM Clound Foundry ou CLI : https://github.com/cloudfoundry/cli
+
+
+Déploiment de l'application Pole Info 3 sur IBM Cloud 
+
+
+Tout d'abord , on a procédé au déploiement de https://github.com/oliviercailloux/poleinfo3[l'ancienne application Pole Info 3] sur IBM Cloud , pour se faire , on a effectué les points suivants :
+
+ 1. cloner le code sur https://github.com/oliviercailloux/poleinfo3.
+ 2. se connecter à IBM Cloud en utilisant la ligne de commande en exécutant les commandes suivantes : 
+     - ibmcloud login : permet de se connecter au compte IBM Cloud en introduisant les identifiants du compte.
+     - ibmcloud target --cf : permet de spécifier le groupe de ressource liées aux comptes ( organisation , espace ...)
+     - ibmcloud app push  : permet de pusher l'application depuis la machine locale sur IBM Cloud
+
+de méme pour https://github.com/saraTag/Dauphine-Pole-Info[l'application Dauphine Pole Info] qu'on a developpée en JEE, on a effectué les étapes précédentes 1 et 2 , pour la déployer sur IBM Cloud.
+
+Uen fois les 2 applications sur le Cloud d'IBM , on a instancié un service de bases de données , pour cela nous nous sommes dirigés vers le https://cloud.ibm.com/catalog[catalog] et avons décidé de créer un service de bases de données sql , qui était https://cloud.ibm.com/catalog/services/db2?bss_account=e5949995d2554cfab9685300bb522d15[db2].
+
+Etant donné que le service db2 ne supporte pas le langage sql natif , mais plutot un sql propre à db2 , assez proche du sql connu , nous étions dans l'obligation de transcrire le fichier schema.sql afin de créer une base de données équivalent sur le Cloud IBM.
+Le nouveau fichier contenant le schema au sens de db2 a été ajouté au projet sous le nom de https://github.com/saraTag/Dauphine-Pole-Info/blob/deployment/schemaDB2.txt[schemaDB2.sql]
+
+Notons que pour l'automatisation de la liason entre les applications déployées et le service db2 , on procédé à l'ajout d'une portion de code permettant de spécifier les paramétres de connexions (privés) de la base de données déployé.
+
+Pour l'application Pole Info 3 écrite en php , ce https://www.ibm.com/support/knowledgecenter/en/SS6NHC/com.ibm.swg.im.dashdb.doc/connecting/connect_connecting_php.html[code] a été ajouté et les paramétres de la bases récuprés du service DB2 , et ce pour garantir l'automatisation de la connexion.
+
+
+

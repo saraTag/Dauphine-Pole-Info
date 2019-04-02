@@ -29,7 +29,7 @@ import javax.ws.rs.core.MediaType;
 @Stateless
 public class GetPersonByMaster {
 
-	@PersistenceContext(unitName = "dauphine")
+	@PersistenceContext()
     private EntityManager manager;
 
 

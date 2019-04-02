@@ -40,7 +40,6 @@ public class UpdatePerson {
 			@QueryParam("lastname") String lname) {
 
 		Person pers = manager.find(Person.class, id);
-		pers.setId(id);
 		pers.setFirstname(fname);
 		pers.setLastname(lname);
 		manager.persist(pers);

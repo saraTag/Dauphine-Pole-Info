@@ -26,7 +26,7 @@ import javax.ws.rs.core.MediaType;
 @Stateless
 public class GetCourseByMaster {
 
-	@PersistenceContext(unitName = "dauphine")
+	@PersistenceContext()
 	private EntityManager manager;
 
 	@GET

@@ -24,41 +24,21 @@ import javax.ws.rs.core.Response;
 @Stateless
 public class AddPerson {
 
-	@PersistenceContext(unitName = "dauphine")
+	@PersistenceContext()
 	private EntityManager manager;
 
 	@POST
 	@Produces(MediaType.TEXT_PLAIN)
 	public void add(@QueryParam("firstname") String fname, @QueryParam("lastname") String lname,
 			@QueryParam("email") String email, @QueryParam("phone") String phone, @QueryParam("fax") String fax,
-			@QueryParam("master") int master) {
+			@QueryParam("idMaster") int idMaster) {
 
 		Master mast = new Master();
-		mast.setId(master);
+		mast.setId(idMaster);
 		Person per = new Person(fname, lname, email, phone, fax);
 		per.setMaster(mast);
-		createPerson(per);
-
-	}
-
-	void createPerson(Person per) {
-		per.setId(per.getId());
-		per.setFirstname(per.getFirstname());
-		per.setLastname(per.getLastname());
-		per.setEmail(per.getEmail());
-		per.setPhone(per.getMobile());
-		per.setFax(per.getFax());
-		per.setHomePage(per.getHome_page());
-		per.setCv(per.getCv());
-		per.setNote(per.getNote());
-		per.setPassword(per.getPassword());
-		per.setRole(per.getRole());
-		per.setMaster(per.getMaster());
-		per.setAddress(per.getAddress());
-		per.setMobile(per.getMobile());
-		per.setTemporary(per.getTemporary());
-
 		manager.persist(per);
+
 	}
 
 }

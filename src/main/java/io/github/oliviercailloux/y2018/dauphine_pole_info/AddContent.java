@@ -37,17 +37,7 @@ public class AddContent {
 
 		Content cont = new Content();
 		cont.setName(name);
-		createContent(cont);
-	}
-
-	void createContent(Content cont){
-		cont.setId(cont.getId());
-		cont.setName(cont.getName());
-		cont.setTraining((cont.getTraining()).toString());
-		cont.setHourlyVolume(cont.getHourlyVolume());
-		cont.setEtcs(cont.getEtcs());
-		cont.setProjectVolume(cont.getProjectVolume());
 		manager.persist(cont);
-
 	}
+
 }

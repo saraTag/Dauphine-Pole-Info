@@ -26,7 +26,7 @@ import javax.ws.rs.core.Response;
 @Stateless
 public class DeleteCourseBycontent {
 
-	@PersistenceContext(unitName = "dauphine")
+	@PersistenceContext()
     private EntityManager manager;
 
 	@Transactional

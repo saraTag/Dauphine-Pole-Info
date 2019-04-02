@@ -32,7 +32,7 @@ import javax.ws.rs.core.Response;
 @Stateless
 public class DeletePersonByMaster {
 
-	@PersistenceContext(unitName = "dauphine")
+	@PersistenceContext()
     private EntityManager manager;
 
 	@Transactional

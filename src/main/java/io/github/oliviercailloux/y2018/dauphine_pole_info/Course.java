@@ -30,7 +30,7 @@ import com.google.common.base.Strings;
 public class Course {
 
 	/**
-	 * J-ai utilisé un CourseID pour maper le clé primaire de Course qui est composé
+	 * J-ai utilisï¿½ un CourseID pour maper le clï¿½ primaire de Course qui est composï¿½
 	 * de id_master et id_contenu PRIMARY KEY (`id_master`,`id_contenu`)
 	 */
 	@EmbeddedId

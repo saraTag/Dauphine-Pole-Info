@@ -30,7 +30,7 @@ import javax.ws.rs.core.MediaType;
 public class GetcourseByContent {
 
 
-	@PersistenceContext(unitName = "dauphine")
+	@PersistenceContext()
     private EntityManager manager;
 	
 	@GET
