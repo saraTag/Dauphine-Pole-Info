@@ -80,14 +80,19 @@ public class Course {
 		this.periode = Strings.nullToEmpty(periode);
 		this.description = Strings.nullToEmpty(description);
 	}
+	
+
+	public Course(CourseId id, Person teacher, String description) {
+		super();
+		this.id = id;
+		this.teacher = teacher;
+		this.description = description;
+	}
 
 	public CourseId getId() {
 		return id;
 	}
 
-	public void setId(CourseId id) {
-		this.id = id;
-	}
 
 	public Person getTeacher() {
 		return teacher;

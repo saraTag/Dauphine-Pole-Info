@@ -35,18 +35,14 @@ public class AddCourse {
 	public void add(@QueryParam("idMaster") int idMaster, @QueryParam("idContent") int idContent,
 			@QueryParam("idTeacher") int idTeacher, @QueryParam("notes") String notes) {
 
-		Master mast = new Master();
-		Content cont = new Content();
+		Master mast = null;
+		mast = manager.find(Master.class, idMaster);
+		Content cont = null;
+		cont = manager.find(Content.class, idContent);
 		CourseId coursid = new CourseId(mast, cont);
-		Person enseignant = new Person();
-		mast.setId(idMaster);
-		cont.setId(idContent);
-		enseignant.setId(idTeacher);
-
-		Course cour = new Course();
-		cour.setId(coursid);
-		cour.setTeacher(enseignant);
-		cour.setDescription(notes);
+		Person teacher = null;
+		teacher = manager.find(Person.class, idTeacher);
+		Course cour = new Course(coursid,teacher,notes);
 		manager.persist(cour);
 
 	}

@@ -32,10 +32,10 @@ public class AddPerson {
 	public void add(@QueryParam("firstname") String fname, @QueryParam("lastname") String lname,
 			@QueryParam("email") String email, @QueryParam("phone") String phone, @QueryParam("fax") String fax,
 			@QueryParam("idMaster") int idMaster) {
-
-		Master mast = new Master();
-		mast.setId(idMaster);
-		Person per = new Person(fname, lname, email, phone, fax);
+		
+		Master mast = null;
+		mast = manager.find(Master.class, idMaster);
+		Person per = new Person(fname, lname, email, phone, fax,mast);
 		per.setMaster(mast);
 		manager.persist(per);
 
