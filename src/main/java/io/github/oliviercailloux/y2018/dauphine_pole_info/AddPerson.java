@@ -36,7 +36,6 @@ public class AddPerson {
 		Master mast = null;
 		mast = manager.find(Master.class, idMaster);
 		Person per = new Person(fname, lname, email, phone, fax,mast);
-		per.setMaster(mast);
 		manager.persist(per);
 
 	}

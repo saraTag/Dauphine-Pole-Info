@@ -101,8 +101,8 @@ public class Content {
 	 * @return not null.
 	 */
 	@XmlAttribute(name = "description")
-	public Optional<String> getDescription() {
-		return Optional.of(description);
+	public String getDescription() {
+		return description;
 	}
 
 	public void setDescription(String description) {
@@ -113,8 +113,8 @@ public class Content {
 	 * @return not null.
 	 */
 	@XmlAttribute(name = "training")
-	public Optional<String> getTraining() {
-		return Optional.of(training);
+	public String getTraining() {
+		return training;
 	}
 
 	public void setTraining(String training) {
@@ -152,8 +152,8 @@ public class Content {
 	 * @return not null.
 	 */
 	@XmlAttribute(name = "objectives")
-	public Optional<String>  getObjectives() {
-		return Optional.of(objectives);
+	public String getObjectives() {
+		return objectives;
 	}
 
 	public void setObjectives(String objectives) {
@@ -164,8 +164,8 @@ public class Content {
 	 * @return not null.
 	 */
 	@XmlAttribute(name = "contents")
-	public Optional<String> getContents() {
-		return Optional.of(contents);
+	public String getContents() {
+		return contents;
 	}
 
 	@XmlAttribute(name = "contents")
@@ -174,8 +174,8 @@ public class Content {
 	}
 
 	@XmlAttribute(name = "biblio")
-	public Optional<String> getBiblio() {
-		return Optional.of(biblio);
+	public String getBiblio() {
+		return biblio;
 	}
 
 	public void setBiblio(String biblio) {
