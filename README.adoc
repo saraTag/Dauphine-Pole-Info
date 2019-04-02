@@ -93,21 +93,17 @@ Servlet permettant de récupérer, effacer, ajouter des liens entre master, cour
 
 *Sprint 3:*
 
-* TAGZIRIA Sara : *ObjectsXML* (1 Point)
+* TAGZIRIA Sara : (1 Point)
+Implémenter un client qui permet, avec un GUI rudimentaire ou en ligne de commande d'affecter un enseignat à un cours
+(utiliser linkServlets). 
 
-Encoder / décoder une partie de vos objets de base en XML. Repartir du schéma CDM-fr, simplifié. (« Vos objets de base » comprend ici Master.) Encoder / décoder le reste de vos objets de base en JSON, y compris les relations.
-Le projet Dauphine Open Data pour ont déjà implementé une fonctionnalité de très similaire, nous envisageons discuter avec eux à propos de cette fonctionnalité. 
+* Ouaaz Chahine :(1 Point)
+Automatisation du déploiement de l'encienne application PI3, la communication entre les deux applications.
 
-* Ouaaz Chahine : SOAP (1 Point)
-
-Transformer certains servlets pour en faire des services SOAP. 
-
-* Anas : Lib (1 Point)
-
-Isoler la partie bibliothèque du reste du code. La publier comme un projet Maven indépendant (suffixer le nom du projet de -lib) et faire dépendre le reste du code de cette bibliothèque. Isoler la partie client du reste du code, publier comme un projet indépendant (ProjectName-client). Publier la partie serveur comme un projet indépendant (ProjectName). 
+* Anas : (1 Point)
+Implémenter un client qui permet, avec un GUI rudimentaire ou en ligne de commande l'ajout de Contenu.
 
 * Lahsen Jannani : *ExtBasicServlets* (1 Point)
-
-Étendre servlets existants pour accepter et renvoyer à la demande du XML ou JSON en plus du texte. Transformer en REST. Cookie permet de mémoriser un id person, il est utilisé si l’id person n’est pas fourni, pour les servlets qui requièrent ce paramètre. 
+Implémenter un client qui permet, avec un GUI rudimentaire ou en ligne de commande l'ajout de Person.
 
 Comme les deux fonctionnalités *lib* et *SOAP* ne sont pas prioritaires, nous allons réflechir à les remplacer par dautres fonctionnalités plus urgentes .
