@@ -5,6 +5,7 @@ import java.util.Optional;
 import javax.json.bind.Jsonb;
 import javax.json.bind.annotation.JsonbProperty;
 import javax.json.bind.annotation.JsonbPropertyOrder;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,19 +17,19 @@ import com.google.common.base.Strings;
 
 @Entity
 @JsonbPropertyOrder({ "id", "name", "description" })
-@XmlRootElement
 public class Master {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@XmlAttribute @JsonbProperty("id")
+	@JsonbProperty("id")
 	private int id;
-	
+
 	@JsonbProperty("name")
+	@Column(name = "nom")
 	private String name;
 
 	@JsonbProperty("description")
-	private Optional<String> description;
+	private String description;
 
 	private static Jsonb jsonb = JsonUtilFomat.getInstance();
 
@@ -42,21 +43,16 @@ public class Master {
 		super();
 		this.id = id;
 		this.name = Strings.nullToEmpty(nom);
-		this.description = Optional.of(description);
+		this.description = description;
 	}
 
 	public int getId() {
 		return id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
 	/**
 	 * @return not null.
 	 */
-	@XmlAttribute(name = "name")
 	public String getName() {
 		return name;
 	}
@@ -68,13 +64,12 @@ public class Master {
 	/**
 	 * @return not null.
 	 */
-	@XmlAttribute(name = "description")
-	public Optional<String> getDescription() {
+	public String getDescription() {
 		return description;
 	}
 
 	public void setDescription(String description) {
-		this.description = Optional.of(description);
+		this.description = description;
 	}
 
 	/**

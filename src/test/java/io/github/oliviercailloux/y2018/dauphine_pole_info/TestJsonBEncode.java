@@ -35,7 +35,6 @@ public class TestJsonBEncode {
 	public void TestEncodePersonToJson() throws Exception {
 		String res="";
 		Person per = new Person();
-		per.setId(1);
 		per.setFirstname("lahsen");
 		per.setLastname("jannani");
 		per.setEmail("lahsen.jannani@gmil.com");
@@ -59,7 +58,6 @@ public class TestJsonBEncode {
 	public void TestEncodeContentToJson() throws Exception {
 		String res="";
 		Content cont = new Content();
-		cont.setId(1);
 		cont.setName("name");
 		cont.setHourlyVolume(356);
 		cont.setEtcs(3);
@@ -82,7 +80,6 @@ public class TestJsonBEncode {
 	public void TestEncodeMasterToJson() throws Exception {
 		String res="";
 		Master mast = new Master();
-		mast.setId(1);;
 		mast.setName("name");
 		mast.setDescription("master");
 		URL fileUrl = getClass().getResource("/Master.json");

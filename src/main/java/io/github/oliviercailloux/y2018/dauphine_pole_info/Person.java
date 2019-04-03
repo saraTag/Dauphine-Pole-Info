@@ -1,7 +1,5 @@
 package io.github.oliviercailloux.y2018.dauphine_pole_info;
 
-
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -16,32 +14,34 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import com.google.common.base.Strings;
 
 @Entity
-@JsonbPropertyOrder({ "id", "firstname", "lastname", "email", "phone","fax","homePage","cv","note","role","master","yearMaster","address","mobile","temporary" })
-@XmlRootElement
+@JsonbPropertyOrder({ "id", "firstname", "lastname", "email", "phone", "fax", "homePage", "cv", "note", "role",
+		"master", "yearMaster", "address", "mobile", "temporary" })
 @Table(name = "Personne")
 public class Person {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@XmlAttribute @JsonbProperty("id")
+	@JsonbProperty("id")
 	private int id;
-	
+
 	@JsonbProperty("firstname")
 	@Column(name = "prenom", unique = false)
 	private String firstname;
-	
+
 	@JsonbProperty("lastname")
 	@Column(name = "nom", unique = false)
 	private String lastname;
-	
+
 	@JsonbProperty("email")
 	@Column(name = "email", unique = false)
 	private String email;
@@ -76,9 +76,11 @@ public class Person {
 
 	@JsonbProperty("master")
 	@OneToOne
+	@JoinColumn(name = "id_master", referencedColumnName = "id")
 	private Master master;
-	
+
 	@JsonbProperty("yearMaster")
+	@Column(name = "annee_master", unique = false)
 	private int yearMaster;
 
 	@JsonbProperty("address")
@@ -104,12 +106,9 @@ public class Person {
 	/**
 	 * Short constructor by design. Use setters to complete the object.
 	 * 
-	 * @param id
-	 *            int
-	 * @param firstname
-	 *            String
-	 * @param lastname
-	 *            String
+	 * @param id        int
+	 * @param firstname String
+	 * @param lastname  String
 	 */
 	public Person(int id, String firstname, String lastname) {
 		super();
@@ -117,24 +116,19 @@ public class Person {
 		this.firstname = Strings.nullToEmpty(firstname);
 		this.lastname = Strings.nullToEmpty(lastname);
 	}
-	
 
-	public Person(String firstname, String lastname, String email, String phone, String fax) {
+	public Person(String firstname, String lastname, String email, String phone, String fax, Master master) {
 		super();
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.email = email;
 		this.phone = phone;
 		this.fax = fax;
+		this.master = master;
 	}
-
 
 	public int getId() {
 		return id;
-	}
-
-	public void setId(int idPerson) {
-		this.id = idPerson;
 	}
 
 	/**
@@ -259,7 +253,7 @@ public class Person {
 
 	/**
 	 * @return not <code>null</code>.
-	 * */
+	 */
 	public Master getMaster() {
 		return master;
 	}
@@ -270,7 +264,7 @@ public class Person {
 
 	/**
 	 * @return not <code>null</code>.
-	 * */
+	 */
 	public int getYear_master() {
 		return yearMaster;
 	}
@@ -323,8 +317,7 @@ public class Person {
 	}
 
 	/**
-	 * @param jsonPerson
-	 *            : String
+	 * @param jsonPerson : String
 	 * @return Object : Person
 	 */
 	public static Person fromJson(String jsonPersonne) {

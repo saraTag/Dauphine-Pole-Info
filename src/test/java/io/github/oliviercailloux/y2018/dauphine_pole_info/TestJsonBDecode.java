@@ -27,7 +27,6 @@ public class TestJsonBDecode {
 		String ressub = res.substring(0, truncateIndex);
 		in.close();	
 		per=per.fromJson(ressub);
-		assertEquals(1, per.getId());
 		assertEquals("lahsen",per.getFirstname());
 		assertEquals("jannani",per.getLastname());
 		assertEquals("lahsen.jannani@gmil.com",per.getEmail());
@@ -49,7 +48,6 @@ public class TestJsonBDecode {
 		String ressub = res.substring(0, truncateIndex);
 		in.close();	
 		cont=cont.fromJson(ressub);
-		assertEquals(1, cont.getId());
 		assertEquals("name", cont.getName());
 		assertEquals(356, cont.getHourlyVolume());
 	}
