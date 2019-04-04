@@ -1,7 +1,5 @@
 package io.github.oliviercailloux.y2018.dauphine_pole_info;
 
-
-
 import java.util.Optional;
 
 import javax.json.bind.Jsonb;
@@ -14,7 +12,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
-
 
 import com.google.common.base.Strings;
 
@@ -33,7 +30,6 @@ public class Master {
 
 	@JsonbProperty("description")
 	private String description;
-
 
 	private static Jsonb jsonb = JsonUtilFomat.getInstance();
 

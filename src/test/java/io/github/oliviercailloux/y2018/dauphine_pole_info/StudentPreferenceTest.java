@@ -1,6 +1,5 @@
 package io.github.oliviercailloux.y2018.dauphine_pole_info;
 
-
 import static org.junit.Assert.*;
 
 import java.io.StringReader;
@@ -19,6 +18,10 @@ import org.junit.Test;
 import com.google.common.collect.ImmutableSet;
 import com.sun.istack.NotNull;
 
+import io.github.oliviercailloux.y2018.dauphine_pole_info.Master;
+import io.github.oliviercailloux.y2018.dauphine_pole_info.Person;
+import io.github.oliviercailloux.y2018.dauphine_pole_info.RawPreference;
+import io.github.oliviercailloux.y2018.dauphine_pole_info.StudentPreference;
 
 public class StudentPreferenceTest {
 	public Person student;
@@ -87,7 +90,6 @@ public class StudentPreferenceTest {
 		assertEquals(jsonExpected, jsonObject.toString());
 
 	}
-	
 
 	@Test
 	public void JsonToStudentPreference() {
@@ -96,6 +98,5 @@ public class StudentPreferenceTest {
 		assertNotNull(testDecodeTest);
 		
 	}
-	
 
 }
