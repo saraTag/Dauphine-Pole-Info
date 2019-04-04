@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+	integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+	crossorigin="anonymous">
+</head>
+
+<body>
+
+	<div class="container">
+
+		<div id="signupbox" style="margin-top: 100px"
+			class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+			<div class="panel panel-info">
+				<div class="panel-heading"></div>
+				<div class="panel-body">
+					<form method="post" action=".">
+						<input type='hidden' name='csrfmiddlewaretoken'
+							value='XFe2rTYl9WOpV8U6X5CfbIuOZOELJ97S' />
+
+						<form class="form-horizontal" method="post">
+							<input type='hidden' name='csrfmiddlewaretoken'
+								value='XFe2rTYl9WOpV8U6X5CfbIuOZOELJ97S' />
+							<div id="div_id_select" class="form-group required"></div>
+
+							<div id="div_id" class="form-group required">
+								<label for="id_id"> Id <span class="asteriskField">*</span>
+								</label>
+								<div>
+									<input class="input-md  textinput textInput form-control"
+										id="id_id" maxlength="30" name="id"
+										placeholder="Choose Person's Id" style="margin-bottom: 10px"
+										type="text" />
+									<button type="submit" name="deatils"
+										class="btn btn-primary btn btn-info" id="id_details">Détails</button>
+								</div>
+							</div>
+
+							<div id="div_id_firstname" class="form-group required">
+								<label for="id_firstname"
+									class="control-label col-md-4  requiredField">Nom: <span
+									class="asteriskField">*</span>
+								</label>
+								<div class="controls col-md-8 ">
+									<input class="input-md  textinput textInput form-control"
+										id="id_firstname" maxlength="30" name="username"
+										style="margin-bottom: 10px" type="text" />
+								</div>
+							</div>
+
+							<div id="div_id_lastname" class="form-group required">
+								<label for="id_lastname"
+									class="control-label col-md-4  requiredField">Prénom: <span
+									class="asteriskField">*</span>
+								</label>
+								<div class="controls col-md-8 ">
+									<input class="input-md  textinput textInput form-control"
+										id="id_lastname" maxlength="30" name="username"
+										style="margin-bottom: 10px" type="text" />
+								</div>
+							</div>
+
+							<div id="div_id_email" class="form-group required">
+								<label for="id_email"
+									class="control-label col-md-4  requiredField"> E-mail:
+									<span class="asteriskField">*</span>
+								</label>
+								<div class="controls col-md-8 ">
+									<input class="input-md emailinput form-control" id="id_email"
+										name="" style="margin-bottom: 10px" type="email" />
+								</div>
+							</div>
+
+							<div id="div_id_fax" class="form-group required">
+								<label for="id_fax"
+									class="control-label col-md-4  requiredField"> Fax: <span
+									class="asteriskField">*</span>
+								</label>
+								<div class="controls col-md-8 ">
+									<input class="input-md emailinput form-control" id="id_fax"
+										name="fax" style="margin-bottom: 10px" type="fax" />
+								</div>
+							</div>
+
+							<div id="div_id_phone" class="form-group required">
+								<label for="id_phone"
+									class="control-label col-md-4  requiredField"> Phone: <span
+									class="asteriskField">*</span>
+								</label>
+								<div class="controls col-md-8 ">
+									<input class="input-md emailinput form-control" id="id_phone"
+										name="phone" style="margin-bottom: 10px" type="tel" />
+								</div>
+							</div>
+
+							<div id="div_id_mobile" class="form-group required">
+								<label for="id_mobile"
+									class="control-label col-md-4  requiredField"> Mobile<span
+									class="asteriskField">*</span>
+								</label>
+								<div class="controls col-md-8 ">
+									<input class="input-md emailinput form-control" id="id_mobile"
+										name="mobile" style="margin-bottom: 10px" type="tel" />
+								</div>
+							</div>
+
+							<div id="div_id_adress" class="form-group required">
+								<label for="id_adress"
+									class="control-label col-md-4  requiredField"> Adresse:
+									<span class="asteriskField">*</span>
+								</label>
+								<div class="controls col-md-8 ">
+									<input class="input-md emailinput form-control" id="id_adress"
+										name="adress" style="margin-bottom: 10px" type="email" />
+								</div>
+							</div>
+
+							<div id="div_id_password1" class="form-group required">
+								<label for="id_password1"
+									class="control-label col-md-4  requiredField">Mot de
+									passe: <span class="asteriskField">*</span>
+								</label>
+								<div class="controls col-md-8 ">
+									<input class="input-md textinput textInput form-control"
+										id="id_password" name="password1" style="margin-bottom: 10px"
+										type="password" />
+								</div>
+							</div>
+
+							<div id="div_role" class="form-group required">
+								<label for="id_role"
+									class="control-label col-md-4  requiredField">Role: <span
+									class="asteriskField">*</span>
+								</label>
+								<div class="controls col-md-8 ">
+									<input class="input-md textinput textInput form-control"
+										id="id_role" name="role" style="margin-bottom: 10px"
+										type="text" />
+								</div>
+							</div>
+
+							<div id="div_id_temporary" class="form-group required">
+								<label for="id_temporary"
+									class="control-label col-md-4  requiredField">
+									Vacataire: <span class="asteriskField">*</span>
+								</label>
+								<div class="controls col-md-8 ">
+									<input class="input-md textinput textInput form-control"
+										id="id_temporary" name="temporary" style="margin-bottom: 10px"
+										type="text" />
+								</div>
+							</div>
+							<div id="div_id_master" class="form-group required">
+								<label for="id_master"
+									class="control-label col-md-4  requiredField">Master: <span
+									class="asteriskField">*</span>
+								</label>
+								<div class="controls col-md-8 ">
+									<input class="input-md textinput textInput form-control"
+										id="id_master" name="catagory" style="margin-bottom: 10px"
+										type="text" />
+								</div>
+							</div>
+							<div id="div_id_note" class="form-group required">
+								<label for="id_note"
+									class="control-label col-md-4  requiredField"> Note: <span
+									class="asteriskField">*</span>
+								</label>
+								<div class="controls col-md-8 ">
+									<input class="input-md textinput textInput form-control"
+										id="id_note" name="number" style="margin-bottom: 10px"
+										type="text" />
+								</div>
+							</div>
+							<div id="div_id_cv" class="form-group required">
+								<label for="id_cv" class="control-label col-md-4  requiredField">Cv:
+									<span class="asteriskField">*</span>
+								</label>
+								<div class="controls col-md-8 ">
+									<input class="input-md textinput textInput form-control"
+										id="id_cv" name="location" style="margin-bottom: 10px"
+										type="text" />
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="aab controls col-md-4 "></div>
+								<div class="controls col-md-8 ">
+									<input type="submit" name="Signup" value="Modifier"
+										class="btn btn-primary btn btn-info" id="id_modif" />
+								</div>
+							</div>
+						</form>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	</div>
+
+
+	<script>
+		function httpGet(theUrl) {
+			var xmlHttp = new XMLHttpRequest();
+			xmlHttp.open("GET", theUrl, false);
+			xmlHttp.send(null);
+			if (xmlhttp.status === 200) {
+				var result = xmlhttp.responseText;
+				return result;
+			} else {
+				var result = "Error" + " Status " + xmlhttp.status;
+				alert(result);
+				return result;
+			}
+
+		}
+
+		function httpPost(theUrl, data) {
+			var xmlHttp = new XMLHttpRequest();
+			xmlHttp.open("POST", theUrl, false);
+			xmlHttp.setRequestHeader('Content-type', 'application/json');
+			xmlHttp.send(data);
+			xmlhttp.send(JSON.stringify({
+				id : data[0],
+				firstname : data[1],
+				lastname : data[2]
+			}));
+			if (xmlhttp.status === 200) {
+				alert("Modification validée");
+				var result = xmlhttp.responseText;
+				return result;
+			} else {
+				var result = "Error" + " Status " + xmlhttp.status;
+				alert(result);
+				return result;
+			}
+		}
+
+		const buttonDetail = document.getElementById('id_details');
+		buttonDetail
+				.addEventListener(
+						'click',
+						function() {
+
+							var id = "id=" + document.getElementById('id_id').value;
+							var person = httpGet("http://localhost:8080/dauphine-pole-info/v1/getPerson/one?" + id);
+							var currentURL = document.URL;
+							var result = JSON.parse(person);
+							document.getElementById('id_id').value = result.id;
+							document.getElementById('id_firstname').value = result.firstname;
+							document.getElementById('id_lastname').value = result.lastname;
+							document.getElementById('id_note').value = result.note;
+							document.getElementById('id_role').value = result.role;
+							document.getElementById('id_adress').value = result.address;
+							document.getElementById('id_master').value = result.year_master;
+							document.getElementById('id_mobile').value = result.mobile;
+							document.getElementById('id_password').value = result.password;
+							document.getElementById('id_cv').value = result.cv;
+							document.getElementById('id_phone').value = result.phone;
+							document.getElementById('id_temporary').value = result.temporary;
+							document.getElementById('id_fax').value = result.fax;
+							document.getElementById('id_email').value = result.email;
+
+						});
+
+		const button = document.getElementById('id_modif');
+		button.addEventListener('click', function() {
+
+			var data = [];
+			data.push(document.getElementById('id_id').value);
+			data.push(document.getElementById('id_firstname').value);
+			data.push(document.getElementById('id_lastname').value);
+			var res = httpPost("http://localhost:8080/dauphine-pole-info/v1/updatePerson",data);
+
+		});
+	</script>
+</body>
+
+</html>

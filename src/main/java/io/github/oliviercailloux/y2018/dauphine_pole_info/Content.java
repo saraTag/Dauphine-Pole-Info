@@ -22,24 +22,25 @@ import com.google.common.base.Strings;
 
 @Entity
 @XmlRootElement
-@JsonbPropertyOrder({ "id", "name","etcs","description","training","hourlyVolume","projectVolume","objectives","contents","biblio"})
+@JsonbPropertyOrder({ "id", "name", "description", "training", "hourlyVolume", "etcs", "projectVolume", "objectives",
+		"contents", "biblio" })
 @Table(name = "Contenu")
 public class Content {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@JsonbProperty("id")
 	private int id;
 
-	
-	@Column(name = "name") @JsonbProperty("name")
+	@Column(name = "nom")
+	@JsonbProperty("name")
 	private String name;
 
 	@Column(name = "description")
-	private Optional<String> description;
+	private String description;
 
 	@Column(name = "apprentissage")
-	private Optional<String> training;
+	private String training;
 
 	@Column(name = "volume_horaire")
 	private int hourlyVolume;
@@ -51,16 +52,15 @@ public class Content {
 	private int projectVolume;
 
 	@Column(name = "objectives")
-	private Optional<String> objectives;
+	private String objectives;
 
 	@Column(name = "contents")
-	private Optional<String> contents;
+	private String contents;
 
 	@Column(name = "biblio")
-	private Optional<String> biblio;
+	private String biblio;
 
-
-	private static Jsonb jsonb = JsonUtils.getInstance();
+	private static Jsonb jsonb = JsonUtilFomat.getInstance();
 
 	public Content(int id, String name, int hourly_volume, float etcs) {
 		super();
@@ -69,28 +69,20 @@ public class Content {
 		this.hourlyVolume = hourly_volume;
 		this.etcs = etcs;
 	}
-	
 
 	public Content(String name) {
 		super();
 		this.name = name;
 	}
 
-
 	public Content() {
 		super();
 		this.name = "";
 	}
-	
-
 
 	@XmlAttribute(name = "id")
 	public int getId() {
 		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	/**
@@ -109,24 +101,24 @@ public class Content {
 	 * @return not null.
 	 */
 	@XmlAttribute(name = "description")
-	public Optional<String> getDescription() {
+	public String getDescription() {
 		return description;
 	}
 
 	public void setDescription(String description) {
-		this.description = Optional.of(description);
+		this.description = description;
 	}
 
 	/**
 	 * @return not null.
 	 */
 	@XmlAttribute(name = "training")
-	public Optional<String> getTraining() {
+	public String getTraining() {
 		return training;
 	}
 
 	public void setTraining(String training) {
-		this.training = Optional.of(training);
+		this.training = Strings.nullToEmpty(training);
 	}
 
 	@XmlAttribute(name = "hourlyVolume")
@@ -160,34 +152,34 @@ public class Content {
 	 * @return not null.
 	 */
 	@XmlAttribute(name = "objectives")
-	public Optional<String> getObjectives() {
+	public String getObjectives() {
 		return objectives;
 	}
 
 	public void setObjectives(String objectives) {
-		this.objectives = Optional.of(objectives);
+		this.objectives = objectives;
 	}
 
 	/**
 	 * @return not null.
 	 */
 	@XmlAttribute(name = "contents")
-	public Optional<String> getContents() {
+	public String getContents() {
 		return contents;
 	}
 
 	@XmlAttribute(name = "contents")
 	public void setContents(String contents) {
-		this.contents = Optional.of(contents);
+		this.contents = contents;
 	}
 
 	@XmlAttribute(name = "biblio")
-	public Optional<String> getBiblio() {
+	public String getBiblio() {
 		return biblio;
 	}
 
 	public void setBiblio(String biblio) {
-		this.biblio = Optional.of(biblio);
+		this.biblio = biblio;
 	}
 
 	public static void setJsonb(Jsonb jsonb) {

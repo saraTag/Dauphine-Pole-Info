@@ -39,7 +39,7 @@ public class CourseServletTest {
 		final WebTarget webTarget = client.target(baseURL.toString()).path("/course").queryParam("id", 2);
 		LOGGER.info(webTarget.getUri().toString());
 		final String response = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
-		String str = "{\"id\":2,\"description\":\"Java\",\"compulsory\":true,\"periode\":\"2018\"}";
+		String str = "{\"description\":\"Java\",\"periode\":\"2018\"}";
 		assertEquals(str, response);
 	}
 

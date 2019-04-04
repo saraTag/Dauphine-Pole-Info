@@ -70,8 +70,8 @@ public class DatabaseManager {
 	}
 
 	private void init() {
-		coursesById.put(1, new Course(1, "2017", true, "Python"));
-		coursesById.put(2, new Course(2, "2018", true, "Java"));
+		coursesById.put(1, new Course("2017", "Python"));
+		coursesById.put(2, new Course("2018", "Java"));
 
 		personsById.put(1, new Person(1, "Tuti", "Dudi"));
 		personsById.put(2, new Person(2, "Toto", "Dodo"));

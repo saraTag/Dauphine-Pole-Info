@@ -65,48 +65,26 @@ public class StudentPrefServlet{
 
 	}
 	
-	@GET
-	@Transactional
-	@Produces(MediaType.TEXT_PLAIN)
-	@Path("getPrefByCourse")
-	public Response getPrefByCourse(@PathParam("idCourse") String idCourse) throws ServletException, IOException {
-		
-		Course cours = CourseService.getCourseById(idCourse);
 
-		Content content = cours.getContents();
-
-		TypedQuery<RawPreference> queryPreferences = entityManager
-				.createQuery("SELECT i FROM RawPreference i i.Content = :content", RawPreference.class);
-
-		List<RawPreference> allIpreferences = queryPreferences.setParameter("content", content).getResultList();
-
-		String result = null;
-		for (RawPreference pref : allIpreferences) {
-			result += pref.getPerson().toJson();
-		}
-
-		log.info(result);
-		return Response.status(Response.Status.OK).entity(result).build();
-
-	}
 
 	@POST
-	@Consumes(MediaType.APPLICATION_JSON)
+	@Consumes({MediaType.APPLICATION_JSON ,MediaType.TEXT_PLAIN})
+	
 	@Transactional
 	@Path("setPref")
-	public void setPref(@PathParam("idStudent") String idStudent,@PathParam("pref") JsonObject pref) throws IOException {
+	public void setPref(RawPreference pref, String idStudent) throws IOException {
 		
-		RawPreference thePreference = RawPreference.jsonToRawPreference(pref.toString());
+
 		
 		TypedQuery<Person> queryPerson = entityManager.createQuery("SELECT i FROM RawPreference i i.id = :idStudent",
 				Person.class);
 		
 		Person student = queryPerson.setParameter("idStudent", idStudent).getSingleResult();
 
-		thePreference.setPerson(student);
+		pref.setPerson(student);
 
 		
-		entityManager.persist(thePreference);
+		entityManager.persist(pref);
 
 		Response.status(Response.Status.OK).build();
 	}

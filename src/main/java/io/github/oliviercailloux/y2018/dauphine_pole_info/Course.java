@@ -4,6 +4,8 @@ import java.util.Optional;
 
 import javax.json.bind.Jsonb;
 import javax.json.bind.annotation.JsonbPropertyOrder;
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -22,47 +26,35 @@ import com.google.common.base.Strings;
 @Entity
 @JsonbPropertyOrder({ "id", "description", "compulsory", "periode", "master", "teacher", "contents" })
 @XmlRootElement
+@Table(name = "Cours")
 public class Course {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@XmlAttribute
-	private int id;
+	/**
+	 * J-ai utilis� un CourseID pour maper le cl� primaire de Course qui est compos�
+	 * de id_master et id_contenu PRIMARY KEY (`id_master`,`id_contenu`)
+	 */
+	@EmbeddedId
+	private CourseId id;
 
-	@ManyToOne
-	@JoinColumn(name = "master")
-	@XmlElement
-	private Master master;
-
-	
-	@JoinColumn(name = "contents")
-	@XmlElement
-	private Content contents;
-
-	
-	@JoinColumn(name = "teacher")
+	@OneToOne
+	@JoinColumn(name = "id_enseignant", referencedColumnName = "id")
 	@XmlElement
 	private Person teacher;
 
 	private String periode;
 
-	private Optional<Boolean> compulsory;
-
 	/**
 	 * description correspond to note in db.
 	 */
+	@Column(name = "notes")
 	private String description;
 
 	private static Jsonb jsonb = JsonUtils.getInstance();
 
-	private CourseShort courseShort;
-
 	public Course() {
 		super();
 		this.periode = "";
-		this.compulsory = Optional.empty();
 		this.description = "";
-		this.courseShort = new CourseShort();
 	}
 
 	/**
@@ -70,12 +62,11 @@ public class Course {
 	 * @param compulsory
 	 * @param note
 	 */
-	public Course(String periode, boolean compulsory, String description) {
+	public Course(String periode, String description) {
 		super();
 		this.periode = Strings.nullToEmpty(periode);
-		this.compulsory = Optional.of(compulsory);
 		this.description = Strings.nullToEmpty(description);
-		this.courseShort = new CourseShort(periode, compulsory, description);
+
 	}
 
 	/**
@@ -83,28 +74,33 @@ public class Course {
 	 * @param compulsory
 	 * @param note
 	 */
-	public Course(int id, String periode, boolean compulsory, String description) {
+	public Course(CourseId id, String periode, String description) {
 		super();
 		this.id = id;
 		this.periode = Strings.nullToEmpty(periode);
-		this.compulsory = Optional.of(compulsory);
 		this.description = Strings.nullToEmpty(description);
 	}
+	
 
-	public Master getMaster() {
-		return master;
+	public Course(CourseId id, Person teacher, String description) {
+		super();
+		this.id = id;
+		this.teacher = teacher;
+		this.description = description;
 	}
 
-	public int getId() {
+	public CourseId getId() {
 		return id;
 	}
 
-	public Content getContents() {
-		return contents;
-	}
 
 	public Person getTeacher() {
 		return teacher;
+	}
+	
+
+	public void setTeacher(Person teacher) {
+		this.teacher = teacher;
 	}
 
 	/**
@@ -116,14 +112,6 @@ public class Course {
 
 	public void setPeriode(String periode) {
 		periode = Strings.nullToEmpty(periode);
-	}
-
-	public Optional<Boolean> getCompulsory() {
-		return compulsory;
-	}
-
-	public void setCompulsory(boolean compulsory) {
-		this.compulsory = Optional.of(compulsory);
 	}
 
 	/**
@@ -138,23 +126,11 @@ public class Course {
 		this.description = Strings.nullToEmpty(description);
 	}
 
-	public CourseShort getCourseShort() {
-		return courseShort;
-	}
-
-	public void setCourseShort(CourseShort courseShort) {
-		this.courseShort = courseShort;
-	}
-
 	/**
 	 * @return Cours not null
 	 */
 	public String toJson() {
 		return jsonb.toJson(this);
-	}
-
-	public String toShortJson() {
-		return jsonb.toJson(this.getCourseShort());
 	}
 
 	/**

@@ -1,12 +1,10 @@
 package io.github.oliviercailloux.y2018.dauphine_pole_info;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.annotation.Resource;
 import javax.ejb.Stateless;
+import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -18,42 +16,35 @@ import javax.transaction.HeuristicRollbackException;
 import javax.transaction.NotSupportedException;
 import javax.transaction.RollbackException;
 import javax.transaction.SystemException;
-import javax.transaction.TransactionalException;
 import javax.transaction.UserTransaction;
-import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
-@Path("GetPerson")
+@Path("addCourse")
 @Stateless
-public class GetPerson {
+public class AddCourse {
 
-	
-	@PersistenceContext(unitName = "dauphine")
-    private EntityManager manager;
+	@PersistenceContext()
+	private EntityManager manager;
 
-	@GET
-	@Produces(MediaType.TEXT_PLAIN)
-	@Path("all")
-	public List<Person> getAllPersons() {
-		List<Person> persons = null;
-		List<Person> per = new ArrayList<Person>();
-		persons = manager.createQuery("SELECT s FROM Person s", Person.class).getResultList();
-		for (Person entity : persons) {
-			per.add(entity);
-		}
-		return per;
-	}
+	@POST
+	public void add(@QueryParam("idMaster") int idMaster, @QueryParam("idContent") int idContent,
+			@QueryParam("idTeacher") int idTeacher, @QueryParam("notes") String notes) {
 
-	@GET
-	@Path("one")
-	public Person getPerson(@QueryParam("id") int id) {
-		Person pers = null;
-		pers = manager.find(Person.class, id);
-		return pers;
+		Master mast = null;
+		mast = manager.find(Master.class, idMaster);
+		Content cont = null;
+		cont = manager.find(Content.class, idContent);
+		CourseId coursid = new CourseId(mast, cont);
+		Person teacher = null;
+		teacher = manager.find(Person.class, idTeacher);
+		Course cour = new Course(coursid,teacher,notes);
+		manager.persist(cour);
 
 	}
+
 }

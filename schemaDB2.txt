@@ -1,0 +1,148 @@
+CREATE TABLE Affectation (
+  id_master int NOT NULL WITH DEFAULT 0,
+  id_contenu int NOT NULL WITH DEFAULT 0,
+  id_personne int NOT NULL WITH DEFAULT 0,
+  annee int NOT NULL WITH DEFAULT 0,
+  note decimal(6,2) WITH DEFAULT NULL,
+  PRIMARY KEY  (id_master,id_contenu,id_personne,annee) 
+  );
+ 
+CREATE TABLE affect_bis (
+  id_master int NOT NULL with default 0,
+  id_contenu int NOT NULL with default 0,
+  id_personne int NOT NULL with default 0,
+  annee int NOT NULL with default 0,
+  note decimal(6,2) with default NULL
+); 
+
+CREATE TABLE Candidat (
+  id int NOT NULL GENERATED ALWAYS AS IDENTITY
+     (START WITH 0,
+      INCREMENT BY 1,
+      CYCLE),
+  prenom varchar(60) NOT NULL,
+  nom varchar(60) NOT NULL,
+  email varchar(60) NOT NULL,
+  telephone varchar(20) NOT NULL,
+  adresse varchar(100),
+  ville varchar(60) default NULL,
+  code_postal varchar(10) default NULL,
+  pays varchar(50) default NULL,
+  masters varchar(20) default NULL,
+  annee_master int default NULL,
+  diplome varchar(60) default NULL,
+  etablissement varchar(60) default NULL,
+  ville_diplome varchar(60) default NULL,
+  pays_diplome varchar(50) default NULL,
+  mois_obtention int default NULL,
+  annee_obtention int default NULL,
+  affectation int default NULL,
+  genre char(1) default NULL,
+  PRIMARY KEY  (id)
+);
+
+CREATE TABLE Contenu (
+  id int NOT NULL generated always as identity     
+  (START WITH 0,
+   INCREMENT BY 1,
+      CYCLE),
+  nom varchar(200) NOT NULL with default '',
+  description varchar(60),
+  apprentissage char(1) NOT NULL with default 'N',
+  volume_horaire int NOT NULL with default 0,
+  ects decimal(4,2) default NULL,
+  volume_projet int with default NULL,
+  objectives varchar(60),
+  contents varchar(60),
+  biblio varchar(60),
+  PRIMARY KEY  (id)
+);
+
+CREATE TABLE Cours (
+  id_master int NOT NULL WITH default 0,
+  id_contenu int NOT NULL WITH default 0,
+  id_enseignant int NOT NULL WITH default 0,
+  periode varchar(200)  WITH default NULL,
+  obligatoire char(1)    NOT NULL WITH default '0',
+  notes varchar(60),
+  PRIMARY KEY  (id_master,id_contenu)
+) ;
+
+CREATE TABLE Master (
+ id int NOT NULL generated always as identity     
+  (START WITH 0,
+   INCREMENT BY 1,
+      CYCLE),
+  nom varchar(100) NOT NULL WITH default '',
+  description varchar(60),
+  PRIMARY KEY  (id)
+) ;
+
+CREATE TABLE Personne (
+ id int NOT NULL generated always as identity     
+  (START WITH 0,
+   INCREMENT BY 1,
+      CYCLE),
+  prenom varchar(60) NOT NULL default '',
+  nom varchar(60) NOT NULL default '',
+  email varchar(60) NOT NULL default '',
+  telephone varchar(20) NOT NULL default '',
+  fax varchar(20) NOT NULL default '',
+  home_page varchar(100) default NULL,
+  cv varchar(200),
+  notes varchar(200),
+  password varchar(32) default NULL,
+  roles varchar(10) default NULL,
+  id_master int default NULL,
+  annee_master int default NULL,
+  adresse varchar(60),
+  mobile varchar(20) default NULL,
+  vacataire char(1) default 'N',
+  PRIMARY KEY  (id)
+) ;
+
+CREATE TABLE Preference (
+  id_master int NOT NULL with default 0,
+  id_contenu int NOT NULL with default 0,
+  id_personne int NOT NULL with default 0,
+  niveau int NOT NULL with default 0,
+  PRIMARY KEY  (id_master,id_contenu,id_personne)
+) ;
+
+CREATE TABLE Role (
+  code char(1) NOT NULL with default '',
+  intitule varchar(30) NOT NULL with default '',
+  PRIMARY KEY  (code)
+) ;
+
+CREATE TABLE Session (
+  id_session varchar(40) NOT NULL with default '',
+  id_person varchar(60) NOT NULL with default '',
+  first_name varchar(60) NOT NULL with default '',
+  last_name varchar(60) NOT NULL with default '',
+  end_session decimal(10,0) NOT NULL with default '0',
+  roles varchar(10) NOT NULL with default '',
+  PRIMARY KEY  (id_session)
+) ;
+
+CREATE TABLE sv_affect (
+  id_master int NOT NULL with default 0,
+  id_contenu int NOT NULL with default 0,
+  id_personne int NOT NULL with default 0,
+  annee int NOT NULL with default 0,
+  note decimal(6,2) with default NULL
+) ;
+
+INSERT INTO Personne ( prenom, nom, email, telephone, fax,
+                      password, roles)
+	VALUES ('poleinfo3','poleinfo3', 'poleinfo3', '', '', 
+                'poleinfo3', 'M');
+INSERT INTO Personne ( prenom, nom, email, telephone, fax,
+                      password, roles)
+	VALUES ('admin','admin', 'admin', '', '', 
+                'admin', 'M, A');
+
+INSERT INTO Role (code, intitule) VALUES
+('M', 'Enseignant'),
+('S', 'Etudiant');
+
