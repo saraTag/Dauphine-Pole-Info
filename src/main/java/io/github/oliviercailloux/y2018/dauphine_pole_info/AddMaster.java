@@ -30,9 +30,9 @@ public class AddMaster {
 
 	@POST
 	@Produces(MediaType.TEXT_PLAIN)
-	public void addMaster(@QueryParam("name") String name,@QueryParam("description") String description) {
-		
-		Master mast = new Master(name,description);
+	public void addMaster(@QueryParam("name") String name, @QueryParam("description") String description) {
+
+		Master mast = new Master(name, description);
 		manager.persist(mast);
 	}
 

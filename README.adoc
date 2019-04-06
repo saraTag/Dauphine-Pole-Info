@@ -106,8 +106,6 @@ Transformer certains servlets pour en faire des services SOAP.
 
 Isoler la partie bibliothèque du reste du code. La publier comme un projet Maven indépendant (suffixer le nom du projet de -lib) et faire dépendre le reste du code de cette bibliothèque. Isoler la partie client du reste du code, publier comme un projet indépendant (ProjectName-client). Publier la partie serveur comme un projet indépendant (ProjectName). 
 
-* Lahsen Jannani : *ExtBasicServlets* (1 Point)
+* Lahsen Jannani : *GUI Master* (1 Point)
 
-Étendre servlets existants pour accepter et renvoyer à la demande du XML ou JSON en plus du texte. Transformer en REST. Cookie permet de mémoriser un id person, il est utilisé si l’id person n’est pas fourni, pour les servlets qui requièrent ce paramètre. 
-
-Comme les deux fonctionnalités *lib* et *SOAP* ne sont pas prioritaires, nous allons réflechir à les remplacer par dautres fonctionnalités plus urgentes .
+Intégrer une template pour crud master ( le lien du template est ici : https://www.tutorialrepublic.com/snippets/preview.php?topic=bootstrap&file=crud-data-table-for-database-with-modal-form - j'ai séparé le code html css et js parce qu'il était dans le meme fichier dans la template initiale-, ainsi que la réalisation des script JS pour la consommation des services web add/updat/delete de l'objet master
