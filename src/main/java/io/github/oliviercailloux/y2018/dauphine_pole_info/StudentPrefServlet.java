@@ -1,6 +1,7 @@
 package io.github.oliviercailloux.y2018.dauphine_pole_info;
 
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.logging.Logger;
@@ -40,7 +41,6 @@ public class StudentPrefServlet{
 	@Transactional
 	@Produces(MediaType.TEXT_PLAIN)
 	public Response getPref(@QueryParam("idStudent") String idStudent) throws ServletException, IOException {
-		// getting the Student
 		
 		Person student = null;
 		
@@ -51,11 +51,9 @@ public class StudentPrefServlet{
 
 		List<RawPreference> allIpreferences = queryPreferences.setParameter("Person", student).getResultList();
 
-		Set<RawPreference> setPreferences = null;
+		Set<RawPreference> setPreferences = new HashSet<RawPreference>(allIpreferences);
 
-		for (RawPreference pref : allIpreferences) {
-			setPreferences.add(pref);
-		}
+		
 		StudentPreference studPref = new StudentPreference(student, setPreferences);
 
 		Jsonb jsonb = JsonbBuilder.create();
@@ -80,11 +78,10 @@ public class StudentPrefServlet{
 				.createQuery("SELECT i FROM RawPreference i i.Content = :contents", RawPreference.class);
 
 		List<RawPreference> allIpreferences = queryPreferences.setParameter("contents", contents).getResultList();
-
-		String result = null;
-		for (RawPreference pref : allIpreferences) {
-			result += pref.getPerson().toJson();
-		}
+		
+		Jsonb jsonb = JsonUtils.getInstance();
+		
+		String result = jsonb.toJson(allIpreferences);
 
 		log.info(result);
 		return Response.status(Response.Status.OK).entity(result).build();
