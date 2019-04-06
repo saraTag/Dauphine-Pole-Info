@@ -21,6 +21,8 @@ public class CourseId implements Serializable {
 	@XmlElement
 	private Content contents;
 
+	
+	
 	public CourseId() {
 		super();
 	}

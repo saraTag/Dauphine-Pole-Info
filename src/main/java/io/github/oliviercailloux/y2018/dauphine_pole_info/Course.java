@@ -18,6 +18,7 @@ import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 import com.google.common.base.Strings;
 
@@ -124,6 +125,10 @@ public class Course {
 
 	public void setDescription(String description) {
 		this.description = Strings.nullToEmpty(description);
+	}
+	@XmlTransient
+	public Content getContents() {
+		return getId().getContents();
 	}
 
 	/**

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+	integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+	crossorigin="anonymous">
+</head>
+</head>
+
+<body>
+
+	<div class="container">
+
+		<div id="signupbox" style="margin-top: 100px"
+			class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+			<div class="panel panel-info">
+				<div class="panel-heading"></div>
+				<div class="panel-body">
+					<form method="post" action=".">
+						<input type='hidden' name='csrfmiddlewaretoken'
+							value='XFe2rTYl9WOpV8U6X5CfbIuOZOELJ97S' />
+
+
+						<form class="form-horizontal" method="post">
+							<input type='hidden' name='csrfmiddlewaretoken'
+								value='XFe2rTYl9WOpV8U6X5CfbIuOZOELJ97S' />
+							<div id="div_id_select" class="form-group required"></div>
+
+							<div id="div_id" class="form-group required">
+								<label for="id_id"> Id <span class="asteriskField">*</span>
+								</label>
+								<div>
+									<input class="input-md  textinput textInput form-control"
+										id="id_id" maxlength="30" name="id"
+										placeholder="Choose Content's Id" style="margin-bottom: 10px"
+										type="text" />
+									<button type="submit" name="deatils"
+										class="btn btn-primary btn btn-info" id="id_details">Détails</button>
+								</div>
+							</div>
+
+							<div id="div_id_apprentissage" class="form-group required">
+								<label for="id_apprentissage"
+									class="control-label col-md-4  requiredField">level:
+									<span class="asteriskField">*</span>
+								</label>
+								<div class="controls col-md-8 ">
+									<input class="input-md emailinput form-control"
+										id="id_level" name="level"
+										style="margin-bottom: 10px" type="text" />
+								</div>
+							</div>
+								<div class="form-group">
+								<div class="aab controls col-md-4 "></div>
+								<div class="controls col-md-8 ">
+									<input type="submit" name="Signup" value="Modifier"
+										class="btn btn-primary btn btn-info" id="id_modif" />
+								</div>
+							</div>
+						</form>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	</div>
+
+
+
+	<script>
+	
+	function httpGet(theUrl)
+	{
+	    var xmlHttp = new XMLHttpRequest();
+	    xmlHttp.open( "GET", theUrl, false );
+	    xmlHttp.send( null );
+	    if (xmlhttp.status === 200) {
+	        var result = xmlhttp.responseText;
+	        return result;
+	    } else {
+	        var result = "Error" + " Status " + xmlhttp.status;
+	        alert(result);
+	        return result;
+	    }
+
+	}
+	
+	function httpPost(theUrl,data)
+	{
+	    var xmlHttp = new XMLHttpRequest();
+	    xmlHttp.open( "POST", theUrl, false );
+	    xmlHttp.setRequestHeader('Content-type','application/json');
+	    xmlHttp.send(data);
+	    xmlhttp.send(JSON.stringify({id: data[0], level: data[1]}));
+	    if (xmlhttp.status === 200) {
+	    	alert("Modification validée");
+	        var result = xmlhttp.responseText;
+	        return result;
+	    } else {
+	        var result = "Error" + " Status " + xmlhttp.status;
+	        alert(result);
+	        return result;
+	    }
+	}
+	
+	const buttonDetail = document.getElementById('id_details');
+    buttonDetail.addEventListener('click',function(){
+    	
+    	var id = "id="+document.getElementById('id_id').value;
+    	console.log(id);
+    	console.log("http://localhost:8080/dauphine-pole-info/v1/getContent/one?"+id);
+	    var preference = httpGet("http://localhost:8080/dauphine-pole-info/v1/preference/"+id);
+	    var currentURL = document.URL; 
+	    var result = JSON.parse(preference);
+	    console.log(result.level);
+	   
+	    document.getElementById('id_level').value = result.level;
+
+    });
+	 
+    
+    const button = document.getElementById('id_modif');
+    button.addEventListener('click',function(){
+    	
+	    var data = [];
+	    data.push(document.getElementById('id_id').value);
+	    console.log(data[0]);
+	    var res = httpPost("http://localhost:8080/dauphine-pole-info/v1/preference",data);
+	    console.log(res);
+	    
+    });
+    
+	</script>
+
+</body>
+
+</html>
