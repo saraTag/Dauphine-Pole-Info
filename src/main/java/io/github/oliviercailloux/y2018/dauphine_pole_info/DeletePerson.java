@@ -15,6 +15,7 @@ import javax.persistence.PersistenceUnit;
 import javax.transaction.SystemException;
 import javax.transaction.TransactionalException;
 import javax.transaction.UserTransaction;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -32,9 +33,12 @@ public class DeletePerson {
     private EntityManager manager;
 
 	@DELETE
-	public void delete(@QueryParam("id") int id) {
+	@Consumes(MediaType.TEXT_PLAIN)
+	@Produces(MediaType.TEXT_PLAIN)
+	public Response delete(@QueryParam("id") int id) {
 		Person pers = manager.find(Person.class, id);
 		manager.remove(pers);
+		return Response.status(Response.Status.OK).build();
 
 	}
 }

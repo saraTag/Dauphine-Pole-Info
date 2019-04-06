@@ -36,8 +36,8 @@ public class GetPerson {
     private EntityManager manager;
 
 	@GET
-	@Produces(MediaType.TEXT_PLAIN)
 	@Path("all")
+	@Produces(MediaType.APPLICATION_JSON)
 	public List<Person> getAllPersons() {
 		List<Person> persons = null;
 		List<Person> per = new ArrayList<Person>();
@@ -50,6 +50,7 @@ public class GetPerson {
 
 	@GET
 	@Path("one")
+	@Produces(MediaType.APPLICATION_JSON)
 	public Person getPerson(@QueryParam("id") int id) {
 		Person pers = null;
 		pers = manager.find(Person.class, id);
