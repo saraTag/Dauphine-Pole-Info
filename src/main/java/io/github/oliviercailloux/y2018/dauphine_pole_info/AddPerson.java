@@ -31,9 +31,9 @@ public class AddPerson {
 	@POST
 	@Produces(MediaType.TEXT_PLAIN)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response Response (Person p) {
+	public Response add (Person p) {
 		
-		Person per = new Person(p.getFirstname(),p.getLastname(),p.getEmail(),p.getPhone(),p.getFax(),p.getMaster());
+		Person per = new Person(p);
 		manager.persist(per);
 		return Response.status(Response.Status.OK).build();
 	}

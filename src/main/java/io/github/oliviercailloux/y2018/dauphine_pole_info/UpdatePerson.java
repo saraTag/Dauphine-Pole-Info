@@ -37,7 +37,7 @@ public class UpdatePerson {
 
 	@PUT
 	@Produces(MediaType.TEXT_PLAIN)
-	@Consumes(MediaType.APPLICATION_JSON)
+	@Consumes({MediaType.TEXT_PLAIN,MediaType.APPLICATION_JSON})
 	public Response Update(@QueryParam("id") int id, Person p) {
 		Person pers = manager.find(Person.class,id);
 		String data = p.getFirstname();

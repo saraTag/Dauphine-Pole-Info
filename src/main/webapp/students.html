@@ -71,7 +71,6 @@ input[type='text'], select {
 			xmlHttp.send(dataJson);
 
 			if (xmlHttp.status === 200) {
-				alert("validé");
 				var result = xmlHttp.responseText;
 				return result;
 			} else {
@@ -98,7 +97,6 @@ input[type='text'], select {
 			xmlHttp.send(dataJson);
 
 			if (xmlHttp.status === 200) {
-				alert("validé");
 				var result = xmlHttp.responseText;
 				return result;
 			} else {
@@ -114,7 +112,6 @@ input[type='text'], select {
 			xmlHttp.setRequestHeader("Content-type", "text/plain");
 			xmlHttp.send(null);
 			if (xmlHttp.status === 200) {
-				alert("validé");
 				var result = xmlHttp.responseText;
 				return result;
 			} else {
@@ -123,7 +120,13 @@ input[type='text'], select {
 				return result;
 			}
 		}
-
+		// INITIALIZE 
+		dataOne = ["Tagziria","sara","tagziriasara@gmail.com","0988767656564","09898776756443","2018"];
+		dataTwo = ["Ouaz","Shahine","ouazshahine@gmail.com","0988767656564","09898776756443","2018"];
+		dataThree = ["lehsen","Jannani","jannanilehsen@gmail.com","0988767656564","09898776756443","2018"];
+		var res = httpPost("http://localhost:8080/dauphine-pole-info/myapp/addPerson",dataOne); 
+		var res = httpPost("http://localhost:8080/dauphine-pole-info/myapp/addPerson",dataTwo); 
+		var res = httpPost("http://localhost:8080/dauphine-pole-info/myapp/addPerson",dataThree);
 		// AN ARRAY OF JSON OBJECTS WITH VALUES.
 		this.persons = httpGet("http://localhost:8080/dauphine-pole-info/myapp/GetPerson/all");
 
@@ -304,8 +307,7 @@ input[type='text'], select {
 			var activeRow = oButton.parentNode.parentNode.rowIndex;
 			id = this.persons[(activeRow - 1)][this.col[0]];
 			this.persons.splice((activeRow - 1), 1);
-			var res = httpDelete("http://localhost:8080/dauphine-pole-info/myapp/DeletePerson?id="
-					+ id);
+			var res = httpDelete("http://localhost:8080/dauphine-pole-info/myapp/DeletePerson?id="+id);
 			this.createTable();
 		};
 
@@ -325,8 +327,7 @@ input[type='text'], select {
 				}
 			}
 			id = this.persons[(activeRow - 1)][this.col[0]];
-			var res = httpPut(
-					"http://localhost:8080/dauphine-pole-info/myapp/updatePerson?id="
+			var res = httpPut("http://localhost:8080/dauphine-pole-info/myapp/updatePerson?id="
 							+ id, data);
 			this.createTable(); //REFRESH THE TABLE.
 		}
@@ -360,9 +361,7 @@ input[type='text'], select {
 				this.createTable();
 			}
 
-			var res = httpPost(
-					"http://localhost:8080/dauphine-pole-info/myapp/addPerson",
-					data);
+			var res = httpPost("http://localhost:8080/dauphine-pole-info/myapp/addPerson",data);
 
 		}
 
