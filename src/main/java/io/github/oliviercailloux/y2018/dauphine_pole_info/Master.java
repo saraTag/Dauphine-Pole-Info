@@ -46,6 +46,12 @@ public class Master {
 		this.description = description;
 	}
 
+	public Master(String nom, String description) {
+		super();
+		this.name = Strings.nullToEmpty(nom);
+		this.description = description;
+	}
+	
 	public int getId() {
 		return id;
 	}
