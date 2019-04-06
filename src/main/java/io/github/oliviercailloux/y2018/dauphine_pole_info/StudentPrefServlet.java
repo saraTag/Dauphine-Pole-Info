@@ -1,6 +1,7 @@
 package io.github.oliviercailloux.y2018.dauphine_pole_info;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -80,9 +81,13 @@ public class StudentPrefServlet{
 		List<RawPreference> allIpreferences = queryPreferences.setParameter("contents", contents).getResultList();
 		
 		Jsonb jsonb = JsonUtils.getInstance();
+		List<Person> students = new ArrayList<Person>();
 		
-		String result = jsonb.toJson(allIpreferences);
-
+		for (RawPreference pref : allIpreferences) {
+			students.add(pref.getPerson());
+		}
+		
+		String result = jsonb.toJson(students);
 		log.info(result);
 		return Response.status(Response.Status.OK).entity(result).build();
 
