@@ -30,3 +30,10 @@ deploy:
 branches:
   only:
   - master
+  
+  deploy:
+  provider: script
+  script: bash deploy.sh
+  branches:
+  only:
+  - master
