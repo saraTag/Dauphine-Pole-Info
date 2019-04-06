@@ -1,4 +1,4 @@
-function templateJS() {
+	function templateJS() {
 
 	$(document).ready(function() {
 		// Activate tooltip
