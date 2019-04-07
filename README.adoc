@@ -97,15 +97,16 @@ Servlet permettant de récupérer, effacer, ajouter des liens entre master, cour
 
 *Sprint 3:*
 
-* TAGZIRIA Sara : *Template and Crud* (1 Point)
+* TAGZIRIA Sara : *ObjectsXML* (1 Point)
 
-Ajouter un template : https://colorlib.com/wp/template/course/ et implémenter une interface graphique Crud pour Person .
+Encoder / décoder une partie de vos objets de base en XML. Repartir du schéma CDM-fr, simplifié. (« Vos objets de base » comprend ici Master.) Encoder / décoder le reste de vos objets de base en JSON, y compris les relations.
+Le projet Dauphine Open Data pour ont déjà implementé une fonctionnalité de très similaire, nous envisageons discuter avec eux à propos de cette fonctionnalité. 
 
-* Ouaaz Chahine : *SOAP* (1 Point)
+* Ouaaz Chahine : SOAP (1 Point)
 
 Transformer certains servlets pour en faire des services SOAP. 
 
-* Anas : *Lib* (1 Point)
+* Anas : Lib (1 Point)
 
 Isoler la partie bibliothèque du reste du code. La publier comme un projet Maven indépendant (suffixer le nom du projet de -lib) et faire dépendre le reste du code de cette bibliothèque. Isoler la partie client du reste du code, publier comme un projet indépendant (ProjectName-client). Publier la partie serveur comme un projet indépendant (ProjectName). 
 
@@ -114,6 +115,3 @@ Isoler la partie bibliothèque du reste du code. La publier comme un projet Mave
 Intégrer une template pour crud master ainsi que la réalisation des script JS pour la consommation des services web add/update/delete de l'objet master
 
 Comme les deux fonctionnalités *lib* et *SOAP* ne sont pas prioritaires, nous allons réflechir à les remplacer par dautres fonctionnalités plus urgentes .
-
-= Remarques:
-Pour ajouter une Personne, on utilise la servlet "addPerson", cette dernière fait appel à un constructeur qui prends une Person en paramètre  mais comme l'id d'une personne s'auto-génére et s'incrémente automatiquement au moment  de l'insertion dans la base de données, on ne s'en sert pas à l'interieur de ce constructeur.

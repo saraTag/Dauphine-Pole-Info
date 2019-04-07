@@ -96,34 +96,21 @@ public class Person {
 	private String temporary;
 
 	private static Jsonb jsonb = JsonUtilFomat.getInstance();
-	
-	/**
-	 * Short constructor by design. Use setters to complete the object.
-	 * 
-	 * @param id        int
-	 * @param firstname String
-	 * @param lastname  String
-	 */
-	
+
 	public Person() {
 		super();
-		this.id = 0;
 		this.firstname = "";
 		this.lastname = "";
 	}
-	
-	public Person(Person p) {
-		super();
-		this.firstname = p.getFirstname();
-		this.lastname = p.getLastname();
-		this.email = p.getEmail();
-		this.phone = p.getPhone();
-		this.fax = p.getFax();
-		this.master = p.getMaster();
-	}
+
+	/**
+	 * Short constructor by design. Use setters to complete the object.
+	 * 
+	 * @param firstname String
+	 * @param lastname  String
+	 */
 	public Person(int id, String firstname, String lastname) {
 		super();
-		this.id = id;
 		this.firstname = Strings.nullToEmpty(firstname);
 		this.lastname = Strings.nullToEmpty(lastname);
 	}
