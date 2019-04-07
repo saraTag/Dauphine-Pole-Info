@@ -31,7 +31,7 @@ public class UpdateMaster {
 	private EntityManager manager;
 
 	@PUT
-	public void Update(@QueryParam("id") int id, @QueryParam("name") String name,
+	public void update(@QueryParam("id") int id, @QueryParam("name") String name,
 			@QueryParam("description") String description) {
 
 		Master mast = manager.find(Master.class, id);
