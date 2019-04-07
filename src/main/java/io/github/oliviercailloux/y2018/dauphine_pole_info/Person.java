@@ -106,13 +106,11 @@ public class Person {
 	/**
 	 * Short constructor by design. Use setters to complete the object.
 	 * 
-	 * @param id        int
 	 * @param firstname String
 	 * @param lastname  String
 	 */
 	public Person(int id, String firstname, String lastname) {
 		super();
-		this.id = id;
 		this.firstname = Strings.nullToEmpty(firstname);
 		this.lastname = Strings.nullToEmpty(lastname);
 	}
