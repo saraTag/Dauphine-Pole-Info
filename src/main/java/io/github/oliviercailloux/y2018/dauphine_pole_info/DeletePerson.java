@@ -33,7 +33,6 @@ public class DeletePerson {
     private EntityManager manager;
 
 	@DELETE
-	@Consumes(MediaType.TEXT_PLAIN)
 	@Produces(MediaType.TEXT_PLAIN)
 	public Response delete(@QueryParam("id") int id) {
 		Person pers = manager.find(Person.class, id);

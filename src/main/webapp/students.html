@@ -149,7 +149,7 @@ input[type='text'], select {
 			table.setAttribute('id', 'table');
 			var tr = table.insertRow(-1);
 
-			for (var h = 0; h < 7; h++) {
+			for (var h = 0; h < this.col.length; h++) {
 				// ADD TABLE HEADER.
 				var th = document.createElement('th');
 				th.innerHTML = this.col[h].replace('_', ' ');
@@ -163,7 +163,7 @@ input[type='text'], select {
 
 					tr = table.insertRow(-1);
 
-					for (var j = 0; j < 7; j++) {
+					for (var j = 0; j < this.col.length; j++) {
 						var tabCell = tr.insertCell(-1);
 						tabCell.innerHTML = this.persons[i][this.col[j]];
 					}
@@ -218,7 +218,7 @@ input[type='text'], select {
 
 			tr = table.insertRow(-1);
 
-			for (var j = 0; j < 7; j++) {
+			for (var j = 0; j < this.col.length; j++) {
 				var newCell = tr.insertCell(-1);
 				if (j >= 1) {
 
@@ -276,7 +276,7 @@ input[type='text'], select {
 			var activeRow = oButton.parentNode.parentNode.rowIndex;
 			var tab = document.getElementById('table').rows[activeRow];
 
-			for (i = 1; i < 7; i++) {
+			for (i = 1; i < this.col.length; i++) {
 
 				var td = tab.getElementsByTagName("td")[i];
 				var ele = document.createElement('input'); // TEXTBOX.
