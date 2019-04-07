@@ -93,7 +93,7 @@ Servlet permettant de récupérer, effacer, ajouter des liens entre master, cour
 
 *Sprint 3:*
 
-* TAGZIRIA Sara : *Template and Crud * (1 Point)
+* TAGZIRIA Sara : *Template and Crud* (1 Point)
 Ajouter un template : https://colorlib.com/wp/template/course/ et implémenter une interface graphique Crud pour Person .
 
 * Ouaaz Chahine : SOAP (1 Point)
