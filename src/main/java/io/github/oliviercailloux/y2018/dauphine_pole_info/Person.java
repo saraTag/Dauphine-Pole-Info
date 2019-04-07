@@ -100,14 +100,12 @@ public class Person {
 	/**
 	 * Short constructor by design. Use setters to complete the object.
 	 * 
-	 * @param id        int
 	 * @param firstname String
 	 * @param lastname  String
 	 */
 	
 	public Person() {
 		super();
-		this.id = 0;
 		this.firstname = "";
 		this.lastname = "";
 	}
