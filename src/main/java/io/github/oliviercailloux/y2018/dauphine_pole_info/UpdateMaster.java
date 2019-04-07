@@ -28,7 +28,11 @@ import javax.ws.rs.core.Response;
 public class UpdateMaster {
 
 	@PersistenceContext()
+<<<<<<< HEAD
 	private EntityManager manager;
+=======
+    	private EntityManager manager;
+>>>>>>> d96be3f37a93b43f4960d4ce3f523258cbde33bb
 
 	@PUT
 	public void Update(@QueryParam("id") int id, @QueryParam("name") String name,
