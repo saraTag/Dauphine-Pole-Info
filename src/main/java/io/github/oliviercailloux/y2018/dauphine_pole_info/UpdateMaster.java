@@ -28,10 +28,11 @@ import javax.ws.rs.core.Response;
 public class UpdateMaster {
 
 	@PersistenceContext()
-    private EntityManager manager;
+	private EntityManager manager;
 
 	@PUT
-	public void Update(@QueryParam("id") int id, @QueryParam("name") String name ,@QueryParam("description") String description ){
+	public void Update(@QueryParam("id") int id, @QueryParam("name") String name,
+			@QueryParam("description") String description) {
 
 		Master mast = manager.find(Master.class, id);
 		mast.setName(name);

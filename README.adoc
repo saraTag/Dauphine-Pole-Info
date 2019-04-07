@@ -45,6 +45,10 @@ image:https://travis-ci.org/saraTag/Dauphine-Pole-Info.svg?branch=master["Build 
 * Lahsen Jannani
 * Anas BEN EL MAHJOUB
 
+= Template 
+
+Ce projet utilise un template CRUD pour gérer l'objet master , (le lien de la template est ici : https://www.tutorialrepublic.com/snippets/preview.php?topic=bootstrap&file=crud-data-table-for-database-with-modal-form) - j'ai séparé le code html css et js parce qu'il était dans le meme fichier dans la template initiale-
+
 = Vue globale sur l’ensemble du projet:
 
 * Nous allons nous baser sur le projet Dauphine-Pole-Info déjà existant, pour l’enrichir avec les fonctionnalités choisies par tous les membres du groupe.
@@ -108,6 +112,6 @@ Isoler la partie bibliothèque du reste du code. La publier comme un projet Mave
 
 * Lahsen Jannani : *Gui Master* (1 Point)
 
-Intégrer une template pour crud master ( le lien du template est ici : https://www.tutorialrepublic.com/snippets/preview.php?topic=bootstrap&file=crud-data-table-for-database-with-modal-form - j'ai séparé le code html css et js parce qu'il était dans le meme fichier dans la template initiale-, ainsi que la réalisation des script JS pour la consommation des services web add/update/delete de l'objet master
+Intégrer une template pour crud master ainsi que la réalisation des script JS pour la consommation des services web add/update/delete de l'objet master
 
 Comme les deux fonctionnalités *lib* et *SOAP* ne sont pas prioritaires, nous allons réflechir à les remplacer par dautres fonctionnalités plus urgentes .

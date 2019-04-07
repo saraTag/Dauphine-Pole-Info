@@ -29,7 +29,6 @@ public class AddMaster {
 	private EntityManager manager;
 
 	@POST
-	@Produces(MediaType.TEXT_PLAIN)
 	public void addMaster(@QueryParam("name") String name, @QueryParam("description") String description) {
 
 		Master mast = new Master(name, description);
