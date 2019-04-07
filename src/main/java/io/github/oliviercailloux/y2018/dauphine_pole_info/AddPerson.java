@@ -13,6 +13,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.transaction.TransactionalException;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -29,15 +30,12 @@ public class AddPerson {
 
 	@POST
 	@Produces(MediaType.TEXT_PLAIN)
-	public void add(@QueryParam("firstname") String fname, @QueryParam("lastname") String lname,
-			@QueryParam("email") String email, @QueryParam("phone") String phone, @QueryParam("fax") String fax,
-			@QueryParam("idMaster") int idMaster) {
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response add (Person p) {
 		
-		Master mast = null;
-		mast = manager.find(Master.class, idMaster);
-		Person per = new Person(fname, lname, email, phone, fax,mast);
+		Person per = new Person(p);
 		manager.persist(per);
-
+		return Response.status(Response.Status.OK).build();
 	}
 
 }
