@@ -101,7 +101,7 @@ Ajouter un template : https://colorlib.com/wp/template/course/ et implémenter u
 
 Transformer certains servlets pour en faire des services SOAP. 
 
-* Anas : Lib (1 Point)
+* Anas : *Lib* (1 Point)
 
 Isoler la partie bibliothèque du reste du code. La publier comme un projet Maven indépendant (suffixer le nom du projet de -lib) et faire dépendre le reste du code de cette bibliothèque. Isoler la partie client du reste du code, publier comme un projet indépendant (ProjectName-client). Publier la partie serveur comme un projet indépendant (ProjectName). 
 
