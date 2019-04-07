@@ -110,4 +110,4 @@ Isoler la partie bibliothèque du reste du code. La publier comme un projet Mave
 Comme les deux fonctionnalités *lib* et *SOAP* ne sont pas prioritaires, nous allons réflechir à les remplacer par dautres fonctionnalités plus urgentes .
 
 = Remarques:
-Pour ajouter une Personne, on utilise la servlet "addPerson", cette dernière fait appel un constructeur qui prends une Person en paramètre  mais comme l'id d'une personne s'auto-génére et s'incrémente automatiquement au moment  de l'insertion dans la base de données, on ne s'en sert pas à l'interieur de ce constructeur.
+Pour ajouter une Personne, on utilise la servlet "addPerson", cette dernière fait appel à un constructeur qui prends une Person en paramètre  mais comme l'id d'une personne s'auto-génére et s'incrémente automatiquement au moment  de l'insertion dans la base de données, on ne s'en sert pas à l'interieur de ce constructeur.
