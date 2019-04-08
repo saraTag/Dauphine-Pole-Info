@@ -13,4 +13,15 @@
 			<property name="eclipselink.logging.parameters" value="true" />
       </properties>
   	</persistence-unit>
+	
+	
+ <persistence-unit name="JPADB2" transaction-type="JTA">
+ 	   <properties>
+      		<property name="openjpa.LockTimeout" value="30000"/>    
+     		<property name="openjpa.jdbc.TransactionIsolation" value="read-committed"/>
+    		<property name="openjpa.Log" value="none"/>   
+            <property name="openjpa.jdbc.UpdateManager" value="operation-order"/>
+            </properties>
+  </persistence-unit>
+	
 </persistence>
